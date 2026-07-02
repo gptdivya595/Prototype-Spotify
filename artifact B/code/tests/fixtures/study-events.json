@@ -1,0 +1,68 @@
+[
+  {
+    "eventId": "00000000-0000-4000-8000-000000000001",
+    "sessionId": "10000000-0000-4000-8000-000000000001",
+    "eventName": "session_started",
+    "condition": "baseline",
+    "iteration": 0,
+    "catalogVersion": "seed-v1",
+    "rankingVersion": "baseline-v1",
+    "properties": { "conditionOrder": ["baseline", "guided"], "studyVersion": "fixture-v1" },
+    "occurredAt": "2026-07-02T00:00:00.000Z"
+  },
+  {
+    "eventId": "00000000-0000-4000-8000-000000000002",
+    "sessionId": "10000000-0000-4000-8000-000000000001",
+    "eventName": "recommendations_shown",
+    "condition": "baseline",
+    "iteration": 0,
+    "catalogVersion": "seed-v1",
+    "rankingVersion": "baseline-v1",
+    "properties": { "trackIds": ["a", "b", "c", "d"], "artistIds": ["aa", "bb", "cc", "dd"], "novelArtistIds": ["cc", "dd"], "candidateCount": 47 },
+    "occurredAt": "2026-07-02T00:01:00.000Z"
+  },
+  {
+    "eventId": "00000000-0000-4000-8000-000000000003",
+    "sessionId": "10000000-0000-4000-8000-000000000001",
+    "eventName": "track_saved",
+    "condition": "baseline",
+    "iteration": 0,
+    "catalogVersion": "seed-v1",
+    "rankingVersion": "baseline-v1",
+    "properties": { "trackId": "a", "artistId": "aa", "novelArtist": false },
+    "occurredAt": "2026-07-02T00:02:00.000Z"
+  },
+  {
+    "eventId": "00000000-0000-4000-8000-000000000004",
+    "sessionId": "10000000-0000-4000-8000-000000000001",
+    "eventName": "recommendations_shown",
+    "condition": "guided",
+    "iteration": 0,
+    "catalogVersion": "seed-v1",
+    "rankingVersion": "guided-v1",
+    "properties": { "trackIds": ["e", "f", "g", "h"], "artistIds": ["ee", "ff", "gg", "hh"], "novelArtistIds": ["ee", "ff", "gg"], "candidateCount": 47 },
+    "occurredAt": "2026-07-02T00:03:00.000Z"
+  },
+  {
+    "eventId": "00000000-0000-4000-8000-000000000005",
+    "sessionId": "10000000-0000-4000-8000-000000000001",
+    "eventName": "track_saved",
+    "condition": "guided",
+    "iteration": 0,
+    "catalogVersion": "seed-v1",
+    "rankingVersion": "guided-v1",
+    "properties": { "trackId": "e", "artistId": "ee", "novelArtist": true },
+    "occurredAt": "2026-07-02T00:04:00.000Z"
+  },
+  {
+    "eventId": "00000000-0000-4000-8000-000000000006",
+    "sessionId": "10000000-0000-4000-8000-000000000001",
+    "eventName": "study_completed",
+    "condition": "guided",
+    "iteration": 0,
+    "catalogVersion": "seed-v1",
+    "rankingVersion": "guided-v1",
+    "properties": { "completedConditions": ["baseline", "guided"], "durationMs": 240000 },
+    "occurredAt": "2026-07-02T00:05:00.000Z"
+  }
+]

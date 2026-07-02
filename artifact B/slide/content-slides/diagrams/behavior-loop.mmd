@@ -1,0 +1,16 @@
+flowchart LR
+    A["Persistent profile\nlearns past behavior"] --> B["Current context\nis not explicit"]
+    B --> C["Familiar cluster\nis repeatedly ranked"]
+    C --> D["Skip, manually search,\nor leave Spotify"]
+    D --> E["Sparse or noisy\nfeedback returns"]
+    E --> A
+
+    F["Counterevidence\nSome listeners value familiarity\nand some surfaces work well"] -. constrains claim .-> C
+    G["Design implication\nMake novelty optional and session-scoped"] -. interrupts loop .-> B
+
+    classDef loop fill:#DCE8F8,stroke:#145FCC,color:#142033,stroke-width:2px;
+    classDef caution fill:#F8DDD6,stroke:#D95D43,color:#142033,stroke-width:2px;
+    classDef intervention fill:#DDEFE6,stroke:#247A5A,color:#142033,stroke-width:2px;
+    class A,B,C,D,E loop;
+    class F caution;
+    class G intervention;

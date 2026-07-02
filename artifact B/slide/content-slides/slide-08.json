@@ -1,0 +1,93 @@
+{
+  "slide_number": 8,
+  "title": "Discovery Compass makes intent editable and feedback immediately visible.",
+  "narrative_role": "Chosen solution, interaction flow, why it works, and edge cases",
+  "objective": "Explain the complete product interaction, the AI/deterministic boundary, and how the design addresses the evidence-backed mechanism.",
+  "layout": {
+    "template": "Interaction flow with mechanism mapping",
+    "top": "Five-step product flow",
+    "bottom_left": "Why it should work",
+    "bottom_right": "AI boundary and edge-case behavior"
+  },
+  "content": {
+    "interaction_steps": [
+      {
+        "step": 1,
+        "name": "Anchor",
+        "user_action": "Choose 3–5 representative tracks/artists",
+        "system_behavior": "Create a lightweight, explicit taste reference without Spotify login"
+      },
+      {
+        "step": 2,
+        "name": "Express",
+        "user_action": "Describe what fits now in one sentence",
+        "system_behavior": "Parse mood, activity, genre, language, energy, novelty, and exclusions"
+      },
+      {
+        "step": 3,
+        "name": "Approve",
+        "user_action": "Edit the interpretation and set novelty",
+        "system_behavior": "Use only participant-approved structured intent"
+      },
+      {
+        "step": 4,
+        "name": "Explore",
+        "user_action": "Review 8–12 ranked candidates with short fit explanations",
+        "system_behavior": "Apply deterministic exclusions, relevance, novelty, repeat penalties, artist caps, and diversity"
+      },
+      {
+        "step": 5,
+        "name": "Steer",
+        "user_action": "Save, reject, request more like this, or increase adventure",
+        "system_behavior": "Rerank immediately and state what changed"
+      }
+    ],
+    "why_this_solution_should_work": [
+      "It adds the missing current-session signal without discarding the useful persistent taste anchor.",
+      "A visible novelty control resolves the comfort-versus-exploration tension instead of forcing novelty.",
+      "Hard exclusions and repeat penalties directly address unwanted contexts and recurring tracks.",
+      "Immediate reranking makes cause and effect visible, reducing the feeling that feedback is ignored.",
+      "A paired baseline isolates the incremental value of the guided mechanism."
+    ],
+    "ai_boundary": {
+      "ai_does": [
+        "Parse flexible language into an approved schema",
+        "Interpret conversational refinements",
+        "Generate one metadata-grounded fit explanation"
+      ],
+      "deterministic_system_does": [
+        "Hard exclusions and eligibility",
+        "Novelty calculation and repeat suppression",
+        "Diversity, artist caps, ranking, assignment, and metrics"
+      ],
+      "fallback": "Direct controls and deterministic explanation templates keep the session usable without an AI call."
+    },
+    "edge_cases": [
+      { "case": "Contradictory or unsupported intent", "behavior": "Show unresolved terms; require an edit before ranking" },
+      { "case": "Fewer than eight eligible tracks", "behavior": "Never relax exclusions silently; show the conflicting constraints" },
+      { "case": "AI unavailable or invalid", "behavior": "Use direct fields and grounded templates" },
+      { "case": "Comfort-first listener", "behavior": "Allow familiar-adjacent novelty and baseline condition" },
+      { "case": "Repeated reject/refine actions", "behavior": "Bound session iterations, preserve hard constraints, prevent track return" },
+      { "case": "False novelty claim", "behavior": "Say ‘new relative to your selected profile,’ never ‘new to you’" },
+      { "case": "Small catalog coverage", "behavior": "Disclose coverage; test interaction mechanics rather than catalog breadth" }
+    ]
+  },
+  "visuals": [
+    {
+      "type": "mermaid_diagram_image",
+      "source": "diagrams/interaction-flow.mmd",
+      "asset": "diagrams/interaction-flow.png",
+      "alt": "Listener selects anchors, enters and approves intent, deterministic ranker returns candidates, and feedback updates the session."
+    }
+  ],
+  "speaker_notes": [
+    "AI sits at the language boundary; it does not secretly choose tracks or decide experiment outcomes.",
+    "The most important UX is the visible change summary after feedback, not a long chat response.",
+    "The prototype is already implemented locally, but study readiness remains gated."
+  ],
+  "sources": [
+    { "label": "Architecture", "path": "../../docs/architecture.md" },
+    { "label": "Implementation status", "path": "../../docs/IMPLEMENTATION_STATUS.md" },
+    { "label": "Product requirements", "path": "../../../docs/Artifact B Recommendation.md" }
+  ]
+}

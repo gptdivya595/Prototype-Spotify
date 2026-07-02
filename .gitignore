@@ -4,16 +4,21 @@ node_modules/
 
 # secrets
 .env
+.env.*
 .env.local
 **/.env
+**/.env.*
 **/.env.local
 **/.env*.local
+!.env.example
+!**/.env.example
 
 # build output
 .next/
 **/.next/
 dist/
 out/
+output/playwright/
 
 # logs
 *.log

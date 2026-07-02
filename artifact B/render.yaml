@@ -1,0 +1,24 @@
+# Render Blueprint for Discovery Compass (Artifact B).
+# During Blueprint setup, select this custom path: artifact B/render.yaml
+services:
+  - type: web
+    name: discovery-compass
+    runtime: node
+    plan: free
+    region: singapore
+    rootDir: "artifact B/code"
+    buildCommand: npm ci && npm run catalog:manifest && npm run typecheck && npm test && npm run build
+    startCommand: npm run start -- -p $PORT
+    healthCheckPath: /api/health
+    maxShutdownDelaySeconds: 30
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DEFAULT_MODEL
+        value: gpt-4o-mini
+      - key: EVENT_STORE_MODE
+        value: memory
+      - key: STUDY_VERSION
+        value: discovery-compass-render-preview-v1
+      - key: INTERVIEWS_COMPLETE
+        value: "false"

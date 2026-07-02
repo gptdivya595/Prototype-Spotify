@@ -333,6 +333,15 @@ artist rate, relevance rating, and effort. The sample is directional, not statis
 4. **Experience:** cards, explanations, feedback loop, responsive UI, accessibility.
 5. **Evaluation and deploy:** paired test flow, analytics, safety/cost checks, Vercel smoke test.
 
+The implementation-ready documents are:
+
+- [Discovery Compass architecture](../artifact%20B/docs/architecture.md)
+- [Phase 1: Validate, Catalog, and Measure](../artifact%20B/phases/phase_1.md)
+- [Phase 2: Intent Layer and Editable Interpretation](../artifact%20B/phases/phase_2.md)
+- [Phase 3: Deterministic Retrieval, Novelty, and Diversity](../artifact%20B/phases/phase_3.md)
+- [Phase 4: Recommendation Experience and Immediate Steering](../artifact%20B/phases/phase_4.md)
+- [Phase 5: Evaluate, Deploy, and Decide](../artifact%20B/phases/phase_5.md)
+
 ## Key risks and mitigations
 
 | Risk | Mitigation |

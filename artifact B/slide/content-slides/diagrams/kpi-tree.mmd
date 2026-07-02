@@ -1,0 +1,25 @@
+flowchart TD
+    NS["North Star\nAccepted novel artist rate\nper qualified discovery session"]
+    NS --> R["Relevant"]
+    NS --> N["Novel"]
+    NS --> A["Accepted"]
+    NS --> Q["Qualified session"]
+
+    R --> R1["Recommendation fit rating"]
+    R --> R2["Early reject rate ↓"]
+    N --> N1["New-to-profile artist share"]
+    N --> N2["Artist concentration ↓"]
+    A --> A1["Save or explicit positive action"]
+    A --> A2["Time to first save ↓"]
+    Q --> Q1["Intent approved"]
+    Q --> Q2["≥ 8 eligible candidates"]
+
+    G["Guardrails\nKnown-music satisfaction · setup effort · latency · unsafe/invalid output"] -. constrain .-> NS
+    L["Lagging outcome\n7-day replay of accepted discoveries"] -. validates .-> NS
+
+    classDef north fill:#DDEFE6,stroke:#247A5A,color:#142033,stroke-width:3px;
+    classDef driver fill:#DCE8F8,stroke:#145FCC,color:#142033,stroke-width:2px;
+    classDef guard fill:#F8DDD6,stroke:#D95D43,color:#142033,stroke-width:2px;
+    class NS north;
+    class R,N,A,Q,R1,R2,N1,N2,A1,A2,Q1,Q2 driver;
+    class G,L guard;

@@ -1,0 +1,17 @@
+flowchart LR
+    A["1,850 public records\n3 source types"] --> B["266 discovery-related\ncomplaint-enriched subset"]
+    B --> C["Top mechanisms\n72 taste mismatch · 70 repetition"]
+    C --> D["Problem\nPersistent taste ≠ current intent"]
+    D --> E["Discovery Compass\nAnchor + intent + novelty + feedback"]
+    E --> F{"Decision gate\nPaired study beats baseline?"}
+    F -->|Yes| G["Spotify-connected pilot"]
+    F -->|No| H["Revise or stop"]
+
+    classDef evidence fill:#DCE8F8,stroke:#145FCC,color:#142033,stroke-width:2px;
+    classDef problem fill:#F8DDD6,stroke:#D95D43,color:#142033,stroke-width:2px;
+    classDef solution fill:#DDEFE6,stroke:#247A5A,color:#142033,stroke-width:3px;
+    classDef gate fill:#F7F3E8,stroke:#142033,color:#142033,stroke-width:2px;
+    class A,B,C evidence;
+    class D problem;
+    class E,G solution;
+    class F,H gate;

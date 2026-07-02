@@ -1,0 +1,74 @@
+{
+  "slide_number": 7,
+  "title": "Discovery Compass ranks first because it tests the core mechanism with bounded effort.",
+  "narrative_role": "Three solutions, ICE factors, and prioritization",
+  "objective": "Compare credible alternatives using an explicit directional scoring method and show why the selected experiment offers the highest learning value.",
+  "layout": {
+    "template": "Three solution rows plus ICE table and priority plot",
+    "left": "Solution definitions and evidence mapping",
+    "right": "Impact × Confidence ÷ Effort plot",
+    "bottom": "Decision and sensitivity note"
+  },
+  "content": {
+    "scoring_method": {
+      "formula": "Priority score = Impact × Confidence ÷ Effort",
+      "scale": "Each factor is scored 1–10. Higher impact/confidence is better; higher effort is harder.",
+      "warning": "Scores are directional PM judgment grounded in Artifact A, not measured outcomes. Interviews can change confidence and ranking."
+    },
+    "solutions": [
+      {
+        "rank": 1,
+        "name": "Discovery Compass",
+        "concept": "Editable current-session intent + novelty control + exclusions + immediate steering",
+        "evidence_fit": "Addresses taste mismatch, repetition, similarity, popularity bias, and weak correction in one testable loop",
+        "impact": 9,
+        "confidence": 7,
+        "effort": 6,
+        "priority_score": 10.5,
+        "main_risk": "Intent entry may add friction or fail to improve base candidates"
+      },
+      {
+        "rank": 2,
+        "name": "Transparent Discovery Feed",
+        "concept": "Explain why each track appears; add visible diversify and dislike controls",
+        "evidence_fit": "Makes feedback legible and is relatively easy to test",
+        "impact": 6,
+        "confidence": 5,
+        "effort": 4,
+        "priority_score": 7.5,
+        "main_risk": "Only six records explicitly lack explanations; transparency cannot rescue weak relevance"
+      },
+      {
+        "rank": 3,
+        "name": "Taste Profile Repair Center",
+        "concept": "Inspect and remove artists, genres, or temporary contexts influencing recommendations",
+        "evidence_fit": "Strong response to profile contamination and requests to forget inputs",
+        "impact": 8,
+        "confidence": 6,
+        "effort": 8,
+        "priority_score": 6.0,
+        "main_risk": "Requires trustworthy causal explanations of a complex production profile"
+      }
+    ],
+    "decision": "Build Discovery Compass as a bounded experiment. It can incorporate lightweight explanations and exclusions without requiring production-profile introspection.",
+    "why_not_build_all_three": "Combining all concepts would obscure which mechanism creates value and inflate effort before problem validation.",
+    "sensitivity": "If interviews reject free-text setup but value correction, Transparent Discovery Feed becomes the leading pivot. If context contamination dominates, prioritize Profile Repair."
+  },
+  "visuals": [
+    {
+      "type": "prioritization_chart",
+      "asset": "diagrams/ice-prioritization.png",
+      "alt": "ICE factor table and impact-versus-effort plot showing Discovery Compass with the highest directional priority score."
+    }
+  ],
+  "speaker_notes": [
+    "Confidence is intentionally below impact because primary interviews are still open.",
+    "The score selects the next experiment, not a permanent roadmap winner.",
+    "Call out the pivot triggers; prioritization should be falsifiable."
+  ],
+  "sources": [
+    { "label": "Pain hierarchy", "path": "../../../docs/Pain Point.md" },
+    { "label": "Rejected alternatives", "path": "../../../docs/Solutioning.md" },
+    { "label": "Product recommendation", "path": "../../../docs/Artifact B Recommendation.md" }
+  ]
+}

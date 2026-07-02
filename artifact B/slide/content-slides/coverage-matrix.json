@@ -1,0 +1,32 @@
+{
+  "deck_limit": 10,
+  "coverage_status": "all_requested_topics_mapped_without_adding_slides",
+  "requirements": [
+    {"requirement": "Thought process", "slides": [1, 3, 4, 6, 7, 9, 10], "treatment": "Evidence → mechanism → segment → problem → options → validation → scale decision"},
+    {"requirement": "Market research", "slides": [2], "treatment": "Current first-party capability comparison across Spotify, Apple Music, YouTube, and TIDAL"},
+    {"requirement": "Quantitative research", "slides": [1, 3, 5], "treatment": "Corpus mix, 266-record discovery subset, theme counts, and segment tags with sampling caveat"},
+    {"requirement": "Qualitative research", "slides": [4, 5], "treatment": "Reported behavior patterns, cited records, workarounds, and counterevidence"},
+    {"requirement": "User segment", "slides": [5], "treatment": "Active discovery seekers prioritized; comfort-first listeners retained as a countersegment"},
+    {"requirement": "User persona", "slides": [5], "treatment": "Asha proto-persona grounded in behavior evidence, with identity details left for interview validation"},
+    {"requirement": "User behavior", "slides": [4, 5, 6], "treatment": "Self-reinforcing loop, workarounds, and current journey"},
+    {"requirement": "Competitor analysis", "slides": [2], "treatment": "Capability matrix plus bounded white-space inference"},
+    {"requirement": "JTBD", "slides": [5], "treatment": "Relevant novelty for the present context without corrupting the persistent profile"},
+    {"requirement": "Problem framing and statement", "slides": [1, 6], "treatment": "History models taste but does not reliably capture current intent; the journey break is located before ranking"},
+    {"requirement": "Survey", "slides": [9], "supporting_file": "survey-questionnaire.json", "treatment": "22-question branch-ready instrument with screeners, recent-event recall, concept tests, recruitment, and thresholds"},
+    {"requirement": "Three solutions with Impact, Confidence, Effort", "slides": [7], "treatment": "Discovery Compass, Transparent Discovery Feed, and Taste Profile Repair scored with an explicit formula"},
+    {"requirement": "Prioritization", "slides": [7], "treatment": "Directional ICE ranking, rationale, and sensitivity rule"},
+    {"requirement": "Google Form", "slides": [9], "supporting_file": "survey-questionnaire.json", "treatment": "Instrument ready to build; URL and results deliberately pending"},
+    {"requirement": "Charts and pie-chart space", "slides": [3, 5, 7, 9], "supporting_file": "chart-data.json", "treatment": "Observed charts plus three labelled, empty survey chart contracts"},
+    {"requirement": "User journey", "slides": [6], "supporting_file": "diagrams/user-journey.mmd", "treatment": "Trigger-to-outcome journey with intervention at intent expression"},
+    {"requirement": "Interaction-flow Mermaid diagram", "slides": [8], "supporting_file": "diagrams/interaction-flow.mmd", "treatment": "Listener, UI, AI parser, deterministic ranker, and candidate catalog sequence"},
+    {"requirement": "Why the solution should work", "slides": [8], "treatment": "Mechanism-to-feature mapping and paired-test falsifiability"},
+    {"requirement": "Success and North Star metrics", "slides": [10], "treatment": "Accepted novel artist rate per qualified session, decomposed into four drivers"},
+    {"requirement": "Edge cases", "slides": [8], "treatment": "Contradictory intent, small eligible set, AI failure, comfort-first use, repeated rejection, false novelty, and catalog limits"},
+    {"requirement": "Leading, lagging, and guardrail indicators", "slides": [10], "treatment": "Session signals, seven-day replay, relevance, effort, latency, output, coverage, and privacy guardrails"},
+    {"requirement": "Risk mitigation", "slides": [10], "treatment": "Evidence, product, AI, data, experimentation, and distribution risks paired with mitigations"},
+    {"requirement": "Distribution and further plans", "slides": [10], "treatment": "Four-stage recruitment/distribution sequence and 30/60/90-day plan"},
+    {"requirement": "KPI tree", "slides": [10], "supporting_file": "diagrams/kpi-tree.mmd", "treatment": "North Star → relevance, novelty, acceptance, and qualification drivers → guardrails"},
+    {"requirement": "Accessible colour and readable titles", "slides": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "treatment": "Takeaway titles, high-contrast palette, direct labels, alt text, and no colour-only encoding"},
+    {"requirement": "Supporting artifact hyperlinks", "slides": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "supporting_file": "source-index.json", "treatment": "Local paths and primary-market URLs kept with every slide"}
+  ]
+}

@@ -16,5 +16,8 @@ is the decision process, and **Discovery Compass** is the proposed Artifact B pr
 6. [Artifact B Recommendation](Artifact%20B%20Recommendation.md) — Discovery Compass requirements
    and experiment.
 
+Implementation planning continues in the
+[Discovery Compass architecture](../artifact%20B/docs/architecture.md) and its five phased plans.
+
 The zero-runtime review surface is
 [`../artifact B/code/static/artifact-A-summary.html`](../artifact%20B/code/static/artifact-A-summary.html).

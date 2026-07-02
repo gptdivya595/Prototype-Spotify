@@ -1,0 +1,65 @@
+{
+  "slide_number": 4,
+  "title": "Users describe a self-reinforcing loop—but counterevidence prevents a universal-failure claim.",
+  "narrative_role": "Qualitative research",
+  "objective": "Explain the likely behavioral mechanism through cited examples while keeping alternative explanations visible.",
+  "layout": {
+    "template": "Behavior loop with three evidence callouts",
+    "left": "Loop diagram",
+    "right": "Two complaint examples plus one counterexample",
+    "bottom": "What is observed versus what remains a hypothesis"
+  },
+  "content": {
+    "observed_patterns": [
+      "Large libraries can feel small: one user reports roughly 100 recurring tracks from a 4,000-song library.",
+      "Generated radio and playlists can return listeners to music they already play rather than introduce useful novelty.",
+      "Users protect the profile through private sessions, exclusions, manual playlists, external discovery, or even clean accounts.",
+      "Temporary contexts such as children’s music can influence later recommendations and feel difficult to repair.",
+      "Some long-tenured users explicitly ask for a familiar-versus-pure-discovery setting."
+    ],
+    "evidence_callouts": [
+      {
+        "label": "Experienced repetition",
+        "paraphrase": "A 4,000-song Liked Songs library feels like the same roughly 100 tracks; the user reports more skipping than listening.",
+        "source": "Reddit"
+      },
+      {
+        "label": "Requested control",
+        "paraphrase": "A listener proposes choosing between songs already liked and pure discovery of unheard material.",
+        "source": "Reddit"
+      },
+      {
+        "label": "Counterevidence",
+        "paraphrase": "Other users report good Discover Weekly or Daylist outcomes after deliberately varying inputs and managing profile signals.",
+        "source": "Reddit synthesis"
+      }
+    ],
+    "leading_hypothesis": "Persistent listening history cannot fully express changing session intent; poor correction causes familiar fallback, which supplies more familiar history.",
+    "alternative_explanations": [
+      "Shuffle or playback defects rather than discovery ranking",
+      "Weak candidate/catalog quality",
+      "Intentional comfort listening",
+      "Complaint-sample and Reddit source bias"
+    ],
+    "research_implication": "Interviews must observe a recent failure and separate these mechanisms before the product scope is locked."
+  },
+  "visuals": [
+    {
+      "type": "mermaid_diagram_image",
+      "source": "diagrams/behavior-loop.mmd",
+      "asset": "diagrams/behavior-loop.png",
+      "alt": "Want something new leads to familiar results, skipping, familiar fallback, stronger familiar history, and the next narrow discovery attempt."
+    }
+  ],
+  "speaker_notes": [
+    "This is the causal bridge, but label it a hypothesis every time.",
+    "Counterevidence is strategically useful: we should augment a working taste anchor, not replace personalization.",
+    "Use paraphrases on-slide; retain the source hyperlinks for auditability."
+  ],
+  "sources": [
+    { "label": "RAG question bank", "path": "../../../docs/RAG Questions.md" },
+    { "label": "4,000-song library source", "url": "https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsj4tyj/" },
+    { "label": "Familiar-versus-discovery control source", "url": "https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsjlhc3/" },
+    { "label": "User behavior synthesis", "path": "../../../docs/User Behaviour.md" }
+  ]
+}

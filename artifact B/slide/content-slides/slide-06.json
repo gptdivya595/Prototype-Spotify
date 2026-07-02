@@ -1,0 +1,82 @@
+{
+  "slide_number": 6,
+  "title": "The journey breaks between current intent and the persistent taste profile.",
+  "narrative_role": "Problem framing and user journey",
+  "objective": "Locate the highest-leverage intervention point and distinguish the problem from adjacent shuffle, playback, and catalog failures.",
+  "layout": {
+    "template": "Journey timeline with problem frame",
+    "top": "Exact problem statement",
+    "center": "Five-stage current-state journey",
+    "bottom": "Intervention point, exclusions, and validation questions"
+  },
+  "content": {
+    "problem_statement": "Active discovery seekers need a low-effort way to express what ‘new, but right for me now’ means because a history-driven recommendation profile cannot reliably capture changing session intent or unwanted influences, which leaves them frustrated and returning to familiar music.",
+    "current_journey": [
+      {
+        "stage": "1. Trigger",
+        "user_goal": "Hear something beyond the current rotation",
+        "current_action": "Open Discover Weekly, radio, search, Daylist, or a generated playlist",
+        "emotion": "Curious",
+        "evidence": "Users intentionally seek novelty rather than passively encountering it"
+      },
+      {
+        "stage": "2. Evaluate",
+        "user_goal": "Recognize relevance quickly",
+        "current_action": "Scan or play the first few recommendations",
+        "emotion": "Hopeful → uncertain",
+        "evidence": "Familiar, similar, popular, or contextually wrong tracks recur"
+      },
+      {
+        "stage": "3. Correct",
+        "user_goal": "Tell the system what is wrong",
+        "current_action": "Skip, dislike, search again, switch playlist, or manage the profile",
+        "emotion": "Frustrated",
+        "evidence": "No-control theme appears in 46 records; users ask for exclusions and novelty choice"
+      },
+      {
+        "stage": "4. Work around",
+        "user_goal": "Complete discovery elsewhere",
+        "current_action": "Manual playlists, friends, Shazam, Reddit, YouTube, private sessions, or clean accounts",
+        "emotion": "High effort",
+        "evidence": "Workarounds protect or supplement the persistent profile"
+      },
+      {
+        "stage": "5. Fall back",
+        "user_goal": "Get music playing",
+        "current_action": "Return to a familiar playlist",
+        "emotion": "Relief + boredom",
+        "evidence": "Familiar listening can reinforce the next narrow recommendation cycle"
+      }
+    ],
+    "intervention_point": "Before recommendation generation: capture current intent and novelty. After every set: make correction visible and immediate.",
+    "adjacent_but_out_of_scope": [
+      "True random shuffle and playback-state defects",
+      "Ads, price, queueing, downloads, and app reliability",
+      "Replacing Spotify’s production recommendation model",
+      "Claiming multilingual discovery is the primary pain before validation"
+    ],
+    "questions_to_validate": [
+      "Is current-session intent actually missing in recent failures?",
+      "Would one short setup step feel easier than current workarounds?",
+      "Does base candidate quality dominate regardless of control?"
+    ]
+  },
+  "visuals": [
+    {
+      "type": "mermaid_diagram_image",
+      "source": "diagrams/user-journey.mmd",
+      "asset": "diagrams/user-journey.png",
+      "alt": "Five-stage discovery journey from trigger through evaluation, failed correction, workaround, and familiar fallback."
+    }
+  ],
+  "speaker_notes": [
+    "The intervention point is deliberately before and immediately after ranking; it is not a new content catalog.",
+    "The journey clarifies why a chatbot alone is insufficient: correction must change deterministic product state.",
+    "If interviews reveal playback or candidate quality as the dominant break, pivot before scaling the concept."
+  ],
+  "sources": [
+    { "label": "Problem statement", "path": "../../../docs/ProblemStatement.md" },
+    { "label": "User behavior loop", "path": "../../../docs/User Behaviour.md" },
+    { "label": "Solutioning boundaries", "path": "../../../docs/Solutioning.md" }
+  ]
+}

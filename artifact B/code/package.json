@@ -1,0 +1,40 @@
+{
+  "name": "discovery-compass",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Artifact B - intent-guided music discovery experiment",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "catalog:manifest": "node --import tsx scripts/catalog-manifest.ts",
+    "catalog:validate": "node --import tsx scripts/catalog-validate.ts",
+    "catalog:study-ready": "node --import tsx scripts/catalog-validate.ts --study-ready",
+    "study:analyze": "node --import tsx scripts/analyze-events.ts",
+    "validate": "npm run catalog:validate && npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "1.1.0",
+    "next": "16.2.10",
+    "openai": "4.104.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "@types/react": "19.1.6",
+    "@types/react-dom": "19.1.5",
+    "tsx": "4.20.3",
+    "typescript": "5.8.3"
+  },
+  "overrides": {
+    "postcss": "8.5.10"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "deck_id": "discovery-compass-product-case-v1",
+  "deck_title": "Discovery Compass: Making Music Discovery Intent-Aware",
+  "subtitle": "Evidence, product decision, prototype, and validation plan",
+  "prepared_on": "2026-07-02",
+  "slide_count": 10,
+  "slide_limit": 10,
+  "pdf_status": "not_requested_yet",
+  "presentation_status": "content_and_diagrams_only",
+  "audience": [
+    "product leadership",
+    "design and engineering partners",
+    "product-management evaluator"
+  ],
+  "decision_requested": "Approve interviews, catalog expansion, and a paired baseline-versus-guided evaluation before considering production integration.",
+  "narrative": {
+    "act_1_evidence": [1, 2, 3, 4],
+    "act_2_user_and_problem": [5, 6],
+    "act_3_solution_decision": [7, 8],
+    "act_4_validation_and_scale": [9, 10]
+  },
+  "design_system": {
+    "aspect_ratio": "16:9",
+    "background": "#F7F3E8",
+    "ink": "#142033",
+    "primary_blue": "#145FCC",
+    "accent_coral": "#D95D43",
+    "success_green": "#247A5A",
+    "muted_blue": "#DCE8F8",
+    "font_heading": "Avenir Next Heavy, Arial Bold, sans-serif",
+    "font_body": "Avenir Next, Arial, sans-serif",
+    "accessibility": [
+      "Minimum body text target: 20 pt",
+      "Do not use color as the only status indicator",
+      "Every chart includes direct labels and values",
+      "Avoid red-versus-green comparisons without icons or text",
+      "All citations and artifact references are hyperlinks"
+    ]
+  },
+  "slides": [
+    "slide-01.json",
+    "slide-02.json",
+    "slide-03.json",
+    "slide-04.json",
+    "slide-05.json",
+    "slide-06.json",
+    "slide-07.json",
+    "slide-08.json",
+    "slide-09.json",
+    "slide-10.json"
+  ],
+  "supporting_assets": {
+    "survey": "survey-questionnaire.json",
+    "diagram_directory": "diagrams/",
+    "chart_data": "chart-data.json",
+    "source_index": "source-index.json"
+  }
+}

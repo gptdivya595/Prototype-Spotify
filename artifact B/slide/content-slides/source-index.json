@@ -1,0 +1,116 @@
+{
+  "purpose": "Trace every deck claim to first-party market material, Artifact A evidence, or an explicitly labelled PM hypothesis.",
+  "accessed_on": "2026-07-02",
+  "source_groups": {
+    "artifact_a": [
+      {
+        "id": "A1",
+        "label": "Artifact A structured insight output",
+        "path": "../../../artifact A/code/data/insights.json",
+        "used_on_slides": [1, 3, 5],
+        "supports": ["Corpus composition", "Discovery subset", "Theme counts", "Segment tags"]
+      },
+      {
+        "id": "A2",
+        "label": "Pain point synthesis",
+        "path": "../../../docs/Pain Point.md",
+        "used_on_slides": [1, 4, 6],
+        "supports": ["Problem mechanism", "Counterevidence", "Scope limits"]
+      },
+      {
+        "id": "A3",
+        "label": "User behaviour synthesis",
+        "path": "../../../docs/User Behaviour.md",
+        "used_on_slides": [4, 5, 6],
+        "supports": ["Workarounds", "Behavior loop", "Journey stages"]
+      },
+      {
+        "id": "A4",
+        "label": "RAG questions and cited answers",
+        "path": "../../../docs/RAG Questions.md",
+        "used_on_slides": [3, 4, 5],
+        "supports": ["Qualitative patterns", "Cited records", "Contradictory evidence"]
+      },
+      {
+        "id": "A5",
+        "label": "Artifact B recommendation",
+        "path": "../../../docs/Artifact B Recommendation.md",
+        "used_on_slides": [6, 7, 8, 10],
+        "supports": ["Problem framing", "Solution recommendation", "Metrics and risks"]
+      }
+    ],
+    "cited_user_records": [
+      {
+        "id": "R1",
+        "label": "Large liked-song library still repeats a small subset",
+        "url": "https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsj4tyj/",
+        "used_on_slides": [4]
+      },
+      {
+        "id": "R2",
+        "label": "Listener distinguishes familiar listening from pure discovery",
+        "url": "https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsjlhc3/",
+        "used_on_slides": [4, 5]
+      }
+    ],
+    "market_primary_sources": [
+      {
+        "id": "M1",
+        "label": "Spotify: music discovery product features (2026)",
+        "url": "https://newsroom.spotify.com/2026-01-28/music-discovery-features/",
+        "used_on_slides": [2],
+        "supports": ["DJ requests", "Prompted Playlist beta", "Discover Weekly genre controls"]
+      },
+      {
+        "id": "M2",
+        "label": "Spotify: discovery surfaces and self-reported discovery volume (2025)",
+        "url": "https://newsroom.spotify.com/2025-01-22/4-tips-to-supercharge-your-discovery-on-spotify-in-2025/",
+        "used_on_slides": [2],
+        "supports": ["Discover Weekly", "daylist", "Spotify self-report of nearly two billion daily discoveries"]
+      },
+      {
+        "id": "M3",
+        "label": "Apple Music product page",
+        "url": "https://www.apple.com/apple-music/",
+        "used_on_slides": [2],
+        "supports": ["Home recommendations", "Discovery Station", "New exploration"]
+      },
+      {
+        "id": "M4",
+        "label": "YouTube Samples announcement",
+        "url": "https://blog.youtube/news-and-events/taking-music-discovery-to-the-next-level-with-samples/",
+        "used_on_slides": [2],
+        "supports": ["Personalised short-form discovery feed", "Save and deepen actions"]
+      },
+      {
+        "id": "M5",
+        "label": "TIDAL Daily Discovery support page",
+        "url": "https://support.tidal.com/hc/en-us/articles/23351150845329-Daily-Discovery",
+        "used_on_slides": [2],
+        "supports": ["Daily set of ten personalised tracks", "Listening-history dependence"]
+      }
+    ],
+    "hypotheses_and_judgments": [
+      {
+        "id": "H1",
+        "label": "ICE scores",
+        "used_on_slides": [7],
+        "status": "Directional PM judgment",
+        "validation": "Re-score after survey and paired usability evidence"
+      },
+      {
+        "id": "H2",
+        "label": "Metric thresholds and phase gates",
+        "used_on_slides": [9, 10],
+        "status": "Pre-registered decision rules",
+        "validation": "Confirm instrumentation feasibility before study launch"
+      }
+    ]
+  },
+  "citation_rules": [
+    "Use the market sources only for current product capabilities, not for competitor performance claims.",
+    "Never present Artifact A theme shares as representative prevalence among all Spotify users.",
+    "Label Reddit records as reported experiences, not verified system behavior.",
+    "Keep hypotheses, thresholds, and PM scoring visually distinct from observed evidence."
+  ]
+}

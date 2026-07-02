@@ -1,0 +1,25 @@
+sequenceDiagram
+    actor L as Listener
+    participant UI as Discovery Compass
+    participant AI as Intent parser
+    participant R as Deterministic ranker
+    participant C as Candidate catalog
+
+    L->>UI: Choose 3–5 anchors
+    L->>UI: Describe what fits now
+    UI->>AI: Parse mood, activity, genre, novelty, exclusions
+    AI-->>UI: Structured interpretation
+    UI-->>L: Show editable interpretation
+    L->>UI: Approve or correct
+    UI->>R: Approved intent + anchors + session history
+    R->>C: Apply eligibility and hard exclusions
+    C-->>R: Eligible candidates
+    R-->>UI: Diverse ranked set + grounded factors
+    UI-->>L: 8–12 tracks with concise reasons
+    L->>UI: Save, reject, refine, or adjust adventure
+    UI->>R: Update session constraints and penalties
+    R-->>UI: Reranked set + visible change summary
+    UI-->>L: Explain what changed
+
+    Note over AI: Language interpretation only
+    Note over R: Exclusions, novelty, diversity, ranking, metrics

@@ -1,0 +1,62 @@
+{
+  "slide_number": 2,
+  "title": "Music platforms are converging on guided discovery, but control remains fragmented.",
+  "narrative_role": "Market and competitor research",
+  "objective": "Show that the category is moving from passive personalization toward prompts, feeds, and controls while identifying the remaining product gap.",
+  "layout": {
+    "template": "Competitive landscape matrix",
+    "top": "One market signal with source attribution",
+    "center": "Four-column competitor comparison",
+    "bottom": "Whitespace/opportunity statement"
+  },
+  "content": {
+    "market_signal": "Spotify reports nearly 2 billion music discoveries every 24 hours; discovery is a core engagement surface, not a niche workflow. This is a company-reported activity metric, not independent market sizing.",
+    "competitors": [
+      {
+        "product": "Spotify",
+        "current_discovery_pattern": "Discover Weekly, daylist, DJ requests, genre controls, and Prompted Playlist beta",
+        "strength": "Deep listening history plus increasingly explicit natural-language input",
+        "remaining_gap_to_test": "Whether intent, novelty, exclusions, and feedback form one understandable closed loop"
+      },
+      {
+        "product": "Apple Music",
+        "current_discovery_pattern": "Personalized Home suggestions, Discovery Station, editorial and genre exploration",
+        "strength": "Large catalog and integrated editorial/personalized surfaces",
+        "remaining_gap_to_test": "Direct, session-level expression and visible correction of the next set"
+      },
+      {
+        "product": "YouTube Music",
+        "current_discovery_pattern": "Samples short-form discovery feed plus personalized mixes",
+        "strength": "Fast low-commitment sampling with immediate save/deeper-view actions",
+        "remaining_gap_to_test": "Explicit novelty boundaries and protection from persistent-profile contamination"
+      },
+      {
+        "product": "TIDAL",
+        "current_discovery_pattern": "Daily Discovery provides 10 personalized tracks refreshed daily",
+        "strength": "Small, bounded daily recommendation set",
+        "remaining_gap_to_test": "Intent capture and steering before waiting for the next refresh"
+      }
+    ],
+    "opportunity": "The whitespace is not ‘AI playlists.’ It is a transparent session contract: tell the system what fits now, edit its interpretation, control how far to explore, and see feedback change the next result.",
+    "market_research_limit": "This slide compares product mechanics. It intentionally avoids unsupported TAM, share, or adoption estimates."
+  },
+  "visuals": [
+    {
+      "type": "matrix_image",
+      "asset": "diagrams/competitive-landscape.png",
+      "alt": "Competitor matrix comparing passive personalization, explicit intent, novelty control, exclusions, and immediate steering."
+    }
+  ],
+  "speaker_notes": [
+    "Do not position a natural-language prompt alone as differentiation; Spotify already offers prompt-led discovery in selected markets.",
+    "Our testable differentiation is the closed loop and the ability to isolate which mechanism creates value.",
+    "Competitor facts are current as of 2 July 2026 and should be rechecked before final PDF creation."
+  ],
+  "sources": [
+    { "label": "Spotify discovery features, 28 Jan 2026", "url": "https://newsroom.spotify.com/2026-01-28/music-discovery-features/" },
+    { "label": "Spotify discovery activity metric, 22 Jan 2025", "url": "https://newsroom.spotify.com/2025-01-22/4-tips-to-supercharge-your-discovery-on-spotify-in-2025/" },
+    { "label": "Apple Music discovery product page", "url": "https://www.apple.com/apple-music/" },
+    { "label": "YouTube Music Samples", "url": "https://blog.youtube/news-and-events/taking-music-discovery-to-the-next-level-with-samples/" },
+    { "label": "TIDAL Daily Discovery", "url": "https://support.tidal.com/hc/en-us/articles/23351150845329-Daily-Discovery" }
+  ]
+}

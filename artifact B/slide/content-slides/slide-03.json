@@ -1,0 +1,53 @@
+{
+  "slide_number": 3,
+  "title": "Across 1,850 records, taste mismatch and repetition lead the discovery pain hierarchy.",
+  "narrative_role": "Quantitative research",
+  "objective": "Establish the scale and ranked problem signals inside the audited sample without overstating representativeness.",
+  "layout": {
+    "template": "Source ledger plus ranked horizontal bars",
+    "left": "Source composition and discovery subset",
+    "right": "Top six theme counts with direct labels",
+    "footer": "Multi-label counts; 266-record denominator; complaint-enriched sample"
+  },
+  "content": {
+    "method": [
+      "1,850 unique public feedback records collected from App Store, Play Store, and seven Reddit discussions.",
+      "Each record classified with a constrained schema; obvious non-discovery false positives removed conservatively.",
+      "Deterministic aggregation ranks themes across the complete 266-record discovery subset.",
+      "RAG supplies explanations and citations, never prevalence."
+    ],
+    "source_mix": [
+      { "source": "App Store", "count": 100, "share_of_corpus_pct": 5.4 },
+      { "source": "Play Store", "count": 1200, "share_of_corpus_pct": 64.9 },
+      { "source": "Reddit", "count": 550, "share_of_corpus_pct": 29.7 }
+    ],
+    "discovery_subset": { "count": 266, "share_of_corpus_pct": 14.4 },
+    "top_themes": [
+      { "rank": 1, "theme": "Recommendations ignore taste", "count": 72, "share_of_discovery_subset_pct": 27.1 },
+      { "rank": 2, "theme": "Repetitive recommendations", "count": 70, "share_of_discovery_subset_pct": 26.3 },
+      { "rank": 3, "theme": "Recommendations too similar", "count": 50, "share_of_discovery_subset_pct": 18.8 },
+      { "rank": 4, "theme": "Popular or safe music dominates", "count": 49, "share_of_discovery_subset_pct": 18.4 },
+      { "rank": 5, "theme": "Stale Discover Weekly", "count": 48, "share_of_discovery_subset_pct": 18.0 },
+      { "rank": 6, "theme": "No control over recommendations", "count": 46, "share_of_discovery_subset_pct": 17.3 }
+    ],
+    "interpretation": "The problem is broader than missing controls: users report a combined relevance, novelty, repetition, and correction failure.",
+    "limitation": "Because records can carry multiple labels and the sample is self-selected, percentages rank signals within this corpus and must not be presented as Spotify-wide incidence."
+  },
+  "visuals": [
+    {
+      "type": "chart_image",
+      "asset": "diagrams/research-evidence.png",
+      "alt": "Source composition for 1,850 records and horizontal bars showing the six leading discovery pain counts."
+    }
+  ],
+  "speaker_notes": [
+    "Say counts, not population prevalence.",
+    "The closeness of ignored taste and repetition suggests a linked mechanism worth testing.",
+    "No-control ranks sixth but may be the corrective mechanism around the higher-frequency pains."
+  ],
+  "sources": [
+    { "label": "Audited quantitative synthesis", "path": "../../../docs/Pain Point.md" },
+    { "label": "Final aggregates", "path": "../../../artifact A/code/data/insights.json" },
+    { "label": "Artifact A scope", "path": "../../../docs/Whats in Artifact A.md" }
+  ]
+}

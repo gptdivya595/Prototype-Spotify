@@ -1,0 +1,66 @@
+{
+  "slide_number": 5,
+  "title": "Active discovery seekers need relevant novelty—not maximum novelty.",
+  "narrative_role": "Segment, persona, behavior, and JTBD",
+  "objective": "Define the primary user through observable behavior and clarify the comfort-versus-exploration job.",
+  "layout": {
+    "template": "Persona spine plus segment distribution",
+    "left": "Primary persona and JTBD",
+    "right_top": "Inferred segment distribution",
+    "right_bottom": "Behaviors, pains, gains, and counter-segment"
+  },
+  "content": {
+    "segment_distribution": [
+      { "segment": "Power user", "records": 184, "share_pct": 69.2 },
+      { "segment": "Unknown", "records": 37, "share_pct": 13.9 },
+      { "segment": "Casual", "records": 22, "share_pct": 8.3 },
+      { "segment": "Explorer", "records": 18, "share_pct": 6.8 },
+      { "segment": "Mood-based", "records": 5, "share_pct": 1.9 }
+    ],
+    "segment_warning": "These are model-inferred behavioral labels, not demographics or market size. Reddit’s long-form complaint format overrepresents detailed power-user behavior.",
+    "persona": {
+      "name": "Asha, the active discovery seeker",
+      "persona_type": "Evidence-based proto-persona",
+      "context": "Established listening history, several playlists, deliberately seeks unfamiliar artists or sounds",
+      "trigger": "The current rotation feels stale or does not match this moment",
+      "goal": "Find something unfamiliar enough to explore and recognizable enough to fit now",
+      "pains": [
+        "Familiar or overly similar tracks dominate",
+        "Temporary listening can distort the persistent profile",
+        "Correction controls feel weak or invisible",
+        "External discovery and manual playlist work add effort"
+      ],
+      "behaviors": [
+        "Uses Discover Weekly, radio, Daylist, Smart Shuffle, and search",
+        "Skips recurring tracks and falls back to familiar playlists",
+        "Uses private sessions, exclusions, friends, Shazam, Reddit, or other services",
+        "Accepts some misses when the exploration feels purposeful"
+      ],
+      "success_criteria": [
+        "At least one save-worthy unfamiliar artist",
+        "Current mood/activity remains recognizable",
+        "Feedback has an understandable effect",
+        "Setup is shorter than external discovery work"
+      ]
+    },
+    "jtbd": "When I want music beyond my current rotation, help me find unfamiliar options that fit what I want right now, so I can explore without losing relevance or training my long-term profile by trial and error.",
+    "counter_segment": "Casual or comfort-first listeners may prefer low-effort familiarity. Novelty must be adjustable and never forced."
+  },
+  "visuals": [
+    {
+      "type": "persona_image",
+      "asset": "diagrams/persona-jtbd.png",
+      "alt": "Proto-persona for an active discovery seeker with trigger, job, behaviors, pains, and success criteria."
+    }
+  ],
+  "speaker_notes": [
+    "Recruit by observable behavior, not the classifier label ‘power user.’",
+    "Include one or two users for whom discovery works well; they are diagnostic counterexamples.",
+    "The product tension is controllable distance from familiarity, not novelty at any cost."
+  ],
+  "sources": [
+    { "label": "User segmentation", "path": "../../../docs/User Segmentation.md" },
+    { "label": "User behavior", "path": "../../../docs/User Behaviour.md" },
+    { "label": "Artifact B target user and JTBD", "path": "../../../docs/Artifact B Recommendation.md" }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "dataset_version": "artifact-a-2026-07-02",
+  "status": "artifact_a_observations_complete_survey_results_pending",
+  "interpretation_warning": "Artifact A is a complaint-enriched, multi-label corpus. Theme counts are not mutually exclusive and must not be presented as Spotify-user prevalence.",
+  "charts": {
+    "artifact_a_source_mix": {
+      "slide": 3,
+      "type": "stacked_bar",
+      "unit": "records",
+      "total": 1850,
+      "data": [
+        {"label": "Google Play", "value": 1200, "share_percent": 64.9},
+        {"label": "Reddit", "value": 550, "share_percent": 29.7},
+        {"label": "Apple App Store", "value": 100, "share_percent": 5.4}
+      ],
+      "source": "../../../artifact A/code/data/insights.json"
+    },
+    "artifact_a_discovery_subset": {
+      "slide": 3,
+      "type": "big_number",
+      "numerator": 266,
+      "denominator": 1850,
+      "share_percent": 14.4,
+      "label": "records tagged as discovery-related",
+      "source": "../../../artifact A/code/data/insights.json"
+    },
+    "artifact_a_theme_hierarchy": {
+      "slide": 3,
+      "type": "horizontal_bar",
+      "unit": "tagged records",
+      "denominator": 266,
+      "multi_label": true,
+      "data": [
+        {"label": "Recommendations ignore taste", "value": 72, "share_of_discovery_percent": 27.1},
+        {"label": "Repetitive recommendations", "value": 70, "share_of_discovery_percent": 26.3},
+        {"label": "Recommendations too similar", "value": 50, "share_of_discovery_percent": 18.8},
+        {"label": "Popular music dominates", "value": 49, "share_of_discovery_percent": 18.4},
+        {"label": "Discover Weekly feels stale", "value": 48, "share_of_discovery_percent": 18.0},
+        {"label": "Insufficient control", "value": 46, "share_of_discovery_percent": 17.3}
+      ],
+      "source": "../../../artifact A/code/data/insights.json"
+    },
+    "artifact_a_segment_distribution": {
+      "slide": 5,
+      "type": "horizontal_bar",
+      "unit": "discovery-related records",
+      "total": 266,
+      "data": [
+        {"label": "Power user", "value": 184, "share_percent": 69.2},
+        {"label": "Unknown", "value": 37, "share_percent": 13.9},
+        {"label": "Casual", "value": 22, "share_percent": 8.3},
+        {"label": "Explorer", "value": 18, "share_percent": 6.8},
+        {"label": "Mood-based", "value": 5, "share_percent": 1.9}
+      ],
+      "source": "../../../artifact A/code/data/insights.json"
+    },
+    "ice_prioritization": {
+      "slide": 7,
+      "type": "ranked_bubble_or_table",
+      "formula": "(impact * confidence) / effort",
+      "scale": "1 to 10; directional PM judgment, not observed performance",
+      "data": [
+        {"rank": 1, "solution": "Discovery Compass", "impact": 9, "confidence": 7, "effort": 6, "score": 10.5},
+        {"rank": 2, "solution": "Transparent Discovery Feed", "impact": 6, "confidence": 5, "effort": 4, "score": 7.5},
+        {"rank": 3, "solution": "Taste Profile Repair", "impact": 8, "confidence": 6, "effort": 8, "score": 6.0}
+      ]
+    },
+    "survey_intent_step_donut": {
+      "slide": 9,
+      "type": "donut",
+      "source_question": "Q14",
+      "status": "awaiting_google_form_responses",
+      "n": null,
+      "data": []
+    },
+    "survey_most_valued_control_donut": {
+      "slide": 9,
+      "type": "donut",
+      "source_question": "Q15",
+      "status": "awaiting_google_form_responses",
+      "n": null,
+      "data": []
+    },
+    "survey_failure_modes_horizontal_bar": {
+      "slide": 9,
+      "type": "horizontal_bar",
+      "source_question": "Q08",
+      "status": "awaiting_google_form_responses",
+      "n": null,
+      "data": []
+    }
+  }
+}

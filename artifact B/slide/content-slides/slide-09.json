@@ -1,0 +1,94 @@
+{
+  "slide_number": 9,
+  "title": "A paired prototype and focused survey can validate value before integration.",
+  "narrative_role": "Survey, Google Form plan, experiment design, and future charts",
+  "objective": "Define how the problem and solution will be validated, reserve chart areas, and prevent fabricated survey claims.",
+  "layout": {
+    "template": "Validation ladder plus three chart placeholders",
+    "left": "Research sequence and paired test design",
+    "right": "Google Form link placeholder and chart frames",
+    "footer": "All survey charts remain blank until responses are collected"
+  },
+  "content": {
+    "validation_sequence": [
+      {
+        "gate": "Gate 0 · Problem interviews",
+        "sample": "5–6 active discovery seekers including 1–2 positive counterexamples",
+        "decision": "Does current-session intent/control appear in recent behavior?"
+      },
+      {
+        "gate": "Gate 1 · Concept usability",
+        "sample": "5 participants",
+        "decision": "Can at least 4/5 set intent, understand novelty, correct fields, and steer unaided?"
+      },
+      {
+        "gate": "Gate 2 · Paired working prototype",
+        "sample": "At least 10 completed counterbalanced sessions",
+        "decision": "Does guided discovery improve accepted novel-artist rate without lowering relevance?"
+      },
+      {
+        "gate": "Gate 3 · Product decision",
+        "sample": "Evidence synthesis",
+        "decision": "Continue, iterate, pivot, or stop"
+      }
+    ],
+    "paired_experiment": {
+      "baseline": "Same taste anchor, catalog, card count, and layout; no free-text intent, novelty control, or iterative steering",
+      "guided": "Approved intent, novelty, exclusions, explanations, and immediate steering",
+      "counterbalancing": "Half baseline→guided; half guided→baseline",
+      "primary_comparison": "Within-participant accepted novel-artist rate",
+      "guardrail": "Overall acceptance and perceived relevance must not decline materially"
+    },
+    "survey_plan": {
+      "instrument": "survey-questionnaire.json",
+      "google_form_status": "planned_not_created",
+      "google_form_url": null,
+      "hyperlink_placeholder": "INSERT_GOOGLE_FORM_URL_AFTER_CREATION",
+      "response_target_before_directional_charting": 30,
+      "note": "The questionnaire is ready for later Google Form creation. This deck must not imply responses exist."
+    },
+    "chart_placeholders": [
+      {
+        "chart_id": "survey-use-intent-step",
+        "title": "Would users take one short intent step?",
+        "type": "donut",
+        "data_status": "awaiting_google_form_responses",
+        "categories": ["Yes", "Depends", "No"],
+        "reserved_space": "right-top, 32% of slide"
+      },
+      {
+        "chart_id": "survey-most-valued-control",
+        "title": "Which control matters most?",
+        "type": "donut",
+        "data_status": "awaiting_google_form_responses",
+        "categories": ["Novelty", "Exclusions", "Mood/context", "Genre/language", "Explanation"],
+        "reserved_space": "right-middle, 32% of slide"
+      },
+      {
+        "chart_id": "survey-failure-modes",
+        "title": "What breaks most often?",
+        "type": "horizontal_bar",
+        "data_status": "awaiting_google_form_responses",
+        "categories": ["Repetition", "Wrong context", "Too familiar", "Too popular", "Weak control", "Shuffle/playback"],
+        "reserved_space": "right-bottom, 36% of slide"
+      }
+    ]
+  },
+  "visuals": [
+    {
+      "type": "validation_diagram",
+      "asset": "diagrams/validation-plan.png",
+      "alt": "Validation ladder progressing from problem interviews to usability, paired prototype, and a product decision."
+    }
+  ],
+  "speaker_notes": [
+    "Do not create a pie chart from a multi-select question; use a horizontal bar for failure modes.",
+    "Survey results are directional context, while the paired prototype tests behavior.",
+    "Insert the live Google Form hyperlink only after the form is created and verified."
+  ],
+  "sources": [
+    { "label": "Prepared survey instrument", "path": "survey-questionnaire.json" },
+    { "label": "Validation sequence", "path": "../../../docs/Artifact B Recommendation.md" },
+    { "label": "Phase 5 evaluation plan", "path": "../../phases/phase_5.md" }
+  ]
+}

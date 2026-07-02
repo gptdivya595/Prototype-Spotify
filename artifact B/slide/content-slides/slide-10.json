@@ -1,0 +1,103 @@
+{
+  "slide_number": 10,
+  "title": "Success is accepted novelty without relevance loss—and clear gates to scale.",
+  "narrative_role": "North star, KPI tree, risks, distribution, and further plan",
+  "objective": "Close with a measurable definition of success, guardrails, risk mitigation, and a staged distribution plan.",
+  "layout": {
+    "template": "KPI tree with risk and next-step rail",
+    "left": "North star and KPI tree",
+    "right_top": "Leading, lagging, and guardrail metrics",
+    "right_bottom": "Top risks, mitigations, distribution, and decision gates"
+  },
+  "content": {
+    "north_star": {
+      "metric": "Accepted novel-artist rate",
+      "formula": "Saved or shortlisted cards from artists absent from the selected taste anchor ÷ all recommendation cards shown",
+      "why": "It captures the intended behavior—acceptable novelty—without pretending the prototype measures listening retention.",
+      "qualification": "Novelty is relative to the participant’s selected profile, not complete personal history."
+    },
+    "kpi_tree": {
+      "outcome": "More accepted novelty with preserved relevance",
+      "drivers": [
+        {
+          "driver": "Intent quality",
+          "metrics": ["First-set acceptance", "Intent edit rate", "Parser fallback rate"]
+        },
+        {
+          "driver": "Candidate quality",
+          "metrics": ["Overall acceptance", "Unique artist/genre ratio", "Repeat exposure rate"]
+        },
+        {
+          "driver": "Steering effectiveness",
+          "metrics": ["Post-refinement acceptance", "Refinement success", "Actions to first save"]
+        },
+        {
+          "driver": "Experience efficiency",
+          "metrics": ["Time to first save", "Completion rate", "Perceived effort and control"]
+        }
+      ]
+    },
+    "metric_classes": {
+      "leading_indicators": [
+        "Intent approval and edit rate",
+        "Eligible candidate count",
+        "First-set acceptance",
+        "Refinement success",
+        "Time/actions to first save"
+      ],
+      "lagging_indicators": [
+        "Accepted novel-artist rate",
+        "Paired preference for guided condition",
+        "Repeat usage intent",
+        "Larger-study retention or listening outcomes—future, not measured now"
+      ],
+      "guardrails": [
+        "Overall acceptance and perceived relevance",
+        "Setup effort and abandonment",
+        "Repeat exposure rate",
+        "Constraint violations and unsupported explanation rate",
+        "AI latency, fallback rate, and cost per guided condition",
+        "No raw intent, identity, or secret leakage"
+      ]
+    },
+    "risks_and_mitigations": [
+      { "risk": "Complaint-heavy evidence overstates the problem", "mitigation": "Recruit positive counterexamples and run paired within-person tests" },
+      { "risk": "Intent entry adds work", "mitigation": "One short prompt, examples, direct controls, and time-to-first-save guardrail" },
+      { "risk": "Small catalog limits relevance", "mitigation": "Expand to 300–500 reviewed tracks; disclose coverage; do not generalize catalog quality" },
+      { "risk": "AI invents attributes", "mitigation": "Strict schemas, approved vocabulary, selected-track-only explanations, deterministic fallbacks" },
+      { "risk": "Novelty lowers relevance", "mitigation": "Visible novelty control; overall acceptance/relevance guardrails" },
+      { "risk": "Feedback appears effective but does not alter ranking", "mitigation": "Log score components and verify changed sets after every action" }
+    ],
+    "distribution_plan": [
+      { "stage": "1. Moderated local prototype", "audience": "5 usability participants", "gate": "4/5 complete the core flow unaided" },
+      { "stage": "2. Private Vercel pilot", "audience": "10–20 recruited discovery seekers", "gate": "Directional north-star lift without relevance loss" },
+      { "stage": "3. Expanded validation", "audience": "Broader behavioral segments and catalog coverage", "gate": "Repeatable effect and acceptable effort/cost" },
+      { "stage": "4. Integration exploration", "audience": "Product and platform teams", "gate": "Only after mechanism and data-access value are proven" }
+    ],
+    "next_30_60_90": [
+      { "window": "0–30 days", "actions": "Run interviews; expand catalog; review golden intent fixtures" },
+      { "window": "31–60 days", "actions": "Usability test; configure durable events; freeze study version" },
+      { "window": "61–90 days", "actions": "Run paired pilot; analyze; continue, iterate, pivot, or stop" }
+    ],
+    "final_ask": "Fund evidence gates, not production integration: interview participants, catalog curation, usability sessions, and a private paired pilot."
+  },
+  "visuals": [
+    {
+      "type": "mermaid_diagram_image",
+      "source": "diagrams/kpi-tree.mmd",
+      "asset": "diagrams/kpi-tree.png",
+      "alt": "KPI tree connecting accepted novel-artist rate to intent quality, candidate quality, steering effectiveness, and experience efficiency."
+    }
+  ],
+  "speaker_notes": [
+    "The north star is a prototype proxy; do not claim streaming retention or business impact.",
+    "Leading indicators tell us where the mechanism broke; guardrails prevent novelty theater.",
+    "Close with the explicit ask and the conditions that would stop or pivot the work."
+  ],
+  "sources": [
+    { "label": "Experiment metrics", "path": "../../../docs/Artifact B Recommendation.md" },
+    { "label": "Architecture event model", "path": "../../docs/architecture.md" },
+    { "label": "Phase 5 decision rubric", "path": "../../phases/phase_5.md" },
+    { "label": "Implementation readiness", "path": "../../docs/IMPLEMENTATION_STATUS.md" }
+  ]
+}

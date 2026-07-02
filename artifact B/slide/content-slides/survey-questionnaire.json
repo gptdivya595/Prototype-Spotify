@@ -1,0 +1,307 @@
+{
+  "instrument_name": "Spotify Discovery Intent & Control Validation Survey",
+  "version": "1.0-draft",
+  "status": "ready_for_google_forms_build_not_yet_fielded",
+  "google_form_url": null,
+  "owner_note": "Create the Google Form only after the wording and response options are approved. Do not populate charts with synthetic responses.",
+  "research_decision": "Should Artifact B continue from an interaction prototype into a Spotify-connected pilot for active discovery seekers?",
+  "objectives": [
+    "Measure how often active Spotify listeners intentionally seek unfamiliar music and where the journey fails.",
+    "Separate relevance, repetition, control, and context-contamination failure modes.",
+    "Test willingness to provide one short intent signal before recommendations.",
+    "Identify the most valuable control for a Discovery Compass prototype.",
+    "Recruit participants for a paired baseline-versus-Compass usability study."
+  ],
+  "target_sample": {
+    "minimum_directional_responses": 30,
+    "preferred_responses": 75,
+    "target_segment": "Spotify listeners who intentionally seek new-to-them music at least monthly",
+    "recruitment_mix": [
+      "Existing personal network and music communities",
+      "Artifact A visitors who opt in",
+      "Relevant Reddit or Discord communities where posting research is permitted",
+      "Snowball referrals from qualified participants"
+    ],
+    "interpretation_limit": "Convenience recruitment is directional product discovery, not a population estimate of all Spotify users."
+  },
+  "form_settings": {
+    "estimated_minutes": 5,
+    "collect_email_by_default": false,
+    "limit_to_one_response": false,
+    "show_progress_bar": true,
+    "shuffle_question_order": false,
+    "make_questions_required_unless_marked_optional": true,
+    "privacy_copy": "This research asks about music-discovery behavior. Do not enter account credentials, private playlist links, or sensitive personal information. Results will be analysed in aggregate."
+  },
+  "sections": [
+    {
+      "section_id": "S0",
+      "title": "Consent and qualification",
+      "questions": [
+        {
+          "id": "Q01",
+          "type": "multiple_choice",
+          "prompt": "Are you at least 18 and willing to take part in this product-research survey?",
+          "options": ["Yes", "No"],
+          "required": true,
+          "branching": {"No": "submit_disqualified", "Yes": "Q02"},
+          "analysis_role": "consent"
+        },
+        {
+          "id": "Q02",
+          "type": "multiple_choice",
+          "prompt": "How often do you currently use Spotify?",
+          "options": ["Daily", "Several times a week", "About weekly", "Less than weekly", "I do not currently use Spotify"],
+          "required": true,
+          "branching": {"I do not currently use Spotify": "submit_disqualified", "default": "Q03"},
+          "analysis_role": "screener"
+        },
+        {
+          "id": "Q03",
+          "type": "multiple_choice",
+          "prompt": "How often do you intentionally look for music or artists that are new to you?",
+          "options": ["Several times a week", "About weekly", "Two or three times a month", "About monthly", "Less than monthly", "Never"],
+          "required": true,
+          "analysis_role": "segmentation"
+        },
+        {
+          "id": "Q04",
+          "type": "checkboxes",
+          "prompt": "Where do you usually look for new-to-you music? Select all that apply.",
+          "options": ["Discover Weekly", "Release Radar", "daylist or Made for You", "Smart Shuffle or autoplay", "Search or artist radio", "Friends or social media", "YouTube", "Other music services", "Music blogs, radio, or live events", "I rarely look intentionally"],
+          "required": true,
+          "analysis_role": "current_behavior"
+        }
+      ]
+    },
+    {
+      "section_id": "S1",
+      "title": "The last discovery attempt",
+      "intro": "Think about the most recent time you deliberately tried to find music that was new to you.",
+      "questions": [
+        {
+          "id": "Q05",
+          "type": "multiple_choice",
+          "prompt": "Can you remember a specific attempt from the last four weeks?",
+          "options": ["Yes", "No"],
+          "required": true,
+          "branching": {"Yes": "Q06", "No": "Q10"},
+          "analysis_role": "recall_quality"
+        },
+        {
+          "id": "Q06",
+          "type": "paragraph",
+          "prompt": "What were you trying to find, and what did you do first?",
+          "required": true,
+          "analysis_role": "qualitative_context",
+          "coding_plan": ["mood", "activity", "genre", "era", "language", "artist_similarity", "open_exploration"]
+        },
+        {
+          "id": "Q07",
+          "type": "multiple_choice",
+          "prompt": "What was the main outcome of that attempt?",
+          "options": ["I saved or replayed several discoveries", "I found one useful discovery", "I listened but saved nothing", "I abandoned the attempt", "I switched to another source or service"],
+          "required": true,
+          "analysis_role": "behavioral_outcome"
+        },
+        {
+          "id": "Q08",
+          "type": "multiple_choice",
+          "prompt": "What was the single biggest problem, if any?",
+          "options": ["Recommendations did not fit what I wanted", "The same tracks or artists appeared again", "Suggestions were too similar to what I already know", "Suggestions were too unfamiliar or risky", "Popular or promoted music dominated", "I could not tell the system what I wanted", "Old or shared listening distorted the results", "The interface made discovery hard", "No meaningful problem"],
+          "required": true,
+          "analysis_role": "primary_failure_mode",
+          "chart_mapping": "survey_failure_modes_horizontal_bar"
+        },
+        {
+          "id": "Q09",
+          "type": "linear_scale",
+          "prompt": "How satisfied were you with that discovery attempt?",
+          "scale": {"min": 1, "max": 5, "min_label": "Very dissatisfied", "max_label": "Very satisfied"},
+          "required": true,
+          "analysis_role": "baseline_satisfaction"
+        }
+      ]
+    },
+    {
+      "section_id": "S2",
+      "title": "Patterns and workarounds",
+      "questions": [
+        {
+          "id": "Q10",
+          "type": "multiple_choice_grid",
+          "prompt": "When Spotify recommends music, how often do these things happen?",
+          "rows": ["The recommendation does not fit my current mood or activity", "I hear the same tracks or artists again", "The results feel too similar to what I already know", "Old, shared, sleep, or background listening affects recommendations", "I leave Spotify to find ideas elsewhere"],
+          "columns": ["Never", "Rarely", "Sometimes", "Often", "Very often"],
+          "required": true,
+          "analysis_role": "failure_frequency"
+        },
+        {
+          "id": "Q11",
+          "type": "checkboxes",
+          "prompt": "Which workarounds have you used? Select all that apply.",
+          "options": ["Made a new manual playlist", "Used Private Session", "Searched with a specific artist, track, or genre", "Skipped or disliked many tracks", "Used another app or website for discovery", "Asked friends or communities", "Created another account or profile", "I have not used a workaround"],
+          "required": true,
+          "analysis_role": "workarounds"
+        },
+        {
+          "id": "Q12",
+          "type": "multiple_choice",
+          "prompt": "How much control do you feel you have over Spotify's discovery recommendations today?",
+          "options": ["No control", "A little control", "Some control", "A lot of control", "Complete control"],
+          "required": true,
+          "analysis_role": "perceived_control"
+        },
+        {
+          "id": "Q13",
+          "type": "multiple_choice",
+          "prompt": "If discovery repeatedly disappoints you, what are you most likely to do?",
+          "options": ["Keep using Spotify but stop actively exploring", "Use Spotify only for known music", "Find recommendations elsewhere and return to Spotify to play them", "Use another music service more often", "Do nothing differently"],
+          "required": true,
+          "analysis_role": "retention_risk"
+        }
+      ]
+    },
+    {
+      "section_id": "S3",
+      "title": "Discovery Compass concept",
+      "concept_card": "Imagine a discovery tool where you choose a few music anchors, describe what fits right now, approve how the tool understood you, and set how adventurous the results should be. It shows 8–12 recommendations with short reasons and updates immediately when you save, reject, or refine.",
+      "questions": [
+        {
+          "id": "Q14",
+          "type": "multiple_choice",
+          "prompt": "Would you spend about 20 seconds giving this intent before seeing recommendations?",
+          "options": ["Yes", "It depends", "No"],
+          "required": true,
+          "analysis_role": "intent_step_willingness",
+          "chart_mapping": "survey_intent_step_donut"
+        },
+        {
+          "id": "Q15",
+          "type": "multiple_choice",
+          "prompt": "Which single control would be most valuable to you?",
+          "options": ["How adventurous the recommendations are", "Genres, artists, or contexts to exclude", "Mood, activity, or energy for this session", "Why each track was recommended", "A reset that ignores selected listening history", "Immediate 'more like this' and 'less like this' feedback"],
+          "required": true,
+          "analysis_role": "priority_control",
+          "chart_mapping": "survey_most_valued_control_donut"
+        },
+        {
+          "id": "Q16",
+          "type": "linear_scale",
+          "prompt": "How likely is this concept to help you find relevant new-to-you music?",
+          "scale": {"min": 1, "max": 5, "min_label": "Very unlikely", "max_label": "Very likely"},
+          "required": true,
+          "analysis_role": "concept_value"
+        },
+        {
+          "id": "Q17",
+          "type": "linear_scale",
+          "prompt": "How much effort does this concept sound like?",
+          "scale": {"min": 1, "max": 5, "min_label": "Almost no effort", "max_label": "Too much effort"},
+          "required": true,
+          "analysis_role": "concept_effort"
+        },
+        {
+          "id": "Q18",
+          "type": "multiple_choice",
+          "prompt": "What level of novelty would you choose most often?",
+          "options": ["1 — Mostly familiar", "2 — Familiar-adjacent", "3 — Balanced", "4 — Adventurous", "5 — Very unfamiliar"],
+          "required": true,
+          "analysis_role": "novelty_preference"
+        },
+        {
+          "id": "Q19",
+          "type": "checkboxes",
+          "prompt": "What would concern you about this concept? Select all that apply.",
+          "options": ["Too much setup", "I do not want to explain my taste", "The reasons might be inaccurate", "It may still repeat familiar music", "It may miss the music I already love", "Privacy or account access", "A limited catalog", "No major concern"],
+          "required": true,
+          "analysis_role": "concept_risks"
+        },
+        {
+          "id": "Q20",
+          "type": "paragraph",
+          "prompt": "What is the one change that would make this concept more useful to you?",
+          "required": false,
+          "analysis_role": "open_concept_feedback"
+        }
+      ]
+    },
+    {
+      "section_id": "S4",
+      "title": "Optional research follow-up",
+      "questions": [
+        {
+          "id": "Q21",
+          "type": "multiple_choice",
+          "prompt": "Would you be willing to try two short discovery experiences and discuss the difference for 20–25 minutes?",
+          "options": ["Yes", "Maybe", "No"],
+          "required": true,
+          "analysis_role": "prototype_recruitment"
+        },
+        {
+          "id": "Q22",
+          "type": "short_answer",
+          "prompt": "If you answered Yes or Maybe, leave an email for research scheduling.",
+          "required": false,
+          "validation": "email",
+          "privacy_note": "Keep contact information in a separate response sheet from analysis exports.",
+          "analysis_role": "contact_only"
+        }
+      ]
+    }
+  ],
+  "chart_plan": [
+    {
+      "chart_id": "survey_intent_step_donut",
+      "slide": 9,
+      "source_question": "Q14",
+      "type": "donut",
+      "status": "awaiting_responses",
+      "message_tested": "A short intent step is acceptable to enough target users.",
+      "reporting_rule": "Show n and all three options; do not combine 'It depends' with 'Yes'."
+    },
+    {
+      "chart_id": "survey_most_valued_control_donut",
+      "slide": 9,
+      "source_question": "Q15",
+      "type": "donut",
+      "status": "awaiting_responses",
+      "message_tested": "One control clearly leads the feature-value hierarchy.",
+      "reporting_rule": "Use direct labels; if no option exceeds 35%, describe demand as fragmented."
+    },
+    {
+      "chart_id": "survey_failure_modes_horizontal_bar",
+      "slide": 9,
+      "source_question": "Q08",
+      "type": "horizontal_bar",
+      "status": "awaiting_responses",
+      "message_tested": "The dominant recalled failure aligns with the Artifact A mechanism.",
+      "reporting_rule": "Exclude 'No meaningful problem' from failure ranking but show it separately."
+    }
+  ],
+  "decision_thresholds": {
+    "continue_to_paired_test": [
+      "At least 60% of qualified respondents answer Yes or It depends to Q14, with Yes reported separately.",
+      "Median concept value on Q16 is at least 4/5.",
+      "Median perceived effort on Q17 is no more than 3/5.",
+      "At least one of the top three recalled failure modes is directly addressed by the prototype."
+    ],
+    "revise_before_test": [
+      "Setup effort is a top-two concern or Q17 median exceeds 3/5.",
+      "No control in Q15 reaches 35%, indicating the proposition needs sharper segmentation.",
+      "Privacy/account access dominates concerns, requiring clearer no-login positioning."
+    ],
+    "stop_or_reframe": [
+      "Fewer than 40% answer Yes or It depends to Q14.",
+      "Median concept value is below 3/5 among monthly-or-more discovery seekers."
+    ]
+  },
+  "analysis_rules": [
+    "Report the qualified respondent count on every chart.",
+    "Cut results by discovery frequency; do not over-index on aggregate averages.",
+    "Treat Q05–Q09 as stronger behavioral evidence than general opinions because they reference a recent event.",
+    "Keep open-text coding separate from the fixed Artifact A taxonomy until two reviewers agree on merges.",
+    "Do not claim statistical significance from the initial convenience sample.",
+    "Do not infer Spotify-wide prevalence from this survey or Artifact A."
+  ]
+}

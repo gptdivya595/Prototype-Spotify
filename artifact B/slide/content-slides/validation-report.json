@@ -1,0 +1,687 @@
+{
+  "generated_on": "2026-07-02T10:07:19.718Z",
+  "status": "pass",
+  "summary": {
+    "checks": 134,
+    "passed": 134,
+    "failed": 0,
+    "slides": 10,
+    "survey_questions": 22,
+    "svg_assets": 10,
+    "png_assets": 10,
+    "mermaid_sources": 6
+  },
+  "failures": [],
+  "checks": [
+    {
+      "name": "exactly_ten_slides",
+      "status": "pass",
+      "detail": "10 slide files listed"
+    },
+    {
+      "name": "slide_limit_respected",
+      "status": "pass",
+      "detail": "10/10"
+    },
+    {
+      "name": "pdf_not_created",
+      "status": "pass",
+      "detail": "not_requested_yet"
+    },
+    {
+      "name": "slide_1_number",
+      "status": "pass",
+      "detail": "slide-01.json: 1"
+    },
+    {
+      "name": "slide_1_message_title",
+      "status": "pass",
+      "detail": "History knows a listener’s taste; it still misses what they want now."
+    },
+    {
+      "name": "slide_1_objective",
+      "status": "pass",
+      "detail": "99 characters"
+    },
+    {
+      "name": "slide_1_speaker_notes",
+      "status": "pass",
+      "detail": "3 notes"
+    },
+    {
+      "name": "slide_1_sources",
+      "status": "pass",
+      "detail": "3 sources"
+    },
+    {
+      "name": "slide_1_visuals",
+      "status": "pass",
+      "detail": "1 visual specifications"
+    },
+    {
+      "name": "slide-01.json_evidence-to-decision.png_exists",
+      "status": "pass",
+      "detail": "diagrams/evidence-to-decision.png"
+    },
+    {
+      "name": "slide-01.json_visual_alt_text",
+      "status": "pass",
+      "detail": "Discovery Evidence Lab evidence flows into the Discovery Compass experiment and then a continue, iterate, pivot, or stop decision."
+    },
+    {
+      "name": "slide-01.json_source_ProblemStatement.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/ProblemStatement.md"
+    },
+    {
+      "name": "slide-01.json_source_Artifact B Recommendation.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Artifact B Recommendation.md"
+    },
+    {
+      "name": "slide-01.json_source_IMPLEMENTATION_STATUS.md_exists",
+      "status": "pass",
+      "detail": "../../docs/IMPLEMENTATION_STATUS.md"
+    },
+    {
+      "name": "slide_2_number",
+      "status": "pass",
+      "detail": "slide-02.json: 2"
+    },
+    {
+      "name": "slide_2_message_title",
+      "status": "pass",
+      "detail": "Music platforms are converging on guided discovery, but control remains fragmented."
+    },
+    {
+      "name": "slide_2_objective",
+      "status": "pass",
+      "detail": "142 characters"
+    },
+    {
+      "name": "slide_2_speaker_notes",
+      "status": "pass",
+      "detail": "3 notes"
+    },
+    {
+      "name": "slide_2_sources",
+      "status": "pass",
+      "detail": "5 sources"
+    },
+    {
+      "name": "slide_2_visuals",
+      "status": "pass",
+      "detail": "1 visual specifications"
+    },
+    {
+      "name": "slide-02.json_competitive-landscape.png_exists",
+      "status": "pass",
+      "detail": "diagrams/competitive-landscape.png"
+    },
+    {
+      "name": "slide-02.json_visual_alt_text",
+      "status": "pass",
+      "detail": "Competitor matrix comparing passive personalization, explicit intent, novelty control, exclusions, and immediate steering."
+    },
+    {
+      "name": "slide_3_number",
+      "status": "pass",
+      "detail": "slide-03.json: 3"
+    },
+    {
+      "name": "slide_3_message_title",
+      "status": "pass",
+      "detail": "Across 1,850 records, taste mismatch and repetition lead the discovery pain hierarchy."
+    },
+    {
+      "name": "slide_3_objective",
+      "status": "pass",
+      "detail": "112 characters"
+    },
+    {
+      "name": "slide_3_speaker_notes",
+      "status": "pass",
+      "detail": "3 notes"
+    },
+    {
+      "name": "slide_3_sources",
+      "status": "pass",
+      "detail": "3 sources"
+    },
+    {
+      "name": "slide_3_visuals",
+      "status": "pass",
+      "detail": "1 visual specifications"
+    },
+    {
+      "name": "slide-03.json_research-evidence.png_exists",
+      "status": "pass",
+      "detail": "diagrams/research-evidence.png"
+    },
+    {
+      "name": "slide-03.json_visual_alt_text",
+      "status": "pass",
+      "detail": "Source composition for 1,850 records and horizontal bars showing the six leading discovery pain counts."
+    },
+    {
+      "name": "slide-03.json_source_Pain Point.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Pain Point.md"
+    },
+    {
+      "name": "slide-03.json_source_insights.json_exists",
+      "status": "pass",
+      "detail": "../../../artifact A/code/data/insights.json"
+    },
+    {
+      "name": "slide-03.json_source_Whats in Artifact A.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Whats in Artifact A.md"
+    },
+    {
+      "name": "slide_4_number",
+      "status": "pass",
+      "detail": "slide-04.json: 4"
+    },
+    {
+      "name": "slide_4_message_title",
+      "status": "pass",
+      "detail": "Users describe a self-reinforcing loop—but counterevidence prevents a universal-failure claim."
+    },
+    {
+      "name": "slide_4_objective",
+      "status": "pass",
+      "detail": "110 characters"
+    },
+    {
+      "name": "slide_4_speaker_notes",
+      "status": "pass",
+      "detail": "3 notes"
+    },
+    {
+      "name": "slide_4_sources",
+      "status": "pass",
+      "detail": "4 sources"
+    },
+    {
+      "name": "slide_4_visuals",
+      "status": "pass",
+      "detail": "1 visual specifications"
+    },
+    {
+      "name": "slide-04.json_behavior-loop.png_exists",
+      "status": "pass",
+      "detail": "diagrams/behavior-loop.png"
+    },
+    {
+      "name": "slide-04.json_behavior-loop.mmd_exists",
+      "status": "pass",
+      "detail": "diagrams/behavior-loop.mmd"
+    },
+    {
+      "name": "slide-04.json_visual_alt_text",
+      "status": "pass",
+      "detail": "Want something new leads to familiar results, skipping, familiar fallback, stronger familiar history, and the next narrow discovery attempt."
+    },
+    {
+      "name": "slide-04.json_source_RAG Questions.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/RAG Questions.md"
+    },
+    {
+      "name": "slide-04.json_source_User Behaviour.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/User Behaviour.md"
+    },
+    {
+      "name": "slide_5_number",
+      "status": "pass",
+      "detail": "slide-05.json: 5"
+    },
+    {
+      "name": "slide_5_message_title",
+      "status": "pass",
+      "detail": "Active discovery seekers need relevant novelty—not maximum novelty."
+    },
+    {
+      "name": "slide_5_objective",
+      "status": "pass",
+      "detail": "99 characters"
+    },
+    {
+      "name": "slide_5_speaker_notes",
+      "status": "pass",
+      "detail": "3 notes"
+    },
+    {
+      "name": "slide_5_sources",
+      "status": "pass",
+      "detail": "3 sources"
+    },
+    {
+      "name": "slide_5_visuals",
+      "status": "pass",
+      "detail": "1 visual specifications"
+    },
+    {
+      "name": "slide-05.json_persona-jtbd.png_exists",
+      "status": "pass",
+      "detail": "diagrams/persona-jtbd.png"
+    },
+    {
+      "name": "slide-05.json_visual_alt_text",
+      "status": "pass",
+      "detail": "Proto-persona for an active discovery seeker with trigger, job, behaviors, pains, and success criteria."
+    },
+    {
+      "name": "slide-05.json_source_User Segmentation.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/User Segmentation.md"
+    },
+    {
+      "name": "slide-05.json_source_User Behaviour.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/User Behaviour.md"
+    },
+    {
+      "name": "slide-05.json_source_Artifact B Recommendation.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Artifact B Recommendation.md"
+    },
+    {
+      "name": "slide_6_number",
+      "status": "pass",
+      "detail": "slide-06.json: 6"
+    },
+    {
+      "name": "slide_6_message_title",
+      "status": "pass",
+      "detail": "The journey breaks between current intent and the persistent taste profile."
+    },
+    {
+      "name": "slide_6_objective",
+      "status": "pass",
+      "detail": "129 characters"
+    },
+    {
+      "name": "slide_6_speaker_notes",
+      "status": "pass",
+      "detail": "3 notes"
+    },
+    {
+      "name": "slide_6_sources",
+      "status": "pass",
+      "detail": "3 sources"
+    },
+    {
+      "name": "slide_6_visuals",
+      "status": "pass",
+      "detail": "1 visual specifications"
+    },
+    {
+      "name": "slide-06.json_user-journey.png_exists",
+      "status": "pass",
+      "detail": "diagrams/user-journey.png"
+    },
+    {
+      "name": "slide-06.json_user-journey.mmd_exists",
+      "status": "pass",
+      "detail": "diagrams/user-journey.mmd"
+    },
+    {
+      "name": "slide-06.json_visual_alt_text",
+      "status": "pass",
+      "detail": "Five-stage discovery journey from trigger through evaluation, failed correction, workaround, and familiar fallback."
+    },
+    {
+      "name": "slide-06.json_source_ProblemStatement.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/ProblemStatement.md"
+    },
+    {
+      "name": "slide-06.json_source_User Behaviour.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/User Behaviour.md"
+    },
+    {
+      "name": "slide-06.json_source_Solutioning.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Solutioning.md"
+    },
+    {
+      "name": "slide_7_number",
+      "status": "pass",
+      "detail": "slide-07.json: 7"
+    },
+    {
+      "name": "slide_7_message_title",
+      "status": "pass",
+      "detail": "Discovery Compass ranks first because it tests the core mechanism with bounded effort."
+    },
+    {
+      "name": "slide_7_objective",
+      "status": "pass",
+      "detail": "146 characters"
+    },
+    {
+      "name": "slide_7_speaker_notes",
+      "status": "pass",
+      "detail": "3 notes"
+    },
+    {
+      "name": "slide_7_sources",
+      "status": "pass",
+      "detail": "3 sources"
+    },
+    {
+      "name": "slide_7_visuals",
+      "status": "pass",
+      "detail": "1 visual specifications"
+    },
+    {
+      "name": "slide-07.json_ice-prioritization.png_exists",
+      "status": "pass",
+      "detail": "diagrams/ice-prioritization.png"
+    },
+    {
+      "name": "slide-07.json_visual_alt_text",
+      "status": "pass",
+      "detail": "ICE factor table and impact-versus-effort plot showing Discovery Compass with the highest directional priority score."
+    },
+    {
+      "name": "slide-07.json_source_Pain Point.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Pain Point.md"
+    },
+    {
+      "name": "slide-07.json_source_Solutioning.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Solutioning.md"
+    },
+    {
+      "name": "slide-07.json_source_Artifact B Recommendation.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Artifact B Recommendation.md"
+    },
+    {
+      "name": "slide_8_number",
+      "status": "pass",
+      "detail": "slide-08.json: 8"
+    },
+    {
+      "name": "slide_8_message_title",
+      "status": "pass",
+      "detail": "Discovery Compass makes intent editable and feedback immediately visible."
+    },
+    {
+      "name": "slide_8_objective",
+      "status": "pass",
+      "detail": "132 characters"
+    },
+    {
+      "name": "slide_8_speaker_notes",
+      "status": "pass",
+      "detail": "3 notes"
+    },
+    {
+      "name": "slide_8_sources",
+      "status": "pass",
+      "detail": "3 sources"
+    },
+    {
+      "name": "slide_8_visuals",
+      "status": "pass",
+      "detail": "1 visual specifications"
+    },
+    {
+      "name": "slide-08.json_interaction-flow.png_exists",
+      "status": "pass",
+      "detail": "diagrams/interaction-flow.png"
+    },
+    {
+      "name": "slide-08.json_interaction-flow.mmd_exists",
+      "status": "pass",
+      "detail": "diagrams/interaction-flow.mmd"
+    },
+    {
+      "name": "slide-08.json_visual_alt_text",
+      "status": "pass",
+      "detail": "Listener selects anchors, enters and approves intent, deterministic ranker returns candidates, and feedback updates the session."
+    },
+    {
+      "name": "slide-08.json_source_architecture.md_exists",
+      "status": "pass",
+      "detail": "../../docs/architecture.md"
+    },
+    {
+      "name": "slide-08.json_source_IMPLEMENTATION_STATUS.md_exists",
+      "status": "pass",
+      "detail": "../../docs/IMPLEMENTATION_STATUS.md"
+    },
+    {
+      "name": "slide-08.json_source_Artifact B Recommendation.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Artifact B Recommendation.md"
+    },
+    {
+      "name": "slide_9_number",
+      "status": "pass",
+      "detail": "slide-09.json: 9"
+    },
+    {
+      "name": "slide_9_message_title",
+      "status": "pass",
+      "detail": "A paired prototype and focused survey can validate value before integration."
+    },
+    {
+      "name": "slide_9_objective",
+      "status": "pass",
+      "detail": "113 characters"
+    },
+    {
+      "name": "slide_9_speaker_notes",
+      "status": "pass",
+      "detail": "3 notes"
+    },
+    {
+      "name": "slide_9_sources",
+      "status": "pass",
+      "detail": "3 sources"
+    },
+    {
+      "name": "slide_9_visuals",
+      "status": "pass",
+      "detail": "1 visual specifications"
+    },
+    {
+      "name": "slide-09.json_validation-plan.png_exists",
+      "status": "pass",
+      "detail": "diagrams/validation-plan.png"
+    },
+    {
+      "name": "slide-09.json_visual_alt_text",
+      "status": "pass",
+      "detail": "Validation ladder progressing from problem interviews to usability, paired prototype, and a product decision."
+    },
+    {
+      "name": "slide-09.json_source_survey-questionnaire.json_exists",
+      "status": "pass",
+      "detail": "survey-questionnaire.json"
+    },
+    {
+      "name": "slide-09.json_source_Artifact B Recommendation.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Artifact B Recommendation.md"
+    },
+    {
+      "name": "slide-09.json_source_phase_5.md_exists",
+      "status": "pass",
+      "detail": "../../phases/phase_5.md"
+    },
+    {
+      "name": "slide_10_number",
+      "status": "pass",
+      "detail": "slide-10.json: 10"
+    },
+    {
+      "name": "slide_10_message_title",
+      "status": "pass",
+      "detail": "Success is accepted novelty without relevance loss—and clear gates to scale."
+    },
+    {
+      "name": "slide_10_objective",
+      "status": "pass",
+      "detail": "107 characters"
+    },
+    {
+      "name": "slide_10_speaker_notes",
+      "status": "pass",
+      "detail": "3 notes"
+    },
+    {
+      "name": "slide_10_sources",
+      "status": "pass",
+      "detail": "4 sources"
+    },
+    {
+      "name": "slide_10_visuals",
+      "status": "pass",
+      "detail": "1 visual specifications"
+    },
+    {
+      "name": "slide-10.json_kpi-tree.png_exists",
+      "status": "pass",
+      "detail": "diagrams/kpi-tree.png"
+    },
+    {
+      "name": "slide-10.json_kpi-tree.mmd_exists",
+      "status": "pass",
+      "detail": "diagrams/kpi-tree.mmd"
+    },
+    {
+      "name": "slide-10.json_visual_alt_text",
+      "status": "pass",
+      "detail": "KPI tree connecting accepted novel-artist rate to intent quality, candidate quality, steering effectiveness, and experience efficiency."
+    },
+    {
+      "name": "slide-10.json_source_Artifact B Recommendation.md_exists",
+      "status": "pass",
+      "detail": "../../../docs/Artifact B Recommendation.md"
+    },
+    {
+      "name": "slide-10.json_source_architecture.md_exists",
+      "status": "pass",
+      "detail": "../../docs/architecture.md"
+    },
+    {
+      "name": "slide-10.json_source_phase_5.md_exists",
+      "status": "pass",
+      "detail": "../../phases/phase_5.md"
+    },
+    {
+      "name": "slide-10.json_source_IMPLEMENTATION_STATUS.md_exists",
+      "status": "pass",
+      "detail": "../../docs/IMPLEMENTATION_STATUS.md"
+    },
+    {
+      "name": "survey_question_count",
+      "status": "pass",
+      "detail": "22 questions"
+    },
+    {
+      "name": "survey_not_fabricated",
+      "status": "pass",
+      "detail": "ready_for_google_forms_build_not_yet_fielded"
+    },
+    {
+      "name": "survey_has_branching",
+      "status": "pass",
+      "detail": "branch logic present"
+    },
+    {
+      "name": "survey_has_decision_thresholds",
+      "status": "pass",
+      "detail": "continue_to_paired_test, revise_before_test, stop_or_reframe"
+    },
+    {
+      "name": "three_survey_chart_placeholders",
+      "status": "pass",
+      "detail": "3 placeholders"
+    },
+    {
+      "name": "survey_chart_arrays_empty",
+      "status": "pass",
+      "detail": "no synthetic survey values"
+    },
+    {
+      "name": "ten_svg_assets",
+      "status": "pass",
+      "detail": "10 SVGs"
+    },
+    {
+      "name": "ten_png_assets",
+      "status": "pass",
+      "detail": "10 PNGs"
+    },
+    {
+      "name": "six_mermaid_sources",
+      "status": "pass",
+      "detail": "6 Mermaid files"
+    },
+    {
+      "name": "behavior-loop.png_dimensions",
+      "status": "pass",
+      "detail": "1600×900"
+    },
+    {
+      "name": "competitive-landscape.png_dimensions",
+      "status": "pass",
+      "detail": "1600×900"
+    },
+    {
+      "name": "evidence-to-decision.png_dimensions",
+      "status": "pass",
+      "detail": "1600×900"
+    },
+    {
+      "name": "ice-prioritization.png_dimensions",
+      "status": "pass",
+      "detail": "1600×900"
+    },
+    {
+      "name": "interaction-flow.png_dimensions",
+      "status": "pass",
+      "detail": "1600×900"
+    },
+    {
+      "name": "kpi-tree.png_dimensions",
+      "status": "pass",
+      "detail": "1600×900"
+    },
+    {
+      "name": "persona-jtbd.png_dimensions",
+      "status": "pass",
+      "detail": "1600×900"
+    },
+    {
+      "name": "research-evidence.png_dimensions",
+      "status": "pass",
+      "detail": "1600×900"
+    },
+    {
+      "name": "user-journey.png_dimensions",
+      "status": "pass",
+      "detail": "1600×900"
+    },
+    {
+      "name": "validation-plan.png_dimensions",
+      "status": "pass",
+      "detail": "1600×900"
+    },
+    {
+      "name": "no_pdf_or_pptx",
+      "status": "pass",
+      "detail": "content package only"
+    }
+  ]
+}

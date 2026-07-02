@@ -1,0 +1,41 @@
+{
+  "slide_number": 1,
+  "title": "History knows a listener’s taste; it still misses what they want now.",
+  "narrative_role": "Opening decision frame",
+  "objective": "State the user problem, the proposed product, and the decision being requested in under 30 seconds.",
+  "layout": {
+    "template": "60/40 statement plus evidence ledger",
+    "left": "Large title, one-sentence problem, one-sentence solution",
+    "right": "Four-number evidence ledger and decision ask",
+    "footer": "Discovery Evidence Lab → Discovery Compass · 02 July 2026"
+  },
+  "content": {
+    "problem_statement": "Active discovery seekers need a low-effort way to express what ‘new, but right for me now’ means because a history-driven recommendation profile cannot reliably capture changing session intent or unwanted influences.",
+    "solution_statement": "Discovery Compass adds editable session intent, a visible novelty level, exclusions, and immediate steering to an existing taste anchor.",
+    "evidence_ledger": [
+      { "label": "Public feedback records", "value": "1,850" },
+      { "label": "Discovery-related records", "value": "266" },
+      { "label": "Top pain signals", "value": "72 taste mismatch · 70 repetition" },
+      { "label": "Technical prototype", "value": "Phases 1–5 implemented locally" }
+    ],
+    "decision_ask": "Approve the next evidence gates: 5–6 problem interviews, catalog expansion, and at least 10 counterbalanced paired sessions.",
+    "truth_in_labeling": "The corpus establishes a strong problem hypothesis, not population prevalence or causal proof."
+  },
+  "visuals": [
+    {
+      "type": "diagram_image",
+      "asset": "diagrams/evidence-to-decision.png",
+      "alt": "Discovery Evidence Lab evidence flows into the Discovery Compass experiment and then a continue, iterate, pivot, or stop decision."
+    }
+  ],
+  "speaker_notes": [
+    "Lead with the gap between persistent taste and present intent; do not start with technology.",
+    "Discovery Compass is an experiment layer, not a claim that Spotify personalization is universally broken.",
+    "The requested investment is validation, not production integration."
+  ],
+  "sources": [
+    { "label": "Problem statement", "path": "../../../docs/ProblemStatement.md" },
+    { "label": "Artifact B recommendation", "path": "../../../docs/Artifact B Recommendation.md" },
+    { "label": "Implementation status", "path": "../../docs/IMPLEMENTATION_STATUS.md" }
+  ]
+}
