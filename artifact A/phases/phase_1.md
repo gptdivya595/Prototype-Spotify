@@ -1,82 +1,143 @@
-# Phase 1 — Scraping & Ingestion
+# Phase 1 — Collect a Traceable, Multi-source Corpus
 
-**Goal:** get a corpus of a few thousand real Spotify reviews into a clean, normalised
-`Review[]` JSON file, from App Store + Play Store (+ optional Reddit).
+**Outcome:** a reproducible raw corpus with enough source diversity to investigate Spotify
+discovery problems without hiding sampling bias.
 
-**Why local-first:** `google-play-scraper` does live web scraping — slow and occasionally
-IP-blocked, which will time out on Vercel serverless. So bulk collection runs as a **local
-Node script**; the deployed app later only does small bounded refreshes.
+**Current status (2 July 2026):** **Complete for the bounded prototype** — 1,850 unique records
+span App Store, Play Store, and 550 Reddit posts/comments. The manifest reports source, locale,
+rating, date range, and limitations. Reddit rebuilds work fully offline from seven saved files.
 
----
+## Why this phase exists
 
-## Tasks
+The engine cannot discover the real problem if it only analyses whichever reviews were easiest
+to scrape. Store reviews are useful for scale and ratings; Reddit/community discussions add
+the longer explanations, workarounds, and context needed for “why”.
 
-1. **Init a Node project** in `code/` (this becomes the Next.js app in Phase 5; fine to start
-   plain).
-   ```bash
-   cd "artifact A/code" && npm init -y
-   npm i app-store-scraper google-play-scraper
-   ```
+## Inputs
 
-2. **Write `scripts/scrape.mjs`** that:
-   - Pulls App Store reviews across several countries (each country caps at ~10 pages × 50).
-   - Pulls Play Store reviews with pagination tokens.
-   - Normalises both into the canonical `Review` shape (see architecture.md §5).
-   - Dedupes by `id` and writes `data/reviews.raw.json`.
+- Spotify App Store id: `324684580`.
+- Spotify Play Store id: `com.spotify.music`.
+- Allow-listed Reddit/community URLs relevant to discovery and recommendations.
+- Sampling configuration: source, country, language, sort, pages/limit.
 
-3. **(Optional) Reddit** via public JSON — no auth:
-   `https://www.reddit.com/r/spotify/search.json?q=discover%20OR%20recommendation&restrict_sr=1&sort=relevance&limit=100`
-   Map posts + top comments into `Review` with `source:'reddit'`, `rating:null`.
+## Work plan
 
-4. **Sanity check:** print counts by source, country, rating distribution.
+### 1. Freeze the canonical raw schema
 
----
+Add or validate these fields before saving a record:
 
-## Reference snippets
-
-**App Store** (`app-store-scraper`):
-```js
-import store from 'app-store-scraper';
-// id = 324684580, loop pages 1..10 and a few countries
-const r = await store.reviews({ id: 324684580, country: 'us', sort: store.sort.RECENT, page: 1 });
+```text
+id, sourceReviewId, source, sourceType, platform, country, language,
+rating, title, text, authorHash, publishedAt, fetchedAt, appVersion, url
 ```
 
-**Play Store** (`google-play-scraper`):
+- Preserve the native source id when available.
+- Compute a stable content hash for dedupe across re-runs.
+- Hash or omit the author handle; it is not needed for product research.
+- Reject empty text, invalid ratings, malformed dates, and records without provenance.
+
+### 2. Make App Store collection explicit
+
+Use Apple's public RSS feed with the fixed Spotify id. Retain `app-store-scraper.reviews` as an
+optional local legacy adapter:
+
 ```js
-import gplay from 'google-play-scraper';
-const { data, nextPaginationToken } = await gplay.reviews({
-  appId: 'com.spotify.music', sort: gplay.sort.NEWEST, num: 200, country: 'us', lang: 'en'
+store.reviews({
+  id: 324684580,
+  country: 'us',
+  page: 1,
+  sort: store.sort.RECENT,
 });
 ```
 
-**Normaliser (both → Review):**
+- Set `APPLE_REVIEW_ADAPTER=legacy` to try the retained library first; fall back to RSS when it
+  returns no reviews.
+- Loop the bounded RSS pages for each configured country.
+- Start with `us`, `gb`, `in`, `ca`, and `au`.
+- Throttle between requests and keep partial results if one country fails.
+- Record returned count and oldest/newest date per country.
+
+### 3. Make Play Store pagination and language explicit
+
+Use `google-play-scraper.reviews` with `paginate: true` and follow the returned token:
+
 ```js
-import { createHash } from 'crypto';
-const id = (s, author, date, text) =>
-  createHash('sha1').update(`${s}|${author}|${date}|${text.slice(0,50)}`).digest('hex').slice(0,12);
+gplay.reviews({
+  appId: 'com.spotify.music',
+  country: 'in',
+  lang: 'en',
+  sort: gplay.sort.NEWEST,
+  paginate: true,
+  nextPaginationToken,
+});
 ```
 
----
+- Stop at the configured total, a missing token, or a maximum page guard.
+- Do not assume `num` controls page size when pagination is enabled.
+- Run an explicit locale matrix, including `in/en` and a small `in/hi` sample if returned by
+  the source.
 
-## Gotchas
+### 4. Add one discussion-source family
 
-- App Store caps at ~500 reviews/country → loop `['us','gb','in','ca','au','de']` to widen.
-- Play Store: throttle (200–400 ms between pages) to avoid blocks; wrap in try/catch and
-  keep partial results.
-- Keep raw text verbatim (needed for citations); only truncate author names.
-- Commit `data/reviews.raw.json` OR keep it gitignored and re-runnable — your call, but the
-  file is the hand-off to Phase 2.
+- Ingest the seven allow-listed Reddit threads already in `data/reddit-urls.txt` through live
+  JSON or browser-saved JSON.
+- Normalise a thread post and each useful comment as separate records, retaining thread URL,
+  parent id, date, and source type.
+- If Reddit remains blocked, add a Spotify Community saved-export adapter rather than silently
+  shipping a store-only corpus.
 
----
+### 5. Write an ingestion run manifest
 
-## Deliverable
+For every run, persist:
 
-`code/data/reviews.raw.json` — deduped `Review[]` (target ≥ 2,000 rows), enrichment fields
-empty/undefined for now.
+- configuration and code/data version;
+- started/finished timestamps;
+- fetched, valid, duplicate, rejected, and failed counts;
+- counts and date range by source/country/language;
+- failure stage and reason without secrets.
 
-## Acceptance criteria
+### 6. Produce a coverage report
 
-- [ ] Script runs end-to-end with one command (`node scripts/scrape.mjs`).
-- [ ] ≥ 2,000 unique reviews across ≥ 2 sources.
-- [ ] Every row validates against the `Review` shape (minus enrichment fields).
-- [ ] Rating distribution + source counts printed to console.
+Generate a small Markdown/JSON report showing source mix, rating distribution, recency, locale,
+and known bias. Never label the corpus “representative of Spotify users”.
+
+## Existing implementation to retain
+
+- `code/lib/scrape.mjs`
+- `code/lib/review.mjs`
+- `code/lib/reddit.mjs`
+- `code/scripts/scrape.mjs`
+- `code/scripts/scrape-reddit.mjs`
+
+## Verification
+
+```bash
+cd "artifact A/code"
+npm ci
+npm run scrape:small
+npm run scrape
+npm run scrape:reddit:offline
+npm run manifest
+npm run anonymize
+```
+
+Run the same small configuration twice and confirm the second run creates no duplicate ids.
+
+## Deliverables
+
+- `data/reviews.raw.json` (local/ignored if source terms require it).
+- `data/ingestion-manifest.json`.
+- Coverage and limitations inside `data/ingestion-manifest.json`.
+- A redacted sample of records for schema review.
+
+## Exit criteria
+
+- [x] At least 1,000 valid store reviews across App Store and Play Store (actual: 1,300).
+- [x] At least 300 posts/comments from one discussion/community source (actual: 550 Reddit).
+- [x] Counts, date range, country, and language are visible by source.
+- [x] Stable ids and merge-time deduplication make repeated imports idempotent.
+- [x] Partial source failures are reported rather than swallowed.
+- [x] Public handles are removed from corpus artifacts; only deterministic hashes are retained.
+
+**Gate to Phase 2:** passed for the prototype. The source sample remains self-selected and is
+not a population estimate.

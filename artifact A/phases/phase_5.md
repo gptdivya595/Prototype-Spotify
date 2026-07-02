@@ -1,77 +1,152 @@
-# Phase 5 — UI + Deploy to Vercel
+# Phase 5 — Ship the Collect, Insights, and Ask Experience
 
-**Goal:** wrap the APIs in a clean two-tab Next.js UI and ship a public Vercel URL a reviewer
-can test. This is the actual Part-1 deliverable link.
+**Outcome:** an evaluator can open one Vercel URL, understand corpus limitations, inspect
+evidence, and test a grounded question.
 
----
+**Current status (2 July 2026):** **Complete locally; public deployment pending** — Collect,
+Insights, Ask, health, bounded API controls, production dependency remediation, build, and local
+smoke tests pass. No public Vercel URL has been deployed or verified.
 
-## UI scope (keep it minimal, make it legible)
+## User flow
 
-**Tab 1 — Insights (default / landing)**
-- Header: what this is, corpus size, sources, last-updated.
-- Cards for the **6 precomputed answers** (question → answer → expandable citations).
-- Charts: frustration-theme bar chart, sentiment split, discovery-related %, segment ×
-  top-theme. (Use a light lib like Recharts, or plain divs — this doubles as a deck slide.)
+```text
+Collect a bounded sample → see run result/freshness → inspect ranked insights → ask a question
+→ open cited source evidence → understand what must be validated in interviews
+```
 
-**Tab 2 — Ask (chat)**
-- Text box + optional filter chips (segment, theme).
-- Streams/returns the grounded answer.
-- **Citations panel**: each cited review shown with source, rating, date, quote — this is the
-  trust proof; make it prominent.
+## Work plan
 
-**Tab 3 — Ingest (optional, can be an admin corner)**
-- "Refresh latest N" button → `POST /api/ingest`, show progress + new count.
-- Note in UI that bulk load is done via the local script.
+### 1. Complete the three-page UI
 
----
+#### Collect
 
-## Tasks
+- Source dropdown: App Store or Play Store; Reddit/community import is local-file/admin only.
+- Country and language allow lists.
+- Limit selector capped at 100 for hosted refresh.
+- Clear mode badge: `local`, `hosted read-only`, or `hosted remote storage`.
+- Run button, loading state, counts, partial failures, and last successful data version.
+- Admin gate for the action; no consumer account system.
 
-1. **Scaffold Next.js** (App Router, TypeScript) and fold the Phase 1–4 code into it:
-   - `app/api/{scrape,enrich,index,chat,insights,ingest}/route.ts`
-   - `app/(ui)/page.tsx` (Insights), `app/ask/page.tsx`, `app/ingest/page.tsx`
-   - `lib/{llm,vector,enrich,scrape}.ts`
-2. **Wire the pages** to the APIs (fetch, loading states, error states).
-3. **Seed the deployed index**: run the local `scrape → enrich → index` once against the prod
-   Upstash index so the URL has data on first load.
-4. **Deploy to Vercel**: push to GitHub → import → set env vars (§10 architecture) → deploy.
-5. **Make it demo-proof**: precomputed answers load without any live LLM call; chat is the
-   interactive extra.
+#### Insights
 
----
+- Corpus size, source/locale/date coverage, and last generated timestamp.
+- Ranked theme counts with denominators, not only bars.
+- Source × theme and segment × theme views.
+- Six audited answers with evidence warnings and expandable citations.
+- A visible “hypothesis to validate” panel and sampling limitations.
 
-## Vercel deployment checklist
+#### Ask
 
-- [ ] `OPENAI_API_KEY`, `UPSTASH_VECTOR_REST_URL`, `UPSTASH_VECTOR_REST_TOKEN` set in Vercel
-      env (Production + Preview).
-- [ ] Long routes: set `export const maxDuration = 60` on `/api/ingest` if on a plan that
-      allows it; otherwise keep N small.
-- [ ] Node runtime (not edge) for API routes using the scraper libs:
-      `export const runtime = 'nodejs'`.
-- [ ] `.env.local` gitignored; secrets only in Vercel dashboard.
-- [ ] Test the public URL in an incognito window (no local state).
+- Question input and example research questions.
+- Optional source, segment, theme, and locale filters.
+- Loading, empty-evidence, rate-limit, and API-error states.
+- Inline citation markers plus a source panel containing rating, date, short quote, and link.
+- Never claim “no hallucinations”; say answers are constrained to retrieved evidence and may
+  still require audit.
 
----
+### 2. Make persistence behavior truthful
 
-## Gotchas
+Choose one deployment mode and show it in the UI:
 
-- The scraper libs need the **Node** runtime — do not put them on Edge functions.
-- If `/api/ingest` times out on Vercel free tier, disable the button in prod and rely on the
-  pre-seeded index; the local script is the real ingest path.
-- Colour choices: ensure charts are colour-blind safe and text is readable (fellowship rule).
+1. **Recommended first release — read-only Vercel:** serve committed/versioned vectors and
+   insights; Collect runs locally and requires regeneration/redeploy.
+2. **Optional hosted refresh:** configure Upstash Vector plus durable snapshot storage and enable
+   `/api/ingest` only with `ALLOW_REMOTE_INGEST=true`.
 
----
+Do not let `/api/ingest` write to local JSON in production and report success; Vercel function
+filesystem writes are not the durable database.
 
-## Deliverable
+### 3. Add public-endpoint controls
 
-- A **public Vercel URL** (the Part-1 workflow link) with a working Insights dashboard + Ask
-  chat.
-- Screenshots of insights + one chat answer with citations → feed the 1-slider explaining
-  how the engine works.
+- Keep the OpenAI key server-side.
+- Cap chat question length and output tokens.
+- Per-IP rate-limit `/api/chat`.
+- Protect `/api/ingest` with an admin key and a hard limit of 100.
+- Use only allow-listed source/country/language values; never accept a scrape URL.
+- Return generic client errors and structured server logs without review text or secrets.
 
-## Acceptance criteria
+### 4. Remediate release dependencies
 
-- [ ] Public URL loads the Insights tab with real data, no login.
-- [ ] Ask a discovery question → grounded answer + visible citations.
-- [ ] Works in incognito / on a phone.
-- [ ] The "how it works" story is screenshot-ready for the deck's 1-slider.
+The 2 July 2026 production audit reports zero advisories with `npm audit --omit=dev`.
+
+- Next.js has been upgraded to 16.2.10 and the build has been rerun.
+- `app-store-scraper@0.18.0` is deliberately retained as a local-only dev dependency.
+- The legacy adapter uses a dynamic import and is not required by the read-only deployment.
+- A full audit still reports six advisories under its deprecated `request` dependency chain;
+  this is documented isolation, not a claim that the legacy package itself is remediated.
+- Do not run `npm audit fix --force` without reviewing the major-version migrations.
+
+### 5. Deploy and smoke-test Vercel
+
+- Set Vercel root directory to `artifact A/code`.
+- Add `OPENAI_API_KEY`, model variables, and optional Upstash variables in Vercel settings.
+- Use the Node runtime for API routes.
+- Include only required serving artifacts in function traces.
+- Test the production URL in incognito and on a phone.
+- Verify the displayed data version equals the deployed vector/insights version.
+
+### 6. Prepare the PM handoff
+
+Create a one-slide-ready story:
+
+- source coverage and method;
+- deterministic leading themes;
+- two or three representative cited examples;
+- limitations;
+- target interview segment and questions;
+- explicit statement that interviews decide Artifact B.
+
+## Existing implementation to retain
+
+- `code/app/page.jsx`
+- `code/app/ask/page.jsx`
+- `code/app/api/ingest/route.js`
+- `code/app/globals.css`
+- `code/vercel.json`
+- `code/next.config.mjs`
+
+## Verification
+
+```bash
+cd "artifact A/code"
+npm ci
+npm audit --omit=dev
+npm run build
+npm run start
+```
+
+Smoke tests:
+
+```text
+GET  /                 → insights and coverage render
+GET  /api/insights     → 200 with dataVersion
+POST /api/chat         → cited grounded answer
+POST /api/chat off-topic → insufficient-evidence response
+POST /api/ingest       → blocked unless admin/remote mode is enabled
+GET  /api/health       → build/data/storage status without secrets
+```
+
+## Deliverables
+
+- Public Vercel URL.
+- Collect, Insights, and Ask screenshots.
+- Post-deploy smoke-test record.
+- Updated deployment guide and environment-variable checklist.
+- One-slide workflow/findings content.
+
+## Exit criteria
+
+- [ ] Insights and Ask work from a public incognito session.
+- [x] Collect accurately reflects the configured persistence mode and cannot create unbounded
+      public API spend.
+- [x] A new local chat answer contains valid, clickable evidence or an honest refusal.
+- [x] No high/critical production dependency advisory remains without a written, reviewed
+      isolation decision.
+- [ ] Confirm no exposed secret remains after rotating the key and reviewing Git/client output.
+- [x] Local mobile-responsive, keyboard, loading, and error states are implemented.
+- [ ] Public URL, data version, and smoke-test date are recorded.
+- [x] The handoff identifies interview hypotheses instead of claiming a proven root cause.
+
+**Artifact A is locally complete as a technical prototype.** Public-deployment, independent
+human evaluation, API-key rotation, and interview gates remain explicitly open; none should be
+reported as complete without evidence.

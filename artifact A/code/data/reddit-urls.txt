@@ -1,0 +1,8 @@
+# Reddit threads for discovery/recommendation research. One URL per line. '#' = comment.
+https://www.reddit.com/r/truespotify/comments/1rml2vo/spotify_recommendations_suck_now/
+https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/
+https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/
+https://www.reddit.com/r/truespotify/comments/1l8abfb/the_recommendation_system_is_terrible/
+https://www.reddit.com/r/truespotify/comments/1l6meie/spotify_recommendations_getting_worse/
+https://www.reddit.com/r/truespotify/comments/1tgsmq5/spotify_recommendations_have_gotten_worse/
+https://www.reddit.com/r/truespotify/comments/1dzs3p8/im_sick_of_spotifys_algorithm/

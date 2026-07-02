@@ -5,16 +5,24 @@
   "type": "module",
   "description": "Artifact A - Spotify Review Analysis Engine (RAG)",
   "engines": {
-    "node": ">=18.18.0"
+    "node": ">=20.9.0"
   },
   "scripts": {
     "scrape": "node scripts/scrape.mjs",
     "scrape:small": "node scripts/scrape.mjs --small",
+    "scrape:reddit": "node scripts/scrape-reddit.mjs",
+    "scrape:reddit:offline": "node scripts/scrape-reddit.mjs --no-live",
+    "manifest": "node scripts/manifest.mjs",
+    "anonymize": "node scripts/anonymize-corpus.mjs",
     "enrich": "node scripts/enrich.mjs",
+    "audit:enrichment": "node scripts/audit-enrichment.mjs",
+    "normalize:enrichment": "node scripts/normalize-enriched.mjs",
     "index": "node scripts/index.mjs",
     "query": "node scripts/query.mjs",
     "ask": "node scripts/ask.mjs",
     "insights": "node scripts/insights.mjs",
+    "eval:rag": "node scripts/eval-rag.mjs",
+    "research": "node scripts/research.mjs",
     "build:data": "node scripts/enrich.mjs && node scripts/index.mjs && node scripts/insights.mjs",
     "dev": "next dev",
     "build": "next build",
@@ -22,11 +30,16 @@
   },
   "dependencies": {
     "@upstash/vector": "^1.2.3",
-    "app-store-scraper": "^0.18.0",
     "google-play-scraper": "^10.0.0",
-    "next": "^14.2.5",
+    "next": "^16.2.10",
     "openai": "^4.104.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "app-store-scraper": "^0.18.0"
+  },
+  "overrides": {
+    "postcss": "^8.5.10"
   }
 }

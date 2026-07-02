@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# secrets
+.env
+.env.local
+**/.env
+**/.env.local
+**/.env*.local
+
+# build output
+.next/
+**/.next/
+dist/
+out/
+
+# logs
+*.log
+**/*.log
+
+# large / re-generatable scraped data (serving artifacts vectors.json & insights.json are kept)
+**/data/reviews.raw.json
+**/data/reviews.enriched.json
+**/data/*.dryrun.json
+
+# claude local settings
+.claude/

@@ -9,10 +9,14 @@ const EXAMPLES = [
 ];
 
 const SEGMENTS = ['', 'power_user', 'explorer', 'casual', 'mood_based'];
+const SOURCES = ['', 'app_store', 'play_store', 'reddit'];
+const THEMES = ['', 'no_control_over_recs', 'repetitive_recommendations', 'recs_ignore_taste', 'stale_discover_weekly', 'poor_genre_exploration'];
 
 export default function AskPage() {
   const [q, setQ] = useState('');
   const [segment, setSegment] = useState('');
+  const [source, setSource] = useState('');
+  const [theme, setTheme] = useState('');
   const [loading, setLoading] = useState(false);
   const [res, setRes] = useState(null);
   const [err, setErr] = useState(null);
@@ -25,7 +29,14 @@ export default function AskPage() {
       const r = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: query, filters: segment ? { segment } : {} }),
+        body: JSON.stringify({
+          question: query,
+          filters: {
+            ...(segment ? { segment } : {}),
+            ...(source ? { source } : {}),
+            ...(theme ? { theme } : {}),
+          },
+        }),
       });
       const data = await r.json();
       if (!r.ok) throw new Error(data.error || 'request failed');
@@ -40,7 +51,7 @@ export default function AskPage() {
   return (
     <main className="container">
       <h1>Ask the reviews</h1>
-      <p className="sub">Answers are grounded only in real Spotify reviews, with citations. No hallucinated facts.</p>
+      <p className="sub">Answers are constrained to retrieved Spotify feedback and show the evidence used. Audit important conclusions before acting on them.</p>
 
       <div className="chips">
         {EXAMPLES.map((ex) => (
@@ -58,6 +69,16 @@ export default function AskPage() {
             {SEGMENTS.map((s) => <option key={s} value={s}>{s || 'all'}</option>)}
           </select>
         </label>
+        <label className="muted" style={{ fontSize: 14 }}>Source:&nbsp;
+          <select value={source} onChange={(e) => setSource(e.target.value)}>
+            {SOURCES.map((s) => <option key={s} value={s}>{s || 'all'}</option>)}
+          </select>
+        </label>
+        <label className="muted" style={{ fontSize: 14 }}>Theme:&nbsp;
+          <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+            {THEMES.map((s) => <option key={s} value={s}>{s ? s.replace(/_/g, ' ') : 'auto'}</option>)}
+          </select>
+        </label>
         <button onClick={() => ask()} disabled={loading}>
           {loading ? <><span className="spinner" /> Thinking…</> : 'Ask'}
         </button>
@@ -67,6 +88,7 @@ export default function AskPage() {
 
       {res && (
         <div style={{ marginTop: 20 }}>
+          {res.evidenceWarning && <p className="muted">Evidence note: {res.evidenceWarning.replace(/_/g, ' ')}</p>}
           <div className="qa">
             <div className="a">{res.answer}</div>
           </div>

@@ -26,7 +26,7 @@ const OUT = join(DATA, DRY ? 'reviews.enriched.dryrun.json' : 'reviews.enriched.
 const limitArg = process.argv.find((a) => a.startsWith('--limit'));
 const LIMIT = limitArg ? Number(process.argv[process.argv.indexOf(limitArg) + 1]) : Infinity;
 
-const BATCH = 20;
+const BATCH = 10;
 const CONCURRENCY = 4;
 
 const SYSTEM = `You classify Spotify app reviews for a music-discovery research project.
@@ -78,23 +78,29 @@ async function tagBatch(batch) {
   return (json.results || []).map(validateTag).filter(Boolean);
 }
 
-async function runPool(batches, worker) {
-  const results = [];
-  let i = 0;
-  async function next() {
-    while (i < batches.length) {
-      const idx = i++;
-      try {
-        results[idx] = await worker(batches[idx], idx);
-        process.stdout.write(`  batch ${idx + 1}/${batches.length} ok\r`);
-      } catch (e) {
-        console.warn(`\n  batch ${idx + 1} failed: ${e.message}`);
-        results[idx] = [];
+async function tagWithRetry(batch, label) {
+  let last;
+  let best = [];
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const tags = await tagBatch(batch);
+      if (tags.length > best.length) best = tags;
+      const expected = new Set(batch.map((r) => r.id));
+      const returned = new Set(tags.map((t) => t.id));
+      if (tags.length !== batch.length || [...expected].some((id) => !returned.has(id))) {
+        throw new Error(`model returned ${tags.length}/${batch.length} required ids`);
       }
+      return tags;
+    } catch (e) {
+      last = e;
+      if (attempt < 3) await new Promise((r) => setTimeout(r, 750 * (2 ** (attempt - 1))));
     }
   }
-  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, batches.length) }, next));
-  return results.flat();
+  if (best.length) {
+    console.warn(`\n  ${label}: checkpointing best partial result (${best.length}/${batch.length}); omitted ids will resume next run`);
+    return best;
+  }
+  throw new Error(`${label} failed after 3 attempts: ${last?.message || last}`);
 }
 
 async function main() {
@@ -109,12 +115,24 @@ async function main() {
   const todo = raw.filter((r) => !doneIds.has(r.id)).slice(0, LIMIT);
   console.log(`enrich${DRY ? ' (DRY RUN)' : ''}: ${todo.length} to tag, ${doneIds.size} already done`);
 
-  const tags = await runPool(chunk(todo, BATCH), tagBatch);
-  const tagById = new Map(tags.map((t) => [t.id, t]));
+  for (const r of raw) if (!byId.has(r.id)) byId.set(r.id, r);
 
-  for (const r of raw) {
-    const t = tagById.get(r.id);
-    byId.set(r.id, t ? { ...r, ...t } : byId.get(r.id) || r);
+  const batches = chunk(todo, BATCH);
+  for (let start = 0; start < batches.length; start += CONCURRENCY) {
+    const wave = batches.slice(start, start + CONCURRENCY);
+    const settled = await Promise.allSettled(wave.map((batch, i) => tagWithRetry(batch, `batch ${start + i + 1}`)));
+    for (let i = 0; i < settled.length; i++) {
+      const result = settled[i];
+      if (result.status === 'rejected') throw result.reason;
+      const tagById = new Map(result.value.map((t) => [t.id, t]));
+      for (const r of wave[i]) {
+        const t = tagById.get(r.id);
+        if (t) byId.set(r.id, { ...r, ...t });
+      }
+    }
+    // Durable checkpoint: an interrupted run resumes from the last completed wave.
+    await writeFile(OUT, JSON.stringify([...byId.values()], null, 2), 'utf8');
+    process.stdout.write(`  checkpoint ${Math.min(start + wave.length, batches.length)}/${batches.length} batches\r`);
   }
   const merged = [...byId.values()];
 
@@ -133,6 +151,10 @@ async function main() {
   console.log('segments:', segCounts);
   console.log('themes:', themeCounts);
   console.log(`\nwrote -> ${OUT}`);
+  if (enriched.length !== raw.length) {
+    console.warn(`\n${raw.length - enriched.length} records remain untagged; rerun npm run enrich to resume them.`);
+    process.exitCode = 2;
+  }
 }
 
 main().catch((e) => {

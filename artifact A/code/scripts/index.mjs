@@ -40,7 +40,10 @@ async function main() {
   console.log(`indexing ${rows.length}/${enriched.length} reviews (${ALL ? 'all' : 'discovery-only'}) `
     + `-> store=${DRY ? 'local(dry)' : storeKind()}`);
 
-  const store = await getStore();
+  const store = await getStore({ dry: DRY });
+  if (typeof store.clear === 'function' && !args.has('--append')) {
+    await store.clear();
+  }
   let done = 0;
   for (let i = 0; i < rows.length; i += EMBED_BATCH) {
     const batch = rows.slice(i, i + EMBED_BATCH);
@@ -50,6 +53,7 @@ async function main() {
       vector: vectors[j],
       metadata: {
         source: r.source, rating: r.rating, date: r.date, country: r.country,
+        language: r.language || null,
         segment: r.segment, sentiment: r.sentiment, discoveryRelated: r.discoveryRelated,
         frustrationThemes: r.frustrationThemes, jtbd: r.jtbd,
         title: r.title, text: r.text, url: r.url,

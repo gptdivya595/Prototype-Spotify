@@ -1,0 +1,191 @@
+{
+  "generatedAt": "2026-07-02T07:52:53.279Z",
+  "passed": 9,
+  "total": 9,
+  "passRate": 1,
+  "note": "Automated theme/source checks are smoke tests; final product claims still require human citation review.",
+  "results": [
+    {
+      "id": "control",
+      "question": "What controls over recommendations do users want?",
+      "expectedTheme": "no_control_over_recs",
+      "minThemeHits": 2,
+      "pass": true,
+      "observed": {
+        "hitCount": 10,
+        "themeHits": 2,
+        "sources": [
+          "reddit",
+          "play_store"
+        ],
+        "topScores": [
+          0.4773,
+          0.3875,
+          0.461,
+          0.453,
+          0.4484
+        ]
+      }
+    },
+    {
+      "id": "repeat",
+      "question": "Why do users hear the same songs repeatedly?",
+      "expectedTheme": "repetitive_recommendations",
+      "minThemeHits": 2,
+      "pass": true,
+      "observed": {
+        "hitCount": 10,
+        "themeHits": 6,
+        "sources": [
+          "reddit",
+          "play_store",
+          "app_store"
+        ],
+        "topScores": [
+          0.5888,
+          0.5482,
+          0.5322,
+          0.5849,
+          0.5726
+        ]
+      }
+    },
+    {
+      "id": "discover-weekly",
+      "question": "What do users say about Discover Weekly becoming stale?",
+      "expectedTheme": "stale_discover_weekly",
+      "minThemeHits": 2,
+      "pass": true,
+      "observed": {
+        "hitCount": 10,
+        "themeHits": 10,
+        "sources": [
+          "reddit"
+        ],
+        "topScores": [
+          0.7088,
+          0.6395,
+          0.6087,
+          0.5972,
+          0.5949
+        ]
+      }
+    },
+    {
+      "id": "taste",
+      "question": "How do recommendations ignore users' taste?",
+      "expectedTheme": "recs_ignore_taste",
+      "minThemeHits": 2,
+      "pass": true,
+      "observed": {
+        "hitCount": 10,
+        "themeHits": 10,
+        "sources": [
+          "reddit"
+        ],
+        "topScores": [
+          0.5618,
+          0.5421,
+          0.5347,
+          0.5315,
+          0.497
+        ]
+      }
+    },
+    {
+      "id": "genre",
+      "question": "What do users say about poor genre exploration?",
+      "expectedTheme": "poor_genre_exploration",
+      "minThemeHits": 2,
+      "pass": true,
+      "observed": {
+        "hitCount": 10,
+        "themeHits": 10,
+        "sources": [
+          "reddit",
+          "play_store"
+        ],
+        "topScores": [
+          0.4128,
+          0.3867,
+          0.398,
+          0.374,
+          0.3699
+        ]
+      }
+    },
+    {
+      "id": "popular",
+      "question": "Do users think the algorithm pushes popular or safe music?",
+      "expectedTheme": "algorithm_pushes_popular",
+      "minThemeHits": 2,
+      "pass": true,
+      "observed": {
+        "hitCount": 10,
+        "themeHits": 10,
+        "sources": [
+          "reddit"
+        ],
+        "topScores": [
+          0.5714,
+          0.5711,
+          0.5702,
+          0.5689,
+          0.5681
+        ]
+      }
+    },
+    {
+      "id": "autoplay",
+      "question": "How does autoplay contribute to repetitive listening loops?",
+      "expectedTheme": "autoplay_loop",
+      "minThemeHits": 2,
+      "pass": true,
+      "observed": {
+        "hitCount": 10,
+        "themeHits": 2,
+        "sources": [
+          "reddit",
+          "app_store"
+        ],
+        "topScores": [
+          0.509,
+          0.4714,
+          0.4962,
+          0.4883,
+          0.4862
+        ]
+      }
+    },
+    {
+      "id": "diversity",
+      "question": "Why do Spotify users struggle to discover new music?",
+      "minSources": 2,
+      "pass": true,
+      "observed": {
+        "hitCount": 10,
+        "themeHits": null,
+        "sources": [
+          "reddit",
+          "play_store"
+        ],
+        "topScores": [
+          0.7123,
+          0.6116,
+          0.6774,
+          0.6768,
+          0.6608
+        ]
+      }
+    },
+    {
+      "id": "off-topic",
+      "question": "What will the weather be tomorrow?",
+      "expectOutOfScope": true,
+      "pass": true,
+      "observed": {
+        "inScope": false
+      }
+    }
+  ]
+}

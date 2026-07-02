@@ -11,7 +11,11 @@ export const MODELS = {
 
 let _client = null;
 export function openai() {
-  if (!_client) _client = new OpenAI({ apiKey: requireEnv('OPENAI_API_KEY') });
+  if (!_client) _client = new OpenAI({
+    apiKey: requireEnv('OPENAI_API_KEY'),
+    timeout: 30_000,
+    maxRetries: 2,
+  });
   return _client;
 }
 

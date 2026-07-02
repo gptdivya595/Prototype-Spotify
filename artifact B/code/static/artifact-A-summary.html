@@ -1,0 +1,1304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Discovery Evidence Lab: what 1,850 Spotify feedback records reveal about music discovery, and what to test in Artifact B.">
+  <meta name="theme-color" content="oklch(97% 0.014 88)">
+  <title>Discovery Evidence Lab | Spotify research</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: oklch(97% 0.014 88);
+      --paper-strong: oklch(93% 0.025 88);
+      --ink: oklch(24% 0.038 255);
+      --ink-soft: oklch(42% 0.035 255);
+      --line: oklch(79% 0.03 255);
+      --cobalt: oklch(48% 0.19 258);
+      --cobalt-deep: oklch(34% 0.16 258);
+      --cobalt-pale: oklch(92% 0.045 258);
+      --coral: oklch(66% 0.19 31);
+      --coral-pale: oklch(91% 0.055 31);
+      --mint: oklch(78% 0.12 158);
+      --mint-pale: oklch(93% 0.035 158);
+      --focus: oklch(52% 0.19 258);
+      --shadow: 0 18px 50px oklch(25% 0.04 255 / 0.10);
+      --wrap: min(1180px, calc(100% - 40px));
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(oklch(42% 0.03 255 / 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, oklch(42% 0.03 255 / 0.035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 34px 34px;
+      color: var(--ink);
+      font-family: "Avenir Next", Avenir, "Segoe UI", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.62;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+
+    a:hover { text-decoration-thickness: 2px; }
+
+    button, summary { font: inherit; }
+
+    button:focus-visible,
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 12px;
+      left: 12px;
+      padding: 10px 14px;
+      background: var(--paper);
+      border: 1px solid var(--ink);
+      transform: translateY(-180%);
+      transition: transform 180ms var(--ease-out);
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .wrap { width: var(--wrap); margin-inline: auto; }
+
+    .masthead {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      background: var(--paper);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .topbar {
+      width: var(--wrap);
+      margin-inline: auto;
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .identity {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-right: auto;
+      font-weight: 750;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .mark {
+      width: 34px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--paper);
+      background: var(--cobalt);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .topnav { display: flex; align-items: center; gap: 18px; }
+
+    .topnav a {
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .topnav a[aria-current="true"] { color: var(--cobalt); }
+
+    .print-button {
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 7px 13px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 180ms var(--ease-out), color 180ms var(--ease-out);
+    }
+
+    .print-button:hover { background: var(--ink); color: var(--paper); }
+
+    .hero {
+      width: var(--wrap);
+      margin-inline: auto;
+      padding: clamp(64px, 10vw, 128px) 0 52px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.75fr);
+      align-items: end;
+      gap: clamp(44px, 8vw, 104px);
+    }
+
+    .eyebrow {
+      margin: 0 0 22px;
+      color: var(--cobalt);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { text-wrap: pretty; }
+
+    h1 {
+      max-width: 13ch;
+      margin: 0;
+      font-size: clamp(3.35rem, 7.8vw, 7.25rem);
+      line-height: 0.91;
+      letter-spacing: -0.067em;
+      font-weight: 800;
+    }
+
+    .hero .lead {
+      max-width: 62ch;
+      margin: 34px 0 0;
+      color: var(--ink-soft);
+      font-size: clamp(1.05rem, 1.4vw, 1.28rem);
+      line-height: 1.55;
+    }
+
+    .status-note {
+      margin-top: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--mint-pale);
+      border: 1px solid oklch(70% 0.10 158);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .status-note::before {
+      content: "";
+      width: 9px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: oklch(52% 0.14 158);
+    }
+
+    .corpus-ledger {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-top: 3px solid var(--ink);
+    }
+
+    .ledger-title {
+      margin: 0;
+      padding: 18px 0 12px;
+      color: var(--ink-soft);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 20px;
+      padding: 13px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .ledger-row strong {
+      font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+      letter-spacing: -0.045em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ledger-row span { color: var(--ink-soft); font-size: 0.88rem; }
+
+    .source-mix {
+      height: 13px;
+      margin: 24px 0 12px;
+      display: grid;
+      grid-template-columns: 100fr 1200fr 550fr;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--paper-strong);
+    }
+
+    .source-mix span:nth-child(1) { background: var(--coral); }
+    .source-mix span:nth-child(2) { background: var(--cobalt); }
+    .source-mix span:nth-child(3) { background: var(--mint); }
+
+    .source-key {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 15px;
+      color: var(--ink-soft);
+      font-size: 0.76rem;
+    }
+
+    .source-key span::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      aspect-ratio: 1;
+      margin-right: 6px;
+      border-radius: 50%;
+      background: var(--key);
+    }
+
+    .hero-foot {
+      width: var(--wrap);
+      margin-inline: auto;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--line);
+      font-size: 0.78rem;
+    }
+
+    section { scroll-margin-top: 18px; }
+
+    .statement {
+      background: var(--cobalt-deep);
+      color: var(--paper);
+      padding: clamp(76px, 11vw, 150px) 0;
+    }
+
+    .statement-grid {
+      display: grid;
+      grid-template-columns: 0.52fr 1.48fr;
+      gap: clamp(38px, 8vw, 110px);
+    }
+
+    .section-kicker {
+      margin: 0;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .statement .section-kicker { color: oklch(80% 0.10 258); }
+
+    .statement blockquote {
+      max-width: 22ch;
+      margin: 0;
+      font-size: clamp(2rem, 4.5vw, 4.35rem);
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+      font-weight: 720;
+    }
+
+    .statement small {
+      display: block;
+      max-width: 66ch;
+      margin-top: 30px;
+      color: oklch(85% 0.045 258);
+      font-size: 0.92rem;
+    }
+
+    .evidence {
+      padding: clamp(76px, 10vw, 132px) 0;
+      background: var(--paper);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 0.58fr 1.42fr;
+      gap: clamp(32px, 7vw, 96px);
+      margin-bottom: 58px;
+    }
+
+    .section-heading h2 {
+      max-width: 15ch;
+      margin: 0;
+      font-size: clamp(2.25rem, 5vw, 4.75rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .section-heading p {
+      max-width: 65ch;
+      margin: 5px 0 0;
+      color: var(--ink-soft);
+      font-size: 1.06rem;
+    }
+
+    .bar-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
+
+    .bar-item {
+      display: grid;
+      grid-template-columns: minmax(190px, 1fr) minmax(220px, 2.2fr) 52px;
+      align-items: center;
+      gap: 22px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bar-label { font-weight: 650; }
+
+    .bar-track {
+      height: 15px;
+      background: var(--paper-strong);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      width: calc(var(--value) / 72 * 100%);
+      height: 100%;
+      border-radius: inherit;
+      background: var(--fill, var(--cobalt));
+    }
+
+    .bar-value {
+      text-align: right;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .denominator {
+      margin: 15px 0 0;
+      color: var(--ink-soft);
+      font-size: 0.76rem;
+    }
+
+    .mechanism {
+      padding: clamp(76px, 10vw, 132px) 0;
+      background: var(--paper-strong);
+      border-block: 1px solid var(--ink);
+    }
+
+    .mechanism-flow {
+      margin-top: 55px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-block: 1px solid var(--ink);
+    }
+
+    .mechanism-step {
+      position: relative;
+      min-height: 220px;
+      padding: 22px 22px 30px;
+      border-right: 1px solid var(--ink);
+    }
+
+    .mechanism-step:last-child { border-right: 0; }
+
+    .mechanism-step .number {
+      color: var(--coral);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+
+    .mechanism-step h3 {
+      margin: 44px 0 11px;
+      font-size: 1.14rem;
+      line-height: 1.2;
+    }
+
+    .mechanism-step p { margin: 0; color: var(--ink-soft); font-size: 0.87rem; }
+
+    .mechanism-note {
+      max-width: 72ch;
+      margin: 28px 0 0 auto;
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+    }
+
+    .rag {
+      padding: clamp(78px, 11vw, 150px) 0;
+      background: var(--paper);
+    }
+
+    .rag-layout {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.52fr) minmax(0, 1.48fr);
+      gap: clamp(42px, 8vw, 116px);
+    }
+
+    .rag-intro { position: sticky; top: 28px; align-self: start; }
+
+    .rag-intro h2 {
+      margin: 18px 0 24px;
+      font-size: clamp(2.25rem, 4.8vw, 4.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .rag-intro p { color: var(--ink-soft); }
+
+    .method-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 750;
+    }
+
+    .question-list { border-top: 1px solid var(--ink); }
+
+    .question {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .question > summary {
+      position: relative;
+      padding: 24px 46px 24px 0;
+      cursor: pointer;
+      list-style: none;
+      font-size: 1.08rem;
+      font-weight: 720;
+      line-height: 1.35;
+    }
+
+    .question > summary::-webkit-details-marker { display: none; }
+
+    .question > summary::after {
+      content: "+";
+      position: absolute;
+      right: 4px;
+      top: 21px;
+      color: var(--cobalt);
+      font-size: 1.45rem;
+      font-weight: 500;
+      transition: transform 200ms var(--ease-out);
+    }
+
+    .question[open] > summary::after { transform: rotate(45deg); }
+
+    .answer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 140px;
+      gap: 30px;
+      padding: 0 0 28px;
+    }
+
+    .answer p { max-width: 66ch; margin: 0; color: var(--ink-soft); }
+
+    .answer-meta {
+      color: var(--cobalt);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .evidence-records {
+      grid-column: 1 / -1;
+      margin-top: 6px;
+    }
+
+    .evidence-records > summary {
+      width: fit-content;
+      padding: 8px 12px;
+      cursor: pointer;
+      list-style: none;
+      color: var(--cobalt-deep);
+      background: var(--cobalt-pale);
+      border: 1px solid var(--cobalt);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .evidence-records > summary::-webkit-details-marker { display: none; }
+    .evidence-records > summary::before { content: "+ "; }
+    .evidence-records[open] > summary::before { content: "− "; }
+
+    .evidence-list {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .evidence-list li {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.82rem;
+    }
+
+    .record-meta { color: var(--ink); font-weight: 750; line-height: 1.45; }
+    .record-meta small { color: var(--ink-soft); font-weight: 600; }
+    .evidence-list q { color: var(--ink-soft); line-height: 1.5; }
+    .evidence-list a { color: var(--cobalt-deep); font-weight: 800; white-space: nowrap; }
+
+    .smart-shuffle {
+      padding: clamp(78px, 10vw, 138px) 0;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .smart-grid {
+      display: grid;
+      grid-template-columns: 0.72fr 1.28fr;
+      gap: clamp(46px, 8vw, 110px);
+    }
+
+    .smart-shuffle h2 {
+      max-width: 10ch;
+      margin: 18px 0 26px;
+      font-size: clamp(2.5rem, 5.8vw, 5.4rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+    }
+
+    .smart-shuffle .section-kicker { color: var(--mint); }
+
+    .smart-lead { max-width: 52ch; color: oklch(82% 0.03 255); }
+
+    .smart-findings { counter-reset: finding; border-top: 1px solid oklch(58% 0.035 255); }
+
+    .smart-finding {
+      counter-increment: finding;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 18px;
+      padding: 24px 0;
+      border-bottom: 1px solid oklch(58% 0.035 255);
+    }
+
+    .smart-finding::before {
+      content: counter(finding, decimal-leading-zero);
+      color: var(--coral);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .smart-finding p { margin: 0; color: oklch(88% 0.02 255); }
+
+    .citations { margin-top: 38px; }
+
+    .citations summary {
+      cursor: pointer;
+      color: var(--mint);
+      font-weight: 750;
+    }
+
+    .citation-list {
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .citation-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: 12px;
+      padding: 13px 0;
+      border-top: 1px solid oklch(58% 0.035 255);
+      color: oklch(82% 0.03 255);
+      font-size: 0.82rem;
+    }
+
+    .citation-list a { color: var(--mint); font-weight: 750; }
+
+    .counterevidence {
+      padding: 54px 0;
+      background: var(--mint-pale);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .counter-grid {
+      display: grid;
+      grid-template-columns: 0.45fr 1.55fr;
+      gap: clamp(32px, 7vw, 100px);
+      align-items: start;
+    }
+
+    .counter-grid h2 {
+      margin: 0;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .counter-grid p {
+      max-width: 68ch;
+      margin: 0;
+      font-size: clamp(1.15rem, 2.3vw, 1.75rem);
+      line-height: 1.38;
+      font-weight: 640;
+    }
+
+    .solution {
+      padding: clamp(78px, 11vw, 150px) 0;
+      background: var(--coral-pale);
+    }
+
+    .solution-title {
+      display: grid;
+      grid-template-columns: 0.6fr 1.4fr;
+      gap: clamp(38px, 7vw, 100px);
+      align-items: end;
+    }
+
+    .solution-title h2 {
+      max-width: 12ch;
+      margin: 16px 0 0;
+      font-size: clamp(3.1rem, 7.5vw, 7.1rem);
+      line-height: 0.9;
+      letter-spacing: -0.07em;
+    }
+
+    .solution-title .lead {
+      max-width: 52ch;
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 1.12rem;
+    }
+
+    .mapping {
+      margin-top: 74px;
+      border-top: 1px solid var(--ink);
+    }
+
+    .mapping-row {
+      display: grid;
+      grid-template-columns: 0.8fr 1.1fr 1.1fr;
+      gap: 28px;
+      padding: 24px 0;
+      border-bottom: 1px solid oklch(72% 0.055 31);
+    }
+
+    .mapping-row:first-child {
+      padding-block: 13px;
+      color: var(--ink-soft);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mapping-row strong { line-height: 1.35; }
+    .mapping-row span { color: var(--ink-soft); }
+
+    .build-next {
+      padding: clamp(78px, 10vw, 136px) 0;
+      background: var(--paper);
+    }
+
+    .build-grid {
+      display: grid;
+      grid-template-columns: 0.64fr 1.36fr;
+      gap: clamp(42px, 8vw, 116px);
+    }
+
+    .build-grid h2 {
+      max-width: 9ch;
+      margin: 16px 0 24px;
+      font-size: clamp(2.6rem, 5.5vw, 5.2rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+    }
+
+    .build-grid .intro { color: var(--ink-soft); }
+
+    .build-steps { border-top: 1px solid var(--ink); counter-reset: phase; }
+
+    .build-step {
+      counter-increment: phase;
+      display: grid;
+      grid-template-columns: 48px 0.6fr 1.4fr;
+      gap: 22px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .build-step::before {
+      content: counter(phase, decimal-leading-zero);
+      color: var(--cobalt);
+      font-weight: 800;
+    }
+
+    .build-step strong { line-height: 1.35; }
+    .build-step span { color: var(--ink-soft); }
+
+    .experiment {
+      margin-top: 64px;
+      padding: clamp(30px, 5vw, 54px);
+      background: var(--cobalt-pale);
+      border: 1px solid var(--cobalt);
+      box-shadow: var(--shadow);
+    }
+
+    .experiment h3 {
+      max-width: 24ch;
+      margin: 0 0 18px;
+      font-size: clamp(1.65rem, 3vw, 2.65rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .experiment p { max-width: 70ch; margin: 0; color: var(--ink-soft); }
+
+    .metric-line {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .metric-line span {
+      padding: 7px 11px;
+      border: 1px solid oklch(72% 0.08 258);
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 720;
+    }
+
+    .limits {
+      padding: clamp(72px, 9vw, 118px) 0;
+      background: var(--paper-strong);
+      border-top: 1px solid var(--ink);
+    }
+
+    .limits-grid {
+      display: grid;
+      grid-template-columns: 0.45fr 1.55fr;
+      gap: clamp(38px, 8vw, 110px);
+    }
+
+    .limits h2 { margin: 0; font-size: 1.25rem; }
+
+    .limit-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 40px;
+      border-top: 1px solid var(--ink);
+    }
+
+    .limit-list li {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-soft);
+    }
+
+    footer {
+      padding: 32px 0 46px;
+      background: var(--ink);
+      color: oklch(78% 0.025 255);
+      font-size: 0.78rem;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    footer strong { color: var(--paper); }
+    footer p { max-width: 64ch; margin: 7px 0 0; }
+
+    @media (max-width: 900px) {
+      .topnav a { display: none; }
+      .hero,
+      .statement-grid,
+      .section-heading,
+      .rag-layout,
+      .smart-grid,
+      .counter-grid,
+      .solution-title,
+      .build-grid,
+      .limits-grid { grid-template-columns: 1fr; }
+      .hero { align-items: start; }
+      .corpus-ledger { min-height: 0; }
+      .statement blockquote { max-width: 27ch; }
+      .mechanism-flow { grid-template-columns: 1fr 1fr; }
+      .mechanism-step { min-height: 190px; border-bottom: 1px solid var(--ink); }
+      .mechanism-step:nth-child(2n) { border-right: 0; }
+      .mechanism-step:last-child { border-bottom: 0; }
+      .rag-intro { position: static; }
+      .solution-title .lead { margin-top: 8px; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --wrap: min(100% - 28px, 1180px); }
+      body { font-size: 16px; background-size: 26px 26px; }
+      .topbar { gap: 10px; }
+      .identity .identity-label { display: none; }
+      .hero { padding-top: 70px; }
+      h1 { font-size: clamp(3rem, 17vw, 5rem); }
+      .hero-foot { display: block; }
+      .hero-foot span { display: block; margin-top: 4px; }
+      .bar-item { grid-template-columns: 1fr 46px; gap: 10px; }
+      .bar-track { grid-column: 1 / -1; grid-row: 2; }
+      .mechanism-flow { grid-template-columns: 1fr; }
+      .mechanism-step { min-height: 0; border-right: 0; }
+      .mechanism-step h3 { margin-top: 22px; }
+      .answer { grid-template-columns: 1fr; gap: 12px; }
+      .evidence-list li { grid-template-columns: 1fr; gap: 8px; }
+      .evidence-list a { justify-self: start; }
+      .citation-list li { grid-template-columns: 24px 1fr; }
+      .citation-list a { grid-column: 2; }
+      .mapping-row { grid-template-columns: 1fr; gap: 8px; }
+      .mapping-row:first-child { display: none; }
+      .mapping-row strong::before {
+        content: "Problem: ";
+        color: var(--coral);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+      }
+      .build-step { grid-template-columns: 38px 1fr; }
+      .build-step span { grid-column: 2; }
+      .limit-list { grid-template-columns: 1fr; }
+      .footer-grid { display: block; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+    }
+
+    @media print {
+      :root { --paper: oklch(99% 0.004 88); --wrap: 100%; }
+      body { background: var(--paper); font-size: 11pt; }
+      .topnav, .print-button, .skip-link { display: none; }
+      .masthead { min-height: auto; }
+      .hero { padding: 50px 0; }
+      .statement, .smart-shuffle { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      section { break-inside: avoid; }
+      details { display: block; }
+      details > * { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to evidence</a>
+
+  <header class="masthead" id="overview">
+    <div class="topbar">
+      <a class="identity" href="#overview" aria-label="Discovery Evidence Lab overview">
+        <span class="mark" aria-hidden="true">D</span>
+        <span class="identity-label">Discovery Evidence Lab</span>
+      </a>
+      <nav class="topnav" aria-label="Report sections">
+        <a href="#evidence">Evidence</a>
+        <a href="#rag">RAG answers</a>
+        <a href="#solution">Decision</a>
+      </nav>
+      <button class="print-button" type="button" onclick="window.print()">Print brief</button>
+    </div>
+
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Discovery Evidence Lab · 02 July 2026</p>
+        <h1>Discovery starts to loop.</h1>
+        <p class="lead">Public feedback points to a mismatch between a persistent taste profile
+          and what an established listener wants now. Discovery Evidence Lab turns that feedback into a
+          traceable problem hypothesis, then defines the smallest useful product experiment.</p>
+        <div class="status-note">Local technical prototype verified</div>
+      </div>
+
+      <aside class="corpus-ledger" aria-label="Corpus summary">
+        <p class="ledger-title">Evidence base</p>
+        <div class="ledger-row"><span>Feedback records</span><strong>1,850</strong></div>
+        <div class="ledger-row"><span>Discovery-related</span><strong>266</strong></div>
+        <div class="ledger-row"><span>RAG checks passed</span><strong>9 / 9</strong></div>
+        <div class="source-mix" aria-label="100 App Store, 1,200 Play Store, and 550 Reddit records">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="source-key" aria-hidden="true">
+          <span style="--key: var(--coral)">App Store 100</span>
+          <span style="--key: var(--cobalt)">Play Store 1,200</span>
+          <span style="--key: var(--mint)">Reddit 550</span>
+        </div>
+      </aside>
+    </div>
+
+    <div class="hero-foot">
+      <span>Corpus window: 10 July 2024 to 1 July 2026</span>
+      <span>Counts describe this sampled corpus, not all Spotify listeners</span>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="statement" aria-labelledby="problem-title">
+      <div class="wrap statement-grid">
+        <p class="section-kicker">Leading problem hypothesis</p>
+        <div>
+          <blockquote id="problem-title">Active discovery seekers need a low-effort way to say
+            what “new, but right for me now” means.</blockquote>
+          <small>A history-driven recommendation profile cannot reliably capture changing
+            session intent or unwanted influences. Users report frustration, repeated skipping,
+            and a return to familiar music. Interviews are still required to validate cause.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="evidence" id="evidence" aria-labelledby="evidence-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Deterministic aggregate</p>
+            <h2 id="evidence-title">Taste mismatch and repetition lead.</h2>
+          </div>
+          <p>Every bar comes from the complete 266-record discovery subset. RAG supplies examples
+            and explanations, but it never decides prevalence. Records can carry more than one
+            theme, so totals exceed 266.</p>
+        </div>
+
+        <ol class="bar-list" aria-label="Top discovery frustration counts">
+          <li class="bar-item"><span class="bar-label">Recommendations ignore taste</span><span class="bar-track"><span class="bar-fill" style="--value:72"></span></span><span class="bar-value">72</span></li>
+          <li class="bar-item"><span class="bar-label">Repetitive recommendations</span><span class="bar-track"><span class="bar-fill" style="--value:70; --fill:var(--coral)"></span></span><span class="bar-value">70</span></li>
+          <li class="bar-item"><span class="bar-label">Recommendations too similar</span><span class="bar-track"><span class="bar-fill" style="--value:50"></span></span><span class="bar-value">50</span></li>
+          <li class="bar-item"><span class="bar-label">Pushes popular or safe music</span><span class="bar-track"><span class="bar-fill" style="--value:49; --fill:var(--coral)"></span></span><span class="bar-value">49</span></li>
+          <li class="bar-item"><span class="bar-label">Stale Discover Weekly</span><span class="bar-track"><span class="bar-fill" style="--value:48"></span></span><span class="bar-value">48</span></li>
+          <li class="bar-item"><span class="bar-label">No control over recommendations</span><span class="bar-track"><span class="bar-fill" style="--value:46; --fill:var(--coral)"></span></span><span class="bar-value">46</span></li>
+          <li class="bar-item"><span class="bar-label">Poor genre exploration</span><span class="bar-track"><span class="bar-fill" style="--value:19"></span></span><span class="bar-value">19</span></li>
+          <li class="bar-item"><span class="bar-label">Autoplay loop</span><span class="bar-track"><span class="bar-fill" style="--value:14; --fill:var(--coral)"></span></span><span class="bar-value">14</span></li>
+          <li class="bar-item"><span class="bar-label">Hard to find new artists</span><span class="bar-track"><span class="bar-fill" style="--value:14"></span></span><span class="bar-value">14</span></li>
+        </ol>
+        <p class="denominator">Source: final audited enrichment. Lower-support UI friction (10)
+          and no-explanation (6) themes are omitted from this visual, but retained in the data.</p>
+      </div>
+    </section>
+
+    <section class="mechanism" aria-labelledby="mechanism-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Behavior loop</p>
+            <h2 id="mechanism-title">A profile that cannot hear the present moment.</h2>
+          </div>
+          <p>The evidence suggests an intent-to-profile mismatch. This is a synthesis to test in
+            interviews, not a claim about Spotify's internal ranking architecture.</p>
+        </div>
+        <div class="mechanism-flow">
+          <div class="mechanism-step"><span class="number">01</span><h3>History becomes the default</h3><p>Persistent behavior summarizes a broad, changing taste.</p></div>
+          <div class="mechanism-step"><span class="number">02</span><h3>Current intent stays implicit</h3><p>Mood, activity, novelty, and unwanted contexts are weakly expressed.</p></div>
+          <div class="mechanism-step"><span class="number">03</span><h3>Safe choices recur</h3><p>Familiar, similar, or popular tracks dominate the result.</p></div>
+          <div class="mechanism-step"><span class="number">04</span><h3>Correction feels weak</h3><p>Users cannot easily steer, exclude, reset, or see what changed.</p></div>
+          <div class="mechanism-step"><span class="number">05</span><h3>The loop reinforces itself</h3><p>Skipping and familiar fallback add more of the same behavior.</p></div>
+        </div>
+        <p class="mechanism-note">Alternative explanations remain: shuffle defects, poor base
+          candidates, intentional comfort listening, and complaint-sample bias.</p>
+      </div>
+    </section>
+
+    <section class="rag" id="rag" aria-labelledby="rag-title">
+      <div class="wrap rag-layout">
+        <div class="rag-intro">
+          <p class="section-kicker">Grounded RAG answers</p>
+          <h2 id="rag-title">Ask the evidence, then audit it.</h2>
+          <p>Answers below paraphrase the attached RAG outputs. Numeric claims are reconciled
+            against deterministic aggregates. Citations remain the audit trail.</p>
+          <span class="method-chip">266 vectors · 1,536 dimensions</span>
+        </div>
+
+        <div class="question-list">
+          <details class="question" open>
+            <summary>Why do users struggle to discover new music?</summary>
+            <div class="answer"><p>Taste mismatch, repetition, narrow similarity, popularity
+              bias, stale discovery surfaces, and weak correction controls combine. Radio and
+              generated playlists often return listeners to music they already know.</p><span class="answer-meta">6 cited records</span>
+              <details class="evidence-records">
+                <summary>View 6 cited records</summary>
+                <ol class="evidence-list">
+                  <li><span class="record-meta">Reddit · 21 May 2025<br><small>stale · popular bias</small></span><q>A 13-year user calls Discover Weekly unpredictable and describes it pushing listeners outside their current taste pocket.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mtejxqm/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>genre · no control</small></span><q>New releases cannot be filtered cleanly, weakening the joy of going down a rabbit hole on a new artist.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsjbgs4/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 21 May 2025<br><small>no control</small></span><q>You have to actively seek new music, ask people what they listen to, and give unfamiliar material a chance.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mteqfqb/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>taste · popular · new artists</small></span><q>Despite millions of uploads, the listener feels the system repeats already-popular songs instead of surfacing hidden gems.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsjc234/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>repetition · no control</small></span><q>Song radio lists songs the listener already plays, while generated vibe playlists pull from the same familiar pool.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 20 May 2025<br><small>taste · popular bias</small></span><q>Mixed recommendations force manual playlists; anonymous sessions are used to stop temporary listening from changing the profile.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mtdumtx/" target="_blank" rel="noreferrer">Open source</a></li>
+                </ol>
+              </details>
+            </div>
+          </details>
+          <details class="question">
+            <summary>What are users trying to achieve?</summary>
+            <div class="answer"><p>They want relevant novelty: unfamiliar enough to explore,
+              recognizable enough to fit the current mood or activity. Users protect their
+              profiles with private sessions, manual playlists, and external discovery.</p><span class="answer-meta">7 cited records</span>
+              <details class="evidence-records">
+                <summary>View 7 cited records</summary>
+                <ol class="evidence-list">
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>profile control</small></span><q>Private session and Exclude from taste profile are used rigorously to protect Discover Weekly from unwanted inputs.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsjymd0/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Play Store · 3★ · 30 Jun 2026<br><small>genre · UI friction</small></span><q>Building playlists and recommendations feels worse after updates, and switching playlists after a song remains difficult.</q><a href="https://play.google.com/store/apps/details?id=com.spotify.music&amp;reviewId=8bc9dee5-e7e0-46e5-96d3-bd360868090f" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>no control</small></span><q>A light-touch control is proposed because most users will not adjust recommendation settings buried deep in the product.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lskceyj/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>taste · popular bias</small></span><q>Optimizing for the lowest common denominator keeps the experience familiar and simple but limits exploration.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lskmpy5/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 20 May 2025<br><small>external discovery</small></span><q>Recommendations improve when the listener supplies new inputs found through friends, Shazam, and local artists.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mtdlkrb/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 May 2026<br><small>genre exploration</small></span><q>The user recommends explicit prompts that can ask for music the listener has not heard before.</q><a href="https://www.reddit.com/r/truespotify/comments/1tgsmq5/spotify_recommendations_have_gotten_worse/omjf9wc/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>familiarity tension</small></span><q>Repeated exposure can strengthen emotional response, explaining why engagement systems may favor known music.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lskwz5b/" target="_blank" rel="noreferrer">Open source</a></li>
+                </ol>
+              </details>
+            </div>
+          </details>
+          <details class="question">
+            <summary>What causes repeated listening?</summary>
+            <div class="answer"><p>Familiar tracks resurface across mixes, radio, generated
+              playlists, and shuffle. Failed attempts lead to familiar fallback. Comfort is a
+              competing explanation, so repetition is not always unwanted.</p><span class="answer-meta">5 cited records</span>
+              <details class="evidence-records">
+                <summary>View 5 cited records</summary>
+                <ol class="evidence-list">
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>repetition · stale</small></span><q>The listener believes repeated exposure is being optimized for engagement until the recommendation experience feels broken.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsi2a61/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>repetition</small></span><q>Out of laziness, the user has listened to the same roughly twenty songs many times.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lshufq6/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>similarity · taste</small></span><q>Daily mixes place the same small set of artists, then treat those exposures as a reason to play them even more.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsk9bi4/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>repetition · no control</small></span><q>Starting with a Mexican artist returns to the same recurring songs within two or three tracks.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsizuae/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>familiarity tension</small></span><q>Known songs can produce stronger emotional reactions, so repeated exposure may reflect both system behavior and listener comfort.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lskwz5b/" target="_blank" rel="noreferrer">Open source</a></li>
+                </ol>
+              </details>
+            </div>
+          </details>
+          <details class="question">
+            <summary>What controls do users request?</summary>
+            <div class="answer"><p>A familiar-versus-discovery setting, artist and genre
+              exclusions, ways to forget temporary listening contexts, broader sets, and
+              immediate feedback that visibly changes the next result.</p><span class="answer-meta">4 cited records</span>
+              <details class="evidence-records">
+                <summary>View 4 cited records</summary>
+                <ol class="evidence-list">
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>novelty control</small></span><q>A setting should choose between songs already liked and pure discovery of unheard material.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsjlhc3/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 10 Aug 2025<br><small>similarity · no control</small></span><q>The user describes similarity scoring that repeatedly extracts music from the same overlapping playlist neighborhood.</q><a href="https://www.reddit.com/r/truespotify/comments/1l6meie/spotify_recommendations_getting_worse/n7yau00/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 20 Oct 2024<br><small>forget · exclude</small></span><q>Users want to forget or ignore songs, albums, and genres, especially after children's music changes a household profile.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsvlcxz/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 10 Jul 2024<br><small>repetition · no control</small></span><q>The same songs recur across 39 playlists while unwanted homepage content cannot be hidden.</q><a href="https://www.reddit.com/r/truespotify/comments/1dzs3p8/im_sick_of_spotifys_algorithm/" target="_blank" rel="noreferrer">Open source</a></li>
+                </ol>
+              </details>
+            </div>
+          </details>
+          <details class="question">
+            <summary>How do power users describe the problem?</summary>
+            <div class="answer"><p>They report large libraries collapsing into small recurring
+              rotations, stale profiles, narrow genre representation, and extensive manual
+              workarounds. Casual-user evidence is too sparse for comparison.</p><span class="answer-meta">5 cited records</span>
+              <details class="evidence-records">
+                <summary>View 5 cited records</summary>
+                <ol class="evidence-list">
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>narrowing · stale</small></span><q>Early misses sometimes produced great discoveries, but the result has become progressively narrower across varied taste.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsj9d46/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 11 Jul 2024<br><small>repetition</small></span><q>Even after organizing Liked Songs into playlists, recurring recommendations are forced into new playlists, radio, and Smart Shuffle.</q><a href="https://www.reddit.com/r/truespotify/comments/1dzs3p8/im_sick_of_spotifys_algorithm/lcmi4ys/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>popular bias</small></span><q>The user describes the tension between repeated exposure, emotional familiarity, and an engagement-oriented recommendation system.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lskwz5b/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>4,000-song library</small></span><q>A 4,000-song Liked Songs playlist appears to play the same roughly 100 tracks, causing more skipping than listening.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsj4tyj/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 20 May 2025<br><small>cross-playlist repetition</small></span><q>The same artists appear in workout, study, and new-music mixes even when they do not fit the vibe.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mtd85cc/" target="_blank" rel="noreferrer">Open source</a></li>
+                </ol>
+              </details>
+            </div>
+          </details>
+          <details class="question">
+            <summary>Would explanations increase trust?</summary>
+            <div class="answer"><p>Possibly, but explanations cannot rescue irrelevant results.
+              Only six records carried the explicit no-explanation tag, so “why this fits” is a
+              supporting hypothesis, not the core solution.</p><span class="answer-meta">3 cited records · thin evidence</span>
+              <details class="evidence-records">
+                <summary>View 3 cited records</summary>
+                <ol class="evidence-list">
+                  <li><span class="record-meta">Reddit · 10 Aug 2025<br><small>similarity · no control</small></span><q>A technical theory of similarity scoring is offered, but it does not prove that a user-facing explanation would build trust.</q><a href="https://www.reddit.com/r/truespotify/comments/1l6meie/spotify_recommendations_getting_worse/n7yau00/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 20 May 2025<br><small>taste · no control</small></span><q>The listener questions their own mindset before concluding that recommendations fail to align with known taste.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 20 May 2025<br><small>feedback explanation</small></span><q>A user explains how completing, liking, and saving tracks act as positive signals, suggesting value in making those effects visible.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mtcv83x/" target="_blank" rel="noreferrer">Open source</a></li>
+                </ol>
+              </details>
+            </div>
+          </details>
+          <details class="question">
+            <summary>Does discovery failure create switching risk?</summary>
+            <div class="answer"><p>Some cited users consider migration, create clean accounts,
+              or report leaving after repeated irrelevant recommendations. This is a qualitative
+              risk signal, not a measurable churn rate.</p><span class="answer-meta">5 cited records</span>
+              <details class="evidence-records">
+                <summary>View 5 cited records</summary>
+                <ol class="evidence-list">
+                  <li><span class="record-meta">Reddit · 6 Mar 2026<br><small>migration intent</small></span><q>Discover Weekly had been a reason not to migrate, but recent poor results make the listener ready to give up.</q><a href="https://www.reddit.com/r/truespotify/comments/1rml2vo/spotify_recommendations_suck_now/o90is2c/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 21 May 2025<br><small>stale · popular bias</small></span><q>A long-tenure user describes Discovery Weekly as unpredictable rather than consistently aligned with their taste pocket.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mtejxqm/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 20 May 2025<br><small>taste · no control</small></span><q>A listener with established preferences says the system still cannot find music aligned with known taste or provide suitable controls.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 20 May 2025<br><small>service exit</small></span><q>Unwanted Tejano and corridor music took over Daylist and Discover Weekly despite correction attempts; the user left Spotify after two months.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mtcsvh2/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 29 Nov 2025<br><small>repetition · stale</small></span><q>Personalized playlists repeat the same kinds of songs, while non-personalized Spotify playlists feel more useful for discovery.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/nrdxmkx/" target="_blank" rel="noreferrer">Open source</a></li>
+                </ol>
+              </details>
+            </div>
+          </details>
+          <details class="question">
+            <summary>Do users want genre or language exploration?</summary>
+            <div class="answer"><p>Genre breadth is supported. Multilingual discovery is not yet
+              established as a recurring pain, even though the catalog can support language
+              metadata. Interviews must validate that positioning.</p><span class="answer-meta">4 cited records</span>
+              <details class="evidence-records">
+                <summary>View 4 cited records</summary>
+                <ol class="evidence-list">
+                  <li><span class="record-meta">Reddit · 20 May 2025<br><small>taste · no control</small></span><q>The listener asks for controls that can find music aligned with established taste rather than assuming the user is simply too picky.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>narrowing</small></span><q>Varied taste once produced occasional strong discoveries, but recommendations have become progressively narrower over time.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsj9d46/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>genre curation</small></span><q>The user argues that discovery needs curation and taste-making, not only literal requests or faster versions of familiar options.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsl0yw6/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 21 May 2025<br><small>new artists</small></span><q>Following related artists can uncover music that fits without being a carbon copy, but it requires significant manual work.</q><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mth1i11/" target="_blank" rel="noreferrer">Open source</a></li>
+                </ol>
+              </details>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="smart-shuffle" aria-labelledby="smart-title">
+      <div class="wrap smart-grid">
+        <div>
+          <p class="section-kicker">Targeted follow-up</p>
+          <h2 id="smart-title">Smart Shuffle feels inconsistent.</h2>
+          <p class="smart-lead">A broad query initially returned insufficient Smart Shuffle
+            evidence. A dedicated query found five records. They support a focused qualitative
+            signal, not a prevalence claim.</p>
+          <details class="citations">
+            <summary>Open all five source records</summary>
+            <ol class="citation-list">
+              <li><span>1</span><span>Hit-or-miss diversity, sometimes needs a reset</span><a href="https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mtdaww5/" target="_blank" rel="noreferrer">Reddit</a></li>
+              <li><span>2</span><span>Request to restore older shuffle behavior</span><a href="https://itunes.apple.com/us/review?id=324684580&amp;type=Purple%20Software" target="_blank" rel="noreferrer">App Store</a></li>
+              <li><span>3</span><span>Smart Shuffle turns itself back on</span><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsk6rnz/" target="_blank" rel="noreferrer">Reddit</a></li>
+              <li><span>4</span><span>Roughly 100 of 4,000 liked songs repeat</span><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsj4tyj/" target="_blank" rel="noreferrer">Reddit</a></li>
+              <li><span>5</span><span>Roughly 15 of 2,000-plus playlist songs repeat</span><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsjtj5y/" target="_blank" rel="noreferrer">Reddit</a></li>
+            </ol>
+          </details>
+        </div>
+
+        <div class="smart-findings">
+          <div class="smart-finding"><p>Diverse playlists sometimes work, then collapse into the
+            same genre or artists until the user switches playlists.</p></div>
+          <div class="smart-finding"><p>Large playlists can feel dramatically smaller than their
+            available track count.</p></div>
+          <div class="smart-finding"><p>Some users want older, more random shuffle behavior rather
+            than similarity-driven repetition.</p></div>
+          <div class="smart-finding"><p>State reliability matters: one user reports the feature
+            turning itself back on after being disabled.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="counterevidence" aria-labelledby="counter-title">
+      <div class="wrap counter-grid">
+        <h2 id="counter-title">Counterevidence</h2>
+        <p>Discover Weekly, Release Radar, Daylist, and artist radio work well for some listeners.
+          The product opportunity is better expression and steering, not replacing
+          personalization or forcing novelty on everyone.</p>
+      </div>
+    </section>
+
+    <section class="solution" id="solution" aria-labelledby="solution-title">
+      <div class="wrap">
+        <div class="solution-title">
+          <div>
+            <p class="section-kicker">Artifact B recommendation</p>
+            <h2 id="solution-title">Discovery Compass</h2>
+          </div>
+          <p class="lead">An intent-guided discovery session that lets an active explorer say
+            what fits now, choose how adventurous the result should be, exclude unwanted
+            directions, and immediately steer the next set.</p>
+        </div>
+
+        <div class="mapping" role="table" aria-label="Problem to solution mapping">
+          <div class="mapping-row" role="row"><span role="columnheader">Evidence-backed problem</span><span role="columnheader">Product response</span><span role="columnheader">What it tests</span></div>
+          <div class="mapping-row" role="row"><strong role="cell">History misses current intent</strong><span role="cell">One natural-language session intent with editable constraints</span><span role="cell">Can users define “right for me now” with little effort?</span></div>
+          <div class="mapping-row" role="row"><strong role="cell">Familiar and similar results recur</strong><span role="cell">A visible familiar-to-adventurous control plus repeat penalties</span><span role="cell">Does controlled novelty increase accepted new artists?</span></div>
+          <div class="mapping-row" role="row"><strong role="cell">Temporary contexts distort the set</strong><span role="cell">Artist, genre, language, and direction exclusions</span><span role="cell">Do explicit boundaries improve perceived relevance?</span></div>
+          <div class="mapping-row" role="row"><strong role="cell">Feedback does not feel effective</strong><span role="cell">Immediate reranking with a plain-language change summary</span><span role="cell">Does visible cause and effect improve control?</span></div>
+          <div class="mapping-row" role="row"><strong role="cell">Surprising results feel arbitrary</strong><span role="cell">One explanation grounded in approved intent and catalog metadata</span><span role="cell">Does explanation help after recommendation quality is adequate?</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="build-next" aria-labelledby="build-title">
+      <div class="wrap">
+        <div class="build-grid">
+          <div>
+            <p class="section-kicker">Build next</p>
+            <h2 id="build-title">A bounded experiment, not a Spotify clone.</h2>
+            <p class="intro">Use one curated catalog and the same taste anchor for both baseline
+              and guided conditions. Keep AI at the language boundary; keep ranking and metrics
+              deterministic.</p>
+          </div>
+          <div class="build-steps">
+            <div class="build-step"><strong>Catalog and baseline</strong><span>Prepare 300–500 consistently tagged tracks, taste anchors, and an unsteered comparison.</span></div>
+            <div class="build-step"><strong>Intent parser</strong><span>Turn free text into editable mood, activity, genre, language, energy, novelty, and exclusion fields.</span></div>
+            <div class="build-step"><strong>Transparent ranking</strong><span>Combine relevance, novelty fit, taste compatibility, diversity, and repeat penalties.</span></div>
+            <div class="build-step"><strong>Immediate steering</strong><span>Offer Save, Not for me, More like this, and More adventurous with visible reranking.</span></div>
+            <div class="build-step"><strong>Paired evaluation</strong><span>Compare baseline and guided sessions, then decide to continue, iterate, or pivot.</span></div>
+          </div>
+        </div>
+
+        <div class="experiment">
+          <h3>Primary hypothesis: guided sessions increase accepted unfamiliar artists without reducing relevance.</h3>
+          <p>The primary proxy is accepted novel-artist rate, defined relative to the participant's
+            selected taste anchor. The prototype does not claim streaming impact or knowledge of
+            the listener's complete history.</p>
+          <div class="metric-line" aria-label="Experiment metrics">
+            <span>Novel-artist acceptance</span><span>Overall acceptance</span><span>Refinement success</span><span>Repeat exposure</span><span>Time to first save</span><span>Perceived control</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="limits" id="limitations" aria-labelledby="limits-title">
+      <div class="wrap limits-grid">
+        <h2 id="limits-title">What remains unproven</h2>
+        <ul class="limit-list">
+          <li>The corpus is self-selected and complaint-enriched.</li>
+          <li>Theme and segment labels still need independent human evaluation.</li>
+          <li>Public feedback does not establish a causal root cause.</li>
+          <li>Casual and satisfied listeners are underrepresented.</li>
+          <li>Language discovery is not yet a leading validated pain.</li>
+          <li>Five to six interviews must precede a locked Artifact B scope.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div><strong>Discovery Evidence Lab · Artifact A</strong><p>Static evidence brief. No API key, vector database, or
+        application runtime is required.</p></div>
+      <div><strong>Research source</strong><p>1,850 public feedback records, 266 discovery records,
+        final data version 2026-07-02.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    const navLinks = [...document.querySelectorAll('.topnav a')];
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        navLinks.forEach((link) => {
+          const active = link.getAttribute('href') === `#${visible.target.id}`;
+          if (active) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      }, { rootMargin: '-20% 0px -65% 0px', threshold: [0, 0.25, 0.6] });
+      sections.forEach((section) => observer.observe(section));
+    }
+  </script>
+</body>
+</html>

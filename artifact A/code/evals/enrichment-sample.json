@@ -1,0 +1,1409 @@
+[
+  {
+    "id": "4c7a6f05d437",
+    "source": "app_store",
+    "rating": 1,
+    "text": "Change the shuffle algorithm back to the old one from like a year ago when it was actually random. The new one sucks and always plays the same songs I'm sick of jt",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "recs_too_similar"
+      ],
+      "segment": "power_user",
+      "jtbd": "Improve shuffle experience"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "85dbbe53a5a0",
+    "source": "app_store",
+    "rating": 1,
+    "text": "Repeating all the song again and agai",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "repetitive_recommendations"
+      ],
+      "segment": "power_user",
+      "jtbd": "find diverse music"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "437b6503d4f1",
+    "source": "app_store",
+    "rating": 1,
+    "text": "WORST MUSIC APP EVER… If you want to listen the same song twice or thrice, you need to be premium member for that, like seriously!! \nIt’s better to listen from Wynk or Jio music or even better to listen from YouTube… Worst ever experience with this app honestly..",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "repetitive_recommendations",
+        "no_control_over_recs"
+      ],
+      "segment": "power_user",
+      "jtbd": "find diverse music"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "8a0523110224",
+    "source": "app_store",
+    "rating": 5,
+    "text": "To many advertising commercials",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "db3d5539100a",
+    "source": "app_store",
+    "rating": 5,
+    "text": "Very worth it!",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "cd5c97e8783e",
+    "source": "app_store",
+    "rating": 5,
+    "text": "It’s great for the organization and types and genres of music, and the adds don’t appear always , it offers lyrics and mixes of other genres and music and good quality. Definitely best music app",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "7cd2e6e16de9",
+    "source": "app_store",
+    "rating": 1,
+    "text": "With premium, it's amazing. But if you're broke like me, it's awful. All the songs are on shuffle and you have to pay to play your playlist in order. If your playlist is short with the hack of listening to the songs you actually want to, they add random songs. It wouldn't be an issue if you could skip it without getting FOUR ADS per 2 skips. You gets SO MANY ADS per every few songs and I can't skip them ever. There is more ads than music. ALSO this part drives me so mad the most: You can't rewin",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "casual",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "4c105a980777",
+    "source": "app_store",
+    "rating": 5,
+    "text": "Your Bestie has all the music",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "e91eeacd442d",
+    "source": "app_store",
+    "rating": 5,
+    "text": "Best music app ever",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "04206501409e",
+    "source": "app_store",
+    "rating": 1,
+    "text": "you have to pay premium to do literally anything not worth it",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "853b6158ada3",
+    "source": "app_store",
+    "rating": 5,
+    "text": "Get rid of ads",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "518f3646ff72",
+    "source": "app_store",
+    "rating": 5,
+    "text": "Spotify has been wonderful. Used daily during work and while at home. Nice having my music play without interruptions or delays. Truly appreciate the service.",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "power_user",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "2d8c9e9e75f6",
+    "source": "app_store",
+    "rating": 5,
+    "text": "It alright",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "8d8587b7ceb0",
+    "source": "app_store",
+    "rating": 3,
+    "text": "to many adds. people can’t afford premium so…",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "08b960464bf1",
+    "source": "app_store",
+    "rating": 5,
+    "text": "Put 6 peak Deltarune songs on a playlist then used shuffle and listened for 12 hours",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "779baec81f7d",
+    "source": "app_store",
+    "rating": 5,
+    "text": "ITS MY FAVORITE APP WITH ARTIST THANK YOU SPOTIFY ❤️",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "09fb51582f8c",
+    "source": "app_store",
+    "rating": 5,
+    "text": "wow",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "c5761563db9f",
+    "source": "app_store",
+    "rating": 5,
+    "text": "Love it!! I wish it had all the music, it’s missing some.",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "6948a356de9d",
+    "source": "play_store",
+    "rating": 4,
+    "text": "New update has broken the selection process Cant play random somgs from a playlist. Whenever any song from a playlist is selected, the selected song does not play but the first song from the playlist starts playing. Please see for remedial action",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "ui_friction"
+      ],
+      "segment": "power_user",
+      "jtbd": "play random songs from a playlist"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "a531ee5f7ba8",
+    "source": "play_store",
+    "rating": 1,
+    "text": "Why tf is spotify donating to AI drone weapon companies ???? Also the free version sucks major booty like im getting 3-4 ads after every 2 songs. Plus every dang time I try listening to a specific album, after the 1st song it starts playing recommended stuff. Booo tomato tomato tomato",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "autoplay_loop",
+        "recs_ignore_taste"
+      ],
+      "segment": "casual",
+      "jtbd": "stop unwanted recommendations after songs"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "46a2582fb6f3",
+    "source": "play_store",
+    "rating": 4,
+    "text": "muy buena app me gusta como se maneja, muy bien todo. Tiene cositas a mejorar como a lo mejor el ayudar un poco más a explorar y descubrir canciones nuevas q yo todo el tiempo busco. pero tiene momentos y momentos en eso pero el resto creería q bien a lo mejor agregar más cosas estéticas o personalizables",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "poor_genre_exploration"
+      ],
+      "segment": "explorer",
+      "jtbd": "explore and discover new songs"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "b9dd04974b41",
+    "source": "play_store",
+    "rating": 1,
+    "text": "I loved it until today it put me on shuffle on my Playlist and I wanted to listen to my 3 fav songs amd after 1 of them it put me on hair dye and im not able to change it back",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "no_control_over_recs"
+      ],
+      "segment": "unknown",
+      "jtbd": "listen to favorite songs"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "d107b99cbb36",
+    "source": "play_store",
+    "rating": 3,
+    "text": "it is good but treats the free version very bad. I always get my skips wasted because it only gives me recommendations and not the playlist I wanted to listen to. this company is no selfish and greedy",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "no_control_over_recs"
+      ],
+      "segment": "casual",
+      "jtbd": "listen to desired playlists"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "371292fb7aaa",
+    "source": "play_store",
+    "rating": 3,
+    "text": "they should play songs related to the songs played by the user at first",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "recs_ignore_taste"
+      ],
+      "segment": "casual",
+      "jtbd": "improve song recommendations"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "2c1e5fa208c7",
+    "source": "play_store",
+    "rating": 4,
+    "text": "Listen to this all the time. Recommend songs not always spot on and app pretty easy to navigate but sorting and filtering not always easy or the find in My Playlist. But enjoy lyrics and info re artists",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "recs_ignore_taste",
+        "ui_friction"
+      ],
+      "segment": "power_user",
+      "jtbd": "find better song recommendations"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "e34d63a5144f",
+    "source": "play_store",
+    "rating": 1,
+    "text": "hey can you stop removing my liked songs? thatd be spectacular. ive been on here for nearly the entire 20 years. tens of thousands of songs ive clicked like on and they all disappear over and over....",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "no_control_over_recs"
+      ],
+      "segment": "power_user",
+      "jtbd": "stop removing liked songs"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "f91440476ad1",
+    "source": "play_store",
+    "rating": 1,
+    "text": "Slow ui Horrible \"shuffle\" it replays the same 100 or so songs Stupid updates that only make things worse Banning the ability to copy titles to keep consumers from finding the songs on other apps is ridiculous Getting myself and all my friends off of premium and onto other apps",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "ui_friction",
+        "repetitive_recommendations",
+        "autoplay_loop"
+      ],
+      "segment": "power_user",
+      "jtbd": "improve shuffle functionality"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "9310dd7ccd85",
+    "source": "play_store",
+    "rating": 3,
+    "text": "good app I just don't like the update where we can't choose what song to listen to anymore",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "no_control_over_recs"
+      ],
+      "segment": "casual",
+      "jtbd": "choose songs to listen to"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "61d2effcf262",
+    "source": "play_store",
+    "rating": 2,
+    "text": "Dude, this app is okay. I don't really like it anymore because now you have only six skips per hour and you can only choose a few songs per day. It's terrible! So now I'm looking for another app to play my favorite songs on. Way to go Spotify! You suck now! I hope your company brings it back to normal. But for now you just lost me. I hope people join me in this, because your app sucks now. Like you're struggling to actually make it better. The only way you'll get me is by giving us the old one..",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "no_control_over_recs"
+      ],
+      "segment": "power_user",
+      "jtbd": "restore previous song selection features"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "dcdba5b5f31e",
+    "source": "play_store",
+    "rating": 3,
+    "text": "Spotify Devs seem very disconnected from their users, building playlists and recommendations gets worse each update. and it's still impossible to switch playlists after a song rather than instantly without using the cue.",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "poor_genre_exploration",
+        "ui_friction"
+      ],
+      "segment": "power_user",
+      "jtbd": "improve playlist and recommendation system"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "b96e70f31a47",
+    "source": "play_store",
+    "rating": 4,
+    "text": "Spotify has a great music library and a user-friendly interface, making it easy to discover and enjoy music. However, the free version has far too many ads. The advertisements are too frequent and interrupt the listening experience, making it frustrating to use. Reducing the number of ads or spacing them out better would greatly improve the app. Overall, it's a good platform, but the excessive ads are a major downside.",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "ui_friction"
+      ],
+      "segment": "power_user",
+      "jtbd": "discover and enjoy music"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "5f2af6430562",
+    "source": "play_store",
+    "rating": 1,
+    "text": "पहले ठीक था पर अब बहुत विज्ञापन आते हैं और हम अपने मनचाहे गाने नहीं सुन सकते है",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "recs_ignore_taste"
+      ],
+      "segment": "casual",
+      "jtbd": "Listen to preferred songs without interruptions"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "0d9e01ee395a",
+    "source": "play_store",
+    "rating": 4,
+    "text": "kuch din chalane ke bad primiem lene ko bolta hai agar nahi lete to music badalta nahi🤬🤬na koyi or music chalta hai kuch karo iska🥹🥹 wise app acha hai",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "no_control_over_recs"
+      ],
+      "segment": "casual",
+      "jtbd": "Maintain music selection without premium"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "e9e69eb3b4b9",
+    "source": "play_store",
+    "rating": 2,
+    "text": "i like it but there are some issues like we don't have unlimited skips , and we cant make the any music to play next",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "no_control_over_recs"
+      ],
+      "segment": "casual",
+      "jtbd": "Improve music playback control"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "bf04e127bff8",
+    "source": "play_store",
+    "rating": 1,
+    "text": "ये ऐप बहुत बेकार है बार बार ऐड आ जाते है और लाइक किए हुए सॉन्ग भी लिमिट में चलते है जिससे मन पसंद गाने भी नहीं सुन पाते है इस समस्या को हल किया जाए",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "ui_friction"
+      ],
+      "segment": "casual",
+      "jtbd": "resolve ad interruptions"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "4fb966004120",
+    "source": "play_store",
+    "rating": 5,
+    "text": "गाने लाइन से क्यों नहीं चल रहा है इसको सही करिए सर जी",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "hard_to_find_new_artists"
+      ],
+      "segment": "casual",
+      "jtbd": "improve song availability"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "7b636157b2fa",
+    "source": "play_store",
+    "rating": 4,
+    "text": "ये ऐप बहुत अच्छा है, लेकिन इसमें कई गानें नहीं मिलते है",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "poor_genre_exploration"
+      ],
+      "segment": "casual",
+      "jtbd": "expand song library"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "9a69ec48f28f",
+    "source": "play_store",
+    "rating": 2,
+    "text": "I cant even open this app. also the widgets doesn't work.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "545851796eb3",
+    "source": "play_store",
+    "rating": 5,
+    "text": "great choice",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "a91a53d73c8d",
+    "source": "play_store",
+    "rating": 4,
+    "text": "good",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "46e7cb80a087",
+    "source": "play_store",
+    "rating": 5,
+    "text": "Spotify is the 👌 👍",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "354ebbc5721e",
+    "source": "play_store",
+    "rating": 1,
+    "text": "Recently I have notice a problem. When I go to a album, click a play button, it didn't play the album it play the existing songs in the queue. please rectify it. This may happened from last update.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "power_user",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "d6a8dcb6cf5d",
+    "source": "play_store",
+    "rating": 5,
+    "text": "❤️❤️",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "23f8430835a1",
+    "source": "play_store",
+    "rating": 5,
+    "text": "great optional song . others application can't find. I can find here",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "bf86f80ff31f",
+    "source": "play_store",
+    "rating": 5,
+    "text": "i love my experience so far",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "b4a07ee2b592",
+    "source": "play_store",
+    "rating": 2,
+    "text": "I would like to say- my spotify is no longer working. I still have the premium, and I'm paying, but it is not working. 2 stars.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "2a8623b0cdbe",
+    "source": "play_store",
+    "rating": 5,
+    "text": "I like it",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "b64221b4c0d8",
+    "source": "play_store",
+    "rating": 5,
+    "text": "good",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "a4775bef25dc",
+    "source": "play_store",
+    "rating": 5,
+    "text": "great to use",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "16a6a882ae15",
+    "source": "play_store",
+    "rating": 5,
+    "text": "Dhruba jyoti rajbongshi",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "be80a3d9e651",
+    "source": "play_store",
+    "rating": 5,
+    "text": "playstation spotify is the best thing ive ever used",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "d657b7fa68b1",
+    "source": "play_store",
+    "rating": 5,
+    "text": "🥰🍻🦖😰🩳😨😲🤣😂😭🥰😍🤩🥳🥴",
+    "modelLabels": {
+      "sentiment": "positive",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "a1851af9a2c7",
+    "source": "reddit",
+    "rating": null,
+    "text": "Spotify just keeps recommending me the same songs over and over and over again and I'm sick of it, I'm sick of each one of my 39 playlists. This app couldn't recommend me new songs even if its life depended on it. The homepage is a collection of useless podcasts that I can't hide, and albums I listened to tens of times. Nothing new. They focused on adding a useless tiktok-scroll-song thingy instead of fixing the real issues of the app. The discover weekly is not nearly diverse or good enough for",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "repetitive_recommendations",
+        "stale_discover_weekly",
+        "no_control_over_recs"
+      ],
+      "segment": "power_user",
+      "jtbd": "find new music"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "78dfe44658aa",
+    "source": "reddit",
+    "rating": null,
+    "text": "My discover weekly is 100% tik tok songs. Is spotifys algorithm really so bad now that they can’t find 20 songs that I would like without pulling them from a tik tok playlist?",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "algorithm_pushes_popular",
+        "recs_ignore_taste"
+      ],
+      "segment": "power_user",
+      "jtbd": "find songs I like"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "a2451c134227",
+    "source": "reddit",
+    "rating": null,
+    "text": "For real. It still has some good weeks now and then, but it overall sucks.\n\nNew releases too. \n\nOooh and don't get me started on what's popular in my country. Shittiest homepage ever. I can't even click to say NOT INTERESTED. YUCK.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "algorithm_pushes_popular",
+        "no_control_over_recs"
+      ],
+      "segment": "power_user",
+      "jtbd": "avoid unwanted recommendations"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "e2c593e7ff38",
+    "source": "reddit",
+    "rating": null,
+    "text": "And what's so smart about Smart Shuffle? 1979 by the Smashing Pumpkins and Go With The Flow by QOTSA are added to everything, any playlist, when I hit Shuffle. It's so annoying.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "recs_too_similar",
+        "autoplay_loop"
+      ],
+      "segment": "power_user",
+      "jtbd": "avoid repetitive songs"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "9c45fac28306",
+    "source": "reddit",
+    "rating": null,
+    "text": "I find the same - maybe not queens and smasa passa’s but I get similar “these are in the top 20 on last.fm that’s been going since 2010” added to every single smart shuffle.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "recs_too_similar"
+      ],
+      "segment": "power_user",
+      "jtbd": "avoid similar recommendations"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "5e29b3e80e80",
+    "source": "reddit",
+    "rating": null,
+    "text": "lol getting the pumpkins 1979 all the time as well, my qotsa song is in the fade, I love that song too but come on!",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "recs_too_similar"
+      ],
+      "segment": "power_user",
+      "jtbd": "avoid repetitive songs"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "da35136dc086",
+    "source": "reddit",
+    "rating": null,
+    "text": "not even smart shuffle, the normal shuffle uses a “smart” algo too",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "recs_too_similar"
+      ],
+      "segment": "power_user",
+      "jtbd": "avoid repetitive songs"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "c7da0d40652a",
+    "source": "reddit",
+    "rating": null,
+    "text": "My Discover Weakly is usually flooded with covers and remixes of the songs that I already have saved in my library... it used to be really decent like a year ago.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "repetitive_recommendations",
+        "stale_discover_weekly"
+      ],
+      "segment": "power_user",
+      "jtbd": "improve music recommendations"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "eb47c84aac56",
+    "source": "reddit",
+    "rating": null,
+    "text": "And somehow, it finds the same song, but with a different cover, that I haven't saved yet in my playlist. Why is the same song twice in their app? \n\nUgh. Wish i would've written down the examples so I can have other people check on them.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "repetitive_recommendations"
+      ],
+      "segment": "power_user",
+      "jtbd": "reduce duplicate song recommendations"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "5e5d47a90720",
+    "source": "reddit",
+    "rating": null,
+    "text": "Yeah I finally left last week. Migrated my playlists to youtube music. \n\n\nThe UI and functionality is really annoying for managing playlists, but the new songs recommendations have been excellent",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "ui_friction"
+      ],
+      "segment": "casual",
+      "jtbd": "manage playlists more easily"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "3c92c10e7010",
+    "source": "reddit",
+    "rating": null,
+    "text": "Wow Thats amazing I will check this out. I had been with Spotify since they started and loved it but last few years since they integrated the stupid idiotic podcasts and their constant recommendation , including boring and repetitive music playlists prioritizing music from radios…. No option to remove any of those or have them suggest my preferences, no longer recommend similar music to what I listen, I just thinking moving somewhere else and recently thought of YouTube . \n\nIronically I listen o",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "algorithm_pushes_popular",
+        "recs_ignore_taste",
+        "no_control_over_recs"
+      ],
+      "segment": "power_user",
+      "jtbd": "find better music recommendations"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "98d7b540a779",
+    "source": "reddit",
+    "rating": null,
+    "text": "The AI DJ is killing me lately. Today it played the same song within a ten minute period.  It keeps announcing that one of my top artists is Big Pun and I don’t know why 🤣",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "autoplay_loop",
+        "recs_too_similar"
+      ],
+      "segment": "mood_based",
+      "jtbd": "avoid repetitive song play"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "bf018c6f1481",
+    "source": "reddit",
+    "rating": null,
+    "text": "I seriously think DJ is broken",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "no_control_over_recs"
+      ],
+      "segment": "mood_based",
+      "jtbd": "improve music recommendations"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "1eb3c1fd5126",
+    "source": "reddit",
+    "rating": null,
+    "text": "I didn't experience them either in the first 2 years. Then they all came like an avalanche.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "stale_discover_weekly"
+      ],
+      "segment": "power_user",
+      "jtbd": "improve music recommendations"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "35feb90a01f4",
+    "source": "reddit",
+    "rating": null,
+    "text": "So 2 playlists is all they've got to help me out? Used to be so much more.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "poor_genre_exploration"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "48f855e3fdf5",
+    "source": "reddit",
+    "rating": null,
+    "text": "help you with finding music? there’s also 6 daily mixes, the daylist, and even thousands upon thousands of playlists made by people who aren’t spotify. if you can’t find new music i think it’s on you",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "hard_to_find_new_artists"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "9ff5b543f8ff",
+    "source": "reddit",
+    "rating": null,
+    "text": "Right - but when I go to the home page, it basically shows me nothing of value. You and the 2 other people can keep blaming me and the other dozens of people who have made this same complaint for months - seems to be working out just fine?",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "stale_discover_weekly"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "09bb5f24c6c3",
+    "source": "reddit",
+    "rating": null,
+    "text": "always with the playlists and repeated suggestions yeah",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "repetitive_recommendations"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "8ff0e31c517d",
+    "source": "reddit",
+    "rating": null,
+    "text": "Same ~50 songs for me too",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "repetitive_recommendations"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "f39b1b3fe453",
+    "source": "reddit",
+    "rating": null,
+    "text": "they definitely nerfed all the good ways to find music. using the radio on specific songs to find similar songs doesn’t even work anymore, it just recommends the same old bullshit",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": true,
+      "frustrationThemes": [
+        "recs_too_similar"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "741695252e09",
+    "source": "reddit",
+    "rating": null,
+    "text": "I've started using Pandora again, their music stations are much better, similar to how Spotify used to be a couple years ago.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "power_user",
+      "jtbd": "find better music stations"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "dabd2b5e5d90",
+    "source": "reddit",
+    "rating": null,
+    "text": "In the beginning i found it fun but then it just derailed. Super old odd songs.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "power_user",
+      "jtbd": "find better music"
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "7a7466fd205a",
+    "source": "reddit",
+    "rating": null,
+    "text": "checkout last fm, let it track your habits for a bit then check those recs",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "a04c7fcc8b84",
+    "source": "reddit",
+    "rating": null,
+    "text": "can you explain more of what lastfm does?",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "7e29fb6fba20",
+    "source": "reddit",
+    "rating": null,
+    "text": "tracks your listening, gives back better analytics about your habits than spotify. for example i know i listen to abt 1000 songs/week, can go back and find a song that mightve gotten lost, get new recs when other sources become stale",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "6c423398a57e",
+    "source": "reddit",
+    "rating": null,
+    "text": "Tracks your habits? No thank you, please.",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "46463e49dda3",
+    "source": "reddit",
+    "rating": null,
+    "text": "hey pal, you just blow im from stupid town?",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "3a7ae6960288",
+    "source": "reddit",
+    "rating": null,
+    "text": "Blow him? I hardly know him!",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "9cf8df7a9d6b",
+    "source": "reddit",
+    "rating": null,
+    "text": "Probably why you'd blow him",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "5e7612d83685",
+    "source": "reddit",
+    "rating": null,
+    "text": "I ditched my account from 2009 just to get rid of the Podcasts showing up. I also ditched my new account eventually for another service I was also using and was happier with. It was the best decision I made.",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "3b192c9aefe9",
+    "source": "reddit",
+    "rating": null,
+    "text": "What are you using now? I tried apple music and I hated it besides the better quality and better recommendations",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "024d8cbaf96a",
+    "source": "reddit",
+    "rating": null,
+    "text": "Apple Music, I find the lack of a Connect like feature the only downside.",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "89ba1a28cc59",
+    "source": "reddit",
+    "rating": null,
+    "text": "The lack of connect between phone and pc and the constant \"error please try again\" is a deal breaker for me",
+    "modelLabels": {
+      "sentiment": "negative",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "e62630e8367d",
+    "source": "reddit",
+    "rating": null,
+    "text": "Ugh yesterday!",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  },
+  {
+    "id": "4adb6d89944c",
+    "source": "reddit",
+    "rating": null,
+    "text": "How did you import all the songs?",
+    "modelLabels": {
+      "sentiment": "neutral",
+      "discoveryRelated": false,
+      "frustrationThemes": [
+        "non_discovery"
+      ],
+      "segment": "unknown",
+      "jtbd": null
+    },
+    "humanLabels": null
+  }
+]

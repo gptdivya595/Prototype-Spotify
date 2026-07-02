@@ -63,12 +63,15 @@ export function validateTag(t) {
   let themes = Array.isArray(t.frustrationThemes)
     ? t.frustrationThemes.filter((x) => FRUSTRATION_THEMES.includes(x))
     : [];
-  if (themes.length === 0) themes = ['non_discovery'];
+  themes = [...new Set(themes)];
+  const substantiveThemes = themes.filter((x) => x !== 'non_discovery');
+  const discoveryRelated = Boolean(t.discoveryRelated) && substantiveThemes.length > 0;
+  themes = discoveryRelated ? substantiveThemes : ['non_discovery'];
   return {
     id: t.id,
     sentiment,
-    discoveryRelated: Boolean(t.discoveryRelated) && !themes.every((x) => x === 'non_discovery'),
-    frustrationThemes: [...new Set(themes)],
+    discoveryRelated,
+    frustrationThemes: themes,
     jtbd: typeof t.jtbd === 'string' && t.jtbd.trim() ? t.jtbd.trim() : null,
     segment,
     summary: typeof t.summary === 'string' ? t.summary.slice(0, 300) : '',

@@ -1,50 +1,135 @@
-# Quickstart — Review Discovery Engine (Artifact A)
+# Quickstart — Discovery Evidence Lab (Artifact A)
 
-Get from zero to a running app in ~10 minutes.
+## Prerequisites
 
-## 0. Prerequisites
-- Node 18+ (tested on Node 25)
-- An OpenAI API key
+- Node.js 20.9 or newer.
+- An OpenAI API key for real enrichment, embeddings, research answers, and chat.
 
 ## 1. Install
+
 ```bash
 cd "artifact A/code"
 npm install
 ```
 
-## 2. Add your key
-Create `.env.local` (copy from `.env.example`):
+The install intentionally retains `app-store-scraper@0.18.0` under `devDependencies` for the
+optional legacy Apple adapter.
+
+## 2. Configure environment
+
+Copy `.env.example` to `.env.local` and set:
+
 ```bash
 OPENAI_API_KEY=sk-...
 DEFAULT_MODEL=gpt-4o-mini
 SYNTHESIS_MODEL=gpt-4o-mini
 EMBEDDING_MODEL=text-embedding-3-small
 ```
-> No Upstash needed — a local JSON vector store is used by default.
 
-## 3. Build the data (one-time)
-```bash
-npm run scrape        # pull ~3k Spotify reviews  (no key needed)
-npm run build:data    # enrich + embed + insights (uses OpenAI, ~$0.15, ~3 min)
-```
-Produces `data/reviews.enriched.json`, `data/vectors.json`, `data/insights.json`.
+Do not commit `.env.local`. Rotate a key if it has been pasted into chat, source control, logs,
+or screenshots.
 
-## 4. Run
-```bash
-npm run dev           # http://localhost:3000
-```
-- **/** — insights dashboard (frustration themes, segments, 6 AI-answered research questions)
-- **/ask** — grounded chat; ask anything about discovery, get an answer with cited reviews
+## 3. Rebuild the corpus
 
-## 5. Sanity checks (optional, terminal)
+### Store reviews
+
 ```bash
-npm run ask -- "why do users struggle to discover new music?"
-npm run query -- "discover weekly repetitive"
+npm run scrape
 ```
 
-## Offline / no-key mode
-Every script supports `--dry-run` (stub tags + hash-embeddings) to validate the pipeline
-without spending the key. See `code/README.md`.
+This uses Apple public RSS by default and `google-play-scraper` for Play Store locales. To try
+the retained legacy Apple library first:
 
-## Next
-Deploy with `docs/DEPLOYMENT.md` (Vercel or Render).
+```bash
+APPLE_REVIEW_ADAPTER=legacy npm run scrape
+```
+
+The Apple adapter falls back to RSS if the legacy path returns no reviews.
+
+### Reddit on a VPN-blocked network
+
+The current project already contains the seven user-saved thread JSON inputs under
+`data/reddit-raw/`. Re-import without making any live Reddit request:
+
+```bash
+npm run scrape:reddit:offline
+```
+
+To import additional browser-saved files from another location:
+
+```bash
+node scripts/scrape-reddit.mjs --no-live --file /absolute/thread-one.json --file /absolute/thread-two.json
+```
+
+The importer copies external inputs to a stable thread-id filename, parses posts/comments,
+deduplicates them, and merges them into the raw corpus.
+
+### Manifest and AI processing
+
+```bash
+npm run manifest
+npm run enrich
+npm run audit:enrichment
+npm run index
+npm run insights
+```
+
+Or run enrichment, indexing, and insights together:
+
+```bash
+npm run build:data
+```
+
+## 4. Evaluate
+
+```bash
+npm run eval:rag
+npm run research
+npm audit --omit=dev
+npm run build
+```
+
+Expected verified baseline:
+
+- 1,850 enriched records and 266 discovery-related records;
+- 266 real vectors;
+- zero schema errors;
+- 9/9 automated RAG checks;
+- zero production dependency vulnerabilities;
+- successful Next.js build.
+
+Automated checks are smoke tests. Human label quality, retrieval relevance, and citation
+correctness still need independent review before presenting the findings as validated research.
+
+## 5. Run
+
+```bash
+npm run dev
+```
+
+Open:
+
+- `http://localhost:3000/` — Insights;
+- `http://localhost:3000/ask` — cited RAG chat;
+- `http://localhost:3000/collect` — bounded collection;
+- `http://localhost:3000/api/health` — technical/data status.
+
+CLI checks:
+
+```bash
+npm run ask -- "Why do users hear the same songs repeatedly?"
+npm run query -- "Discover Weekly repetitive"
+```
+
+## No-key plumbing check
+
+Dry-run modes validate control flow but do not create research-quality data:
+
+```bash
+npm run scrape:small
+node scripts/enrich.mjs --dry-run --limit 200
+node scripts/index.mjs --dry-run
+node scripts/insights.mjs --dry-run
+```
+
+Dry-run vectors are written separately so they cannot replace the real index.

@@ -4,14 +4,18 @@ import { createHash } from 'node:crypto';
  * Canonical Review shape (see docs/architecture.md §5).
  * @typedef {Object} Review
  * @property {string} id
+ * @property {string|null} sourceReviewId
  * @property {'app_store'|'play_store'|'reddit'} source
+ * @property {'review'|'post'|'comment'} sourceType
  * @property {'ios'|'android'|'web'} platform
  * @property {string} country
+ * @property {string|null} language
  * @property {number|null} rating
  * @property {string|null} title
  * @property {string} text
- * @property {string} author
+ * @property {string|null} authorHash
  * @property {string} date            ISO 8601
+ * @property {string} fetchedAt       ISO 8601
  * @property {string|null} appVersion
  * @property {string|null} url
  * // enrichment fields added in Phase 2:
@@ -31,10 +35,19 @@ export function makeId(source, author, date, text) {
     .slice(0, 12);
 }
 
-/** Truncate/clean an author handle so we don't store more PII than needed. */
+/** Normalize a handle for identity generation; never persist the returned value. */
 export function cleanAuthor(name) {
   if (!name) return 'anon';
   return String(name).slice(0, 40);
+}
+
+/** Store only a one-way, namespaced author token; the public handle is not needed. */
+export function hashAuthor(source, name) {
+  if (!name || name === 'anon' || name === '[deleted]') return null;
+  return createHash('sha256')
+    .update(`${source}|${cleanAuthor(name)}`)
+    .digest('hex')
+    .slice(0, 16);
 }
 
 /** Coerce anything date-like to ISO; fall back to now if missing. */

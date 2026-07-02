@@ -67,10 +67,23 @@ export async function computeAggregates(dry = false) {
 }
 
 /** Run the 6 brief questions through the RAG pipeline and cache them. */
-export async function computeBriefAnswers(dry = false) {
+function aggregateContext(aggregates) {
+  const themes = aggregates.themes.map(([name, count]) => `${name}=${count}`).join(', ');
+  const segments = Object.entries(aggregates.segments).map(([name, count]) => `${name}=${count}`).join(', ');
+  const sources = Object.entries(aggregates.corpus.sources).map(([name, count]) => `${name}=${count}`).join(', ');
+  return [
+    `Corpus total=${aggregates.corpus.total}; discovery-related=${aggregates.corpus.discoveryRelated}.`,
+    `Sources: ${sources}.`,
+    `Discovery theme counts (multi-label, denominator=${aggregates.corpus.discoveryRelated}): ${themes}.`,
+    `Behavior-segment counts within discovery-related records: ${segments}.`,
+  ].join('\n');
+}
+
+export async function computeBriefAnswers(dry = false, aggregates) {
   const out = [];
+  const facts = aggregates ? aggregateContext(aggregates) : '';
   for (const q of BRIEF_QUESTIONS) {
-    const res = await answerQuestion(q, { dry, topK: 12 });
+    const res = await answerQuestion(q, { dry, topK: 12, aggregateContext: facts });
     out.push({ question: q, ...res });
     process.stdout.write(`  answered: ${q.slice(0, 40)}...\n`);
   }
@@ -80,8 +93,12 @@ export async function computeBriefAnswers(dry = false) {
 /** Build and persist the full insights payload (aggregates + brief answers). */
 export async function buildInsights(dry = false) {
   const aggregates = await computeAggregates(dry);
-  const briefAnswers = await computeBriefAnswers(dry);
-  const payload = { aggregates, briefAnswers };
+  const briefAnswers = await computeBriefAnswers(dry, aggregates);
+  const payload = {
+    dataVersion: aggregates.generatedAt,
+    aggregates,
+    briefAnswers,
+  };
   const outPath = join(DATA, dry ? 'insights.dryrun.json' : 'insights.json');
   await writeFile(outPath, JSON.stringify(payload, null, 2), 'utf8');
   return { payload, outPath };

@@ -17,6 +17,7 @@ loadEnv();
 
 const DATA = join(dirname(fileURLToPath(import.meta.url)), '..', 'data');
 const LOCAL_PATH = join(DATA, 'vectors.json');
+const LOCAL_DRY_PATH = join(DATA, 'vectors.dryrun.json');
 
 function cosine(a, b) {
   let dot = 0, na = 0, nb = 0;
@@ -34,17 +35,21 @@ function matches(meta, filter) {
     return false;
   if (filter.segment && meta.segment !== filter.segment) return false;
   if (filter.theme && !(meta.frustrationThemes || []).includes(filter.theme)) return false;
+  if (filter.source && meta.source !== filter.source) return false;
+  if (filter.country && meta.country !== filter.country) return false;
+  if (filter.language && meta.language !== filter.language) return false;
   return true;
 }
 
 export class LocalVectorStore {
-  constructor() {
+  constructor(path = LOCAL_PATH) {
+    this.path = path;
     this.rows = [];
     this.loaded = false;
   }
   async load() {
     if (this.loaded) return;
-    if (existsSync(LOCAL_PATH)) this.rows = JSON.parse(await readFile(LOCAL_PATH, 'utf8'));
+    if (existsSync(this.path)) this.rows = JSON.parse(await readFile(this.path, 'utf8'));
     this.loaded = true;
   }
   async upsert(rows) {
@@ -53,7 +58,13 @@ export class LocalVectorStore {
     for (const r of rows) byId.set(r.id, r);
     this.rows = [...byId.values()];
     await mkdir(DATA, { recursive: true });
-    await writeFile(LOCAL_PATH, JSON.stringify(this.rows), 'utf8');
+    await writeFile(this.path, JSON.stringify(this.rows), 'utf8');
+  }
+  async clear() {
+    this.rows = [];
+    this.loaded = true;
+    await mkdir(DATA, { recursive: true });
+    await writeFile(this.path, '[]', 'utf8');
   }
   async query({ vector, topK = 20, filter }) {
     await this.load();
@@ -90,6 +101,9 @@ export class UpstashVectorStore {
     if (filter.discoveryRelated !== undefined) parts.push(`discoveryRelated = ${filter.discoveryRelated}`);
     if (filter.segment) parts.push(`segment = '${filter.segment}'`);
     if (filter.theme) parts.push(`frustrationThemes CONTAINS '${filter.theme}'`);
+    if (filter.source) parts.push(`source = '${filter.source}'`);
+    if (filter.country) parts.push(`country = '${filter.country}'`);
+    if (filter.language) parts.push(`language = '${filter.language}'`);
     return parts.length ? parts.join(' AND ') : undefined;
   }
   async query({ vector, topK = 20, filter }) {
@@ -105,14 +119,15 @@ export class UpstashVectorStore {
 }
 
 /** Pick a backend: Upstash if configured, else local JSON. */
-export async function getStore() {
+export async function getStore({ dry = false } = {}) {
+  if (dry) return new LocalVectorStore(LOCAL_DRY_PATH);
   const hasUpstash =
     process.env.UPSTASH_VECTOR_REST_URL && process.env.UPSTASH_VECTOR_REST_TOKEN;
   if (hasUpstash) {
     const { Index } = await import('@upstash/vector');
     return new UpstashVectorStore(Index);
   }
-  return new LocalVectorStore();
+  return new LocalVectorStore(LOCAL_PATH);
 }
 
 export function storeKind() {

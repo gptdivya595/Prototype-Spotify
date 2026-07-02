@@ -47,8 +47,14 @@ export default async function InsightsPage() {
       <h1>What Spotify users say about music discovery</h1>
       <p className="sub">
         {a.corpus.total.toLocaleString()} reviews analysed · {a.corpus.discoveryRelated.toLocaleString()} discovery-related ·
-        sources: {Object.entries(a.corpus.sources).map(([k, v]) => `${k} (${v})`).join(', ')}
+        sources: {Object.entries(a.corpus.sources).map(([k, v]) => `${k} (${v})`).join(', ')} ·
+        data version: {(data.dataVersion || a.generatedAt || '').slice(0, 10)}
       </p>
+
+      <div className="card" style={{ marginTop: 16, borderColor: 'var(--blue)' }}>
+        <strong>Research status:</strong> these findings identify hypotheses from public feedback.
+        User interviews are still required before treating a cause as validated or committing to Artifact B.
+      </div>
 
       <div className="grid" style={{ marginTop: 16 }}>
         <div className="card"><div className="stat">{a.corpus.total.toLocaleString()}</div><div className="stat-label">Reviews analysed</div></div>

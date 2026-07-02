@@ -11,6 +11,7 @@ out/
 
 # scraped data (large; re-runnable). Serving artifacts are un-ignored below.
 data/*.json
+data/reddit-raw/
 !data/vectors.json
 !data/insights.json
 

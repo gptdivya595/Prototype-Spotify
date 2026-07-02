@@ -1,94 +1,130 @@
-# Deployment — Vercel & Render
+# Deployment — Discovery Evidence Lab (Artifact A)
 
-The app is a standard Next.js 14 (App Router) project living in **`artifact A/code`**.
-Both platforms need that folder as the **root/base directory**.
+Discovery Evidence Lab is a Next.js 16 App Router project in `artifact A/code`. The first public deployment
+should be **read-only**: serve the versioned insights/vector artifacts and keep bulk collection
+and AI processing local.
 
-## Before you deploy
-1. Build the serving data locally with a real key:
-   ```bash
-   cd "artifact A/code"
-   npm run scrape && npm run build:data
-   ```
-2. Confirm `data/vectors.json` and `data/insights.json` exist and are committed. They are
-   **un-ignored** in `.gitignore` on purpose (they're the deployed corpus). The large
-   `reviews.raw.json` / `reviews.enriched.json` stay ignored.
-3. Confirm `.env.local` is **NOT** committed:
-   ```bash
-   git check-ignore "artifact A/code/.env.local"   # should print the path
-   ```
+## Release checks
 
----
+```bash
+cd "artifact A/code"
+npm ci
+npm audit --omit=dev
+npm run eval:rag
+npm run build
+git check-ignore .env.local
+```
 
-## Option A — Vercel (recommended for Next.js)
+Expected verified baseline on 2 July 2026:
 
-A ready-made **`artifact A/code/vercel.json`** is included (framework, build/install
-commands, and per-route function `maxDuration`). You only need to point Vercel at the folder.
+- production audit: zero vulnerabilities;
+- RAG smoke checks: 9/9;
+- production build: pass;
+- `data/vectors.json`: 266 real vectors;
+- `data/insights.json`: data version `2026-07-02T07:33:08.208Z`.
 
-1. Push the repo to GitHub.
-2. In Vercel → **Add New Project** → import the repo.
-3. **Root Directory**: set to `artifact A/code` (Vercel → Settings → General → Root Directory).
-   `vercel.json` lives here and is picked up automatically.
-4. Framework preset: **Next.js** (auto-detected). Build = `next build`, Output = `.next`.
-5. **Environment Variables** (Settings → Environment Variables), Production + Preview:
+The full audit includes six advisories in the deliberately retained, dev-only
+`app-store-scraper` dependency chain. The legacy scraper is local-only and is not required by
+the read-only production app.
+
+## Data and secret rules
+
+- Commit/version only the serving artifacts `data/vectors.json` and `data/insights.json`.
+- Keep raw/enriched corpora, saved JSON imports, and `.env.local` private/ignored unless their
+  licensing and privacy treatment has been explicitly reviewed.
+- Put `OPENAI_API_KEY` in the host's encrypted environment settings.
+- Rotate any API key that has appeared in chat, logs, screenshots, or Git history.
+- Do not enable hosted ingestion with local JSON storage; Vercel function writes are ephemeral.
+
+## Option 0 — static Discovery Evidence Lab brief
+
+Use this when reviewers only need findings and the Artifact B handoff. It requires no Node
+runtime, OpenAI key, vector database, or server function.
+
+```bash
+cd "artifact B/code/static"
+python3 -m http.server 3099
+```
+
+Open `http://localhost:3099/`. The root `index.html` forwards to the self-contained
+`artifact-A-summary.html` report.
+
+For a static Vercel deployment, use `artifact B/code/static` as the project root and select the
+Other framework preset with no build command. The static option intentionally excludes live
+Ask, Collect, and ingestion capabilities.
+
+## Option A — Vercel read-only deployment
+
+1. Push the repository to GitHub.
+2. In Vercel, import the repository.
+3. Set **Root Directory** to `artifact A/code`.
+4. Keep the auto-detected Next.js framework, `next build`, and `.next` output.
+5. Add these environment variables for Production and Preview:
+
    | Key | Value |
    |---|---|
-   | `OPENAI_API_KEY` | your key |
+   | `OPENAI_API_KEY` | rotated OpenAI key |
    | `DEFAULT_MODEL` | `gpt-4o-mini` |
-   | `SYNTHESIS_MODEL` | `gpt-4o-mini` |
+   | `SYNTHESIS_MODEL` | `gpt-4o-mini` or another approved model |
    | `EMBEDDING_MODEL` | `text-embedding-3-small` |
-   | `UPSTASH_VECTOR_REST_URL` | *(only if using Upstash)* |
-   | `UPSTASH_VECTOR_REST_TOKEN` | *(only if using Upstash)* |
-6. Deploy. Test `/` and `/ask` in an incognito window.
 
-**Notes**
-- API routes use the Node runtime (`export const runtime = 'nodejs'`) — required by the
-  vector store / scraper libs.
-- `next.config.mjs` already includes `data/vectors.json` + `data/insights.json` in the
-  serverless function bundle via `outputFileTracingIncludes`.
-- `/api/ingest` may exceed the free-tier function timeout; bulk loading is the local
-  `npm run scrape` path. `/` and `/ask` are fast.
+6. Do **not** set an ingest admin key or remote-ingest flag in the first release.
+7. Deploy and verify `/`, `/ask`, `/collect`, `/api/insights`, and `/api/health`.
 
----
+`vercel.json` contains the framework/build settings and function duration limits.
+`next.config.mjs` includes the two serving artifacts in API function traces.
+
+### Expected read-only behavior
+
+- Insights and Ask read the deployed artifact version.
+- Chat calls OpenAI server-side and may create API cost, so retain rate limiting.
+- Collect explains the current storage mode.
+- Production `/api/ingest` returns a blocked response because durable remote ingestion is not
+  configured.
+
+## Optional hosted refresh
+
+Only enable this after creating an Upstash Vector index with dimension 1,536 and cosine
+similarity:
+
+| Key | Purpose |
+|---|---|
+| `UPSTASH_VECTOR_REST_URL` | Remote vector endpoint |
+| `UPSTASH_VECTOR_REST_TOKEN` | Remote vector credential |
+| `ALLOW_REMOTE_INGEST` | Must be exactly `true` |
+| `INGEST_ADMIN_KEY` | Strong secret supplied in `x-ingest-key` |
+
+The route caps a request at 100 records and accepts only known source/country/language values.
+This refresh updates the vector index, not the full deterministic insights snapshot; continue
+to rebuild and redeploy insights after a controlled bulk corpus update.
 
 ## Option B — Render
 
-Render hosts it as a **Web Service** (Node).
+Render can host the same read-only app as a Node web service:
 
-1. Push the repo to GitHub.
-2. Render → **New** → **Web Service** → connect the repo.
-3. **Root Directory**: `artifact A/code`
-4. **Runtime**: Node
-5. **Build Command**: `npm install && npm run build`
-6. **Start Command**: `npm run start`
-7. **Environment Variables**: same as the Vercel table above. Also set
-   `NODE_VERSION` = `20` (or higher) if Render's default is older.
-8. Instance type: Free or Starter is fine for this workload.
-9. Create Web Service → wait for build → open the `.onrender.com` URL.
+1. Set Root Directory to `artifact A/code`.
+2. Use `npm ci && npm run build` as the build command.
+3. Use `npm run start` as the start command.
+4. Use Node 20.9 or newer.
+5. Add the same OpenAI/model variables as the Vercel read-only deployment.
 
-**Notes**
-- Next.js binds to `$PORT` automatically via `next start`; Render provides `PORT`.
-- Cold starts on the free tier can take ~30s; fine for a demo.
-- Same data caveat: `data/vectors.json` + `data/insights.json` must be committed.
-
-### One-click Blueprint (render.yaml)
-A **`render.yaml`** is committed at the **repo root** (with `rootDir: "artifact A/code"`,
-build/start commands, health check, and env var placeholders). To use it:
-Render → **New** → **Blueprint** → pick this repo → set `OPENAI_API_KEY` when prompted.
-This replaces steps 2–8 above.
-
----
-
-## Using Upstash Vector instead of the local store (optional)
-If the committed `vectors.json` gets large or you want a live/shared index:
-1. Create an Upstash Vector index (dimension **1536**, metric **cosine**).
-2. Set `UPSTASH_VECTOR_REST_URL` + `UPSTASH_VECTOR_REST_TOKEN` (locally and on the host).
-3. Re-run `npm run index` to populate Upstash. The app auto-detects and uses it; you no
-   longer need to commit `vectors.json`.
-
----
+Render may have a writable disk during a process lifetime, but do not treat it as durable
+research storage unless a persistent disk/database is explicitly configured.
 
 ## Post-deploy smoke test
-- `GET /` → dashboard renders with real numbers.
-- `GET /api/insights` → JSON payload.
-- `POST /api/chat` with `{"question":"why do users struggle to discover new music?"}` →
-  grounded answer + citations.
+
+Record the URL, deployment time, Git revision, and displayed data version. Then verify:
+
+```text
+GET  /                     → 200 and coverage/theme counts render
+GET  /ask                  → 200 and filters render
+GET  /collect              → 200 and correct storage mode renders
+GET  /api/insights         → 200 with dataVersion
+GET  /api/health           → 200 with 1,850 corpus / 266 vectors and no secrets
+POST /api/chat             → grounded answer with valid citations
+POST /api/chat off-topic   → scope refusal
+POST /api/ingest           → blocked in read-only production
+```
+
+Also test in an incognito browser and on a phone. A public deployment is complete only after
+the URL and smoke-test evidence are recorded; a passing local build is not deployment proof.

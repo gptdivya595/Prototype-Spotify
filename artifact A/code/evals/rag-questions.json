@@ -1,0 +1,11 @@
+[
+  { "id": "control", "question": "What controls over recommendations do users want?", "expectedTheme": "no_control_over_recs", "minThemeHits": 2 },
+  { "id": "repeat", "question": "Why do users hear the same songs repeatedly?", "expectedTheme": "repetitive_recommendations", "minThemeHits": 2 },
+  { "id": "discover-weekly", "question": "What do users say about Discover Weekly becoming stale?", "expectedTheme": "stale_discover_weekly", "minThemeHits": 2 },
+  { "id": "taste", "question": "How do recommendations ignore users' taste?", "expectedTheme": "recs_ignore_taste", "minThemeHits": 2 },
+  { "id": "genre", "question": "What do users say about poor genre exploration?", "expectedTheme": "poor_genre_exploration", "minThemeHits": 2 },
+  { "id": "popular", "question": "Do users think the algorithm pushes popular or safe music?", "expectedTheme": "algorithm_pushes_popular", "minThemeHits": 2 },
+  { "id": "autoplay", "question": "How does autoplay contribute to repetitive listening loops?", "expectedTheme": "autoplay_loop", "minThemeHits": 2 },
+  { "id": "diversity", "question": "Why do Spotify users struggle to discover new music?", "minSources": 2 },
+  { "id": "off-topic", "question": "What will the weather be tomorrow?", "expectOutOfScope": true }
+]

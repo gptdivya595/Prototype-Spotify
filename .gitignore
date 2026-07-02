@@ -20,9 +20,10 @@ out/
 **/*.log
 
 # large / re-generatable scraped data (serving artifacts vectors.json & insights.json are kept)
-**/data/reviews.raw.json
-**/data/reviews.enriched.json
-**/data/*.dryrun.json
+# **/data/reviews.raw.json
+# **/data/reviews.enriched.json
+# **/data/*.dryrun.json
+# **/data/reddit-raw/
 
 # claude local settings
 .claude/

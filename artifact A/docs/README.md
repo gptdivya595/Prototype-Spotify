@@ -1,41 +1,71 @@
-# Artifact A — Review Discovery Engine
+# Discovery Evidence Lab (Artifact A)
 
-AI system that analyses Spotify user feedback at scale to understand **why users struggle to
-discover new music** and get stuck on repeat. It scrapes reviews (App Store + Play Store),
-tags them with an LLM, embeds them into a vector store, and serves:
+Discovery Evidence Lab is a working product-research prototype for analysing Spotify discovery feedback.
+It combines deterministic corpus analysis with cited RAG so a PM can distinguish recurring
+patterns from individual examples.
 
-1. **An insights dashboard** — top discovery frustrations, affected segments, jobs-to-be-done,
-   and AI-generated answers to the 6 core research questions (each grounded in cited reviews).
-2. **A grounded RAG chat** — ask any question about discovery; get an answer built *only* from
-   real reviews, with citations. No hallucinated facts.
+“Artifact A” remains the delivery-stage and folder label for compatibility; Discovery Evidence
+Lab is the user-facing product name.
 
-## How it works (one glance)
+## Verified local state — 2 July 2026
 
+| Item | Result |
+|---|---:|
+| Raw/enriched corpus | 1,850 records |
+| App Store | 100 |
+| Play Store | 1,200 |
+| Reddit | 550 across seven saved threads |
+| Discovery-related subset | 266 |
+| Real embedding vectors | 266 at 1,536 dimensions |
+| Enrichment schema audit | 1,850/1,850 pass |
+| Automated RAG checks | 9/9 pass |
+| Production dependency audit | 0 vulnerabilities with `--omit=dev` |
+| Next.js production build | Pass |
+
+The prototype is technically complete locally. Human label/citation evaluation, 5–6 user
+interviews, and a verified public Vercel deployment are still open gates.
+
+A zero-runtime summary is also available at
+`../../artifact B/code/static/artifact-A-summary.html`. It packages the evidence and product
+handoff as one self-contained HTML file for review or static deployment.
+
+## Experience
+
+- `/` — coverage, deterministic theme counts, research findings, and limitations.
+- `/ask` — grounded chat with source/theme/segment filters and visible citations.
+- `/collect` — bounded collection UI with truthful local/hosted storage behavior.
+- `/api/health` — corpus, vector, data-version, and storage status without secrets.
+
+## How it works
+
+```text
+App Store RSS / retained legacy adapter + Google Play + saved Reddit JSON
+        ↓
+normalise · dedupe · manifest
+        ↓
+structured LLM enrichment · validation · audit
+        ↓
+deterministic aggregates + vector retrieval
+        ↓
+Insights + cited research chat
 ```
-Scrape (App/Play)  →  Enrich/tag (gpt-4o-mini)  →  Embed (text-embedding-3-small)
-      →  Vector store (local JSON or Upstash)  →  Retrieve + synthesise (grounded, cited)
-```
 
-- **Enrichment** tags each review: sentiment, `discoveryRelated`, `frustrationThemes`
-  (controlled vocab), `jtbd`, `segment`, `summary`. These power both the dashboard aggregates
-  and the retrieval filters.
-- **RAG** answers strictly from retrieved reviews with `[n]` citations — the hallucination &
-  prompt-injection guard.
+`app-store-scraper@0.18.0` is retained as a CLI-only legacy adapter. Apple RSS is the default
+because the legacy endpoint returned zero Spotify reviews in the verified run; setting
+`APPLE_REVIEW_ADAPTER=legacy` tries it first and falls back safely.
 
-## Docs in this folder
-| File | What |
+## Documents
+
+| File | Purpose |
 |---|---|
-| [architecture.md](architecture.md) | Full system design, data model, API surface, safety |
-| [QUICKSTART.md](QUICKSTART.md) | Zero → running app in ~10 min |
-| [DEPLOYMENT.md](DEPLOYMENT.md) | Deploy to Vercel or Render |
-| `../phases/phase_1..5.md` | Step-by-step build plan per phase |
+| [architecture.md](architecture.md) | Completion audit, source design, RAG, APIs, security, gates |
+| [Ingestion Input.md](Ingestion%20Input.md) | Actual corpus coverage and source instructions |
+| [QUICKSTART.md](QUICKSTART.md) | Install, rebuild, evaluate, and run locally |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | Vercel/Render modes and production checks |
+| `../phases/phase_1.md` … `phase_5.md` | Five phased execution/evidence plans |
 
-## Code
-Everything runnable lives in [`../code`](../code). See [`../code/README.md`](../code/README.md)
-for the command reference. Default stack: **Next.js 14 · OpenAI · local JSON vector store**
-(Upstash optional).
+Root research docs now include the full RAG answers, Smart Shuffle follow-up,
+`Solutioning.md`, and the Artifact B experiment rationale.
 
-## Deliverable mapping (fellowship Part 1)
-- **Workflow link** → the deployed Vercel/Render URL (`/` dashboard + `/ask` chat).
-- **1-slider** → screenshot the "How it works" flow above + the dashboard.
-- Answers the 6 required questions on the dashboard, each with expandable cited sources.
+Runnable code lives in [`../code`](../code). The root `docs/` folder contains the PM research
+synthesis and the recommended Artifact B experiment.

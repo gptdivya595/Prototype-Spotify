@@ -1,66 +1,114 @@
-# Spotify Review Discovery Engine (Artifact A)
+# Spotify Review Discovery Engine — Artifact A
 
-AI system that scrapes Spotify reviews (App Store + Play Store), tags them, embeds them into
-a vector store, and serves **(1) an insights dashboard** and **(2) a grounded RAG chat** with
-citations. Next.js app, deployable to Vercel.
+A Next.js 16 research prototype that collects Spotify feedback, applies a controlled LLM
+taxonomy, calculates deterministic insights, and answers qualitative questions through cited
+RAG.
 
-See `../docs/architecture.md` and `../phases/*.md` for the design.
+## Current verified dataset
 
-## Prerequisites
+- 1,850 records: 100 App Store, 1,200 Play Store, 550 Reddit.
+- 266 discovery-related records and 266 real 1,536-dimension vectors.
+- 1,850/1,850 enrichment records pass schema validation.
+- 9/9 automated retrieval/scope checks pass.
 
-1. **OpenAI API key** → put in `.env.local` as `OPENAI_API_KEY` (copy `.env.example`).
-2. (Optional) **Upstash Vector** creds in `.env.local` — otherwise a local JSON vector store
-   (`data/vectors.json`) is used automatically.
+See `../docs/architecture.md` for the completion audit and limitations.
 
-## Build the data (one-time, needs the key)
+## Requirements
+
+- Node.js 20.9+.
+- OpenAI API key in `.env.local`.
+- Optional Upstash Vector credentials for hosted vector storage.
 
 ```bash
 npm install
-npm run scrape          # pull ~3k reviews  -> data/reviews.raw.json   (no key needed)
-npm run build:data      # enrich + embed + insights (uses OpenAI)      -> serving artifacts
+cp .env.example .env.local
 ```
 
-`build:data` runs `enrich → index → insights` and produces:
-`data/reviews.enriched.json`, `data/vectors.json`, `data/insights.json`.
+Never commit `.env.local`. Rotate any key exposed in chat, logs, screenshots, or Git.
 
-### Offline dry-run (no key — validates plumbing only)
+## Data pipeline
+
+```bash
+npm run scrape                  # Apple RSS + Google Play locale matrix
+npm run scrape:reddit:offline   # import the seven saved Reddit JSON files, no live request
+npm run manifest                # source/locale/rating/date coverage
+npm run enrich                  # structured tags with checkpoint/retry
+npm run audit:enrichment        # schema/conflict audit + sample
+npm run index                   # real OpenAI embeddings
+npm run insights                # deterministic aggregates + cited brief answers
+npm run eval:rag                # automated retrieval/scope smoke checks
+npm run research                # run the 15 PM research questions
+```
+
+`npm run build:data` runs `enrich → index → insights`.
+
+### Apple adapters
+
+Apple public RSS is the reliable default. `app-store-scraper@0.18.0` remains installed under
+`devDependencies` as a CLI-only legacy adapter that is outside the Next.js application graph:
+
+```bash
+APPLE_REVIEW_ADAPTER=legacy npm run scrape
+```
+
+If the legacy adapter returns no reviews, collection falls back to RSS. Do not remove the
+package unless this policy is intentionally changed.
+
+### Additional saved Reddit files
+
+```bash
+node scripts/scrape-reddit.mjs --no-live \
+  --file /absolute/path/thread-one.json \
+  --file /absolute/path/thread-two.json
+```
+
+The script stores stable thread-id filenames in `data/reddit-raw/`, normalizes posts/comments,
+and deduplicates before merging.
+
+## Run the product
+
+```bash
+npm run dev
+# or
+npm run build && npm run start
+```
+
+| URL | Purpose |
+|---|---|
+| `/` | Coverage, deterministic themes, PM findings, limitations |
+| `/ask` | Cited RAG with source/theme/segment filters |
+| `/collect` | Bounded ingestion UI and storage-mode state |
+| `/api/health` | Data/version/vector/storage health without secrets |
+
+CLI helpers:
+
+```bash
+npm run ask -- "What controls over recommendations do users want?"
+npm run query -- "Discover Weekly repetitive"
+```
+
+## Dry run
+
+Dry runs check plumbing only and are not research evidence:
 
 ```bash
 npm run scrape:small
 node scripts/enrich.mjs --dry-run --limit 200
-node scripts/index.mjs  --dry-run
+node scripts/index.mjs --dry-run
 node scripts/insights.mjs --dry-run
-node scripts/ask.mjs --dry-run "why do users struggle to discover new music?"
 ```
 
-## Run the app
+Fake vectors are written to a separate file so they cannot overwrite the real index.
+
+## Release checks
 
 ```bash
-npm run dev        # http://localhost:3000
-# or: npm run build && npm run start
+npm audit --omit=dev
+npm run eval:rag
+npm run build
 ```
 
-- `/`     Insights dashboard (reads `data/insights.json`)
-- `/ask`  Grounded chat (calls `/api/chat` → retrieve + synthesise + cite)
+The production dependency audit is clean. A full audit still reports advisories under the
+retained dev-only legacy Apple scraper; it is not bundled as a production dependency.
 
-## CLI helpers
-
-| Command | What |
-|---|---|
-| `npm run scrape` | bulk scrape both stores |
-| `npm run enrich` | tag reviews (gpt-4o-mini) |
-| `npm run index`  | embed + upsert to vector store |
-| `npm run ask -- "question"` | grounded answer in the terminal |
-| `npm run insights` | rebuild dashboard payload + 6 brief answers |
-
-## Deploy to Vercel
-
-1. Push `artifact A/code` to a GitHub repo (root = this folder).
-2. Import in Vercel. Set env vars: `OPENAI_API_KEY` (+ `UPSTASH_*` if using Upstash).
-3. Ensure `data/vectors.json` + `data/insights.json` are committed (they're un-ignored in
-   `.gitignore`) so the deployed app has data. Regenerate them with `npm run build:data`
-   **before** committing — the repo currently holds dry-run placeholder data.
-4. Deploy. Test `/` and `/ask` in an incognito window.
-
-> Note: `/api/ingest` (the "refresh latest N" endpoint) needs the Node runtime and may hit
-> serverless time limits on the free tier — bulk loading is the local `npm run scrape` path.
+For hosting modes, environment variables, and smoke tests, read `../docs/DEPLOYMENT.md`.

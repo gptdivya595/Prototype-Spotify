@@ -13,6 +13,7 @@ export default function RootLayout({ children }) {
           <span className="brand">🎧 Review Discovery Engine</span>
           <a href="/">Insights</a>
           <a href="/ask">Ask</a>
+          <a href="/collect">Collect</a>
         </nav>
         {children}
       </body>

@@ -19,8 +19,18 @@ const appStoreOpts = SMALL
   ? { countries: ['us'], pages: 2 }
   : { countries: ['us', 'gb', 'in', 'ca', 'au', 'de'], pages: 10 };
 const playOpts = SMALL
-  ? { countries: ['us'], num: 80 }
-  : { countries: ['us', 'gb', 'in', 'ca', 'au'], num: 600 };
+  ? { locales: [{ country: 'us', lang: 'en' }], num: 80 }
+  : {
+      locales: [
+        { country: 'us', lang: 'en' },
+        { country: 'gb', lang: 'en' },
+        { country: 'in', lang: 'en' },
+        { country: 'in', lang: 'hi' },
+        { country: 'ca', lang: 'en' },
+        { country: 'au', lang: 'en' },
+      ],
+      num: 600,
+    };
 
 function printStats(reviews) {
   const bySource = {}, byRating = {};
@@ -36,7 +46,17 @@ async function main() {
   console.log(`Scraping Spotify reviews${SMALL ? ' (SMALL)' : ''}...`);
   let all = [];
   if (!args.has('--play-only')) {
-    const a = await scrapeAppStore(appStoreOpts);
+    let a;
+    if (process.env.APPLE_REVIEW_ADAPTER === 'legacy') {
+      const { scrapeAppStoreLegacy } = await import('../lib/scrape-apple-legacy.mjs');
+      a = await scrapeAppStoreLegacy(appStoreOpts);
+      if (!a.length) {
+        console.warn('  legacy adapter returned 0 reviews; falling back to Apple RSS');
+        a = await scrapeAppStore(appStoreOpts);
+      }
+    } else {
+      a = await scrapeAppStore(appStoreOpts);
+    }
     console.log(`  app_store: ${a.length}`);
     all = all.concat(a);
   }
