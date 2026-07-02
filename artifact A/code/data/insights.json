@@ -1,0 +1,1109 @@
+{
+  "aggregates": {
+    "corpus": {
+      "total": 3587,
+      "discoveryRelated": 231,
+      "sources": {
+        "app_store": 2984,
+        "play_store": 603
+      }
+    },
+    "sentiment": {
+      "positive": 2188,
+      "neutral": 436,
+      "negative": 963
+    },
+    "themes": [
+      [
+        "no_control_over_recs",
+        102
+      ],
+      [
+        "ui_friction",
+        53
+      ],
+      [
+        "recs_ignore_taste",
+        39
+      ],
+      [
+        "repetitive_recommendations",
+        30
+      ],
+      [
+        "algorithm_pushes_popular",
+        27
+      ],
+      [
+        "autoplay_loop",
+        27
+      ],
+      [
+        "poor_genre_exploration",
+        22
+      ],
+      [
+        "recs_too_similar",
+        21
+      ],
+      [
+        "stale_discover_weekly",
+        9
+      ],
+      [
+        "hard_to_find_new_artists",
+        6
+      ],
+      [
+        "no_explanation",
+        3
+      ]
+    ],
+    "segments": {
+      "power_user": 125,
+      "casual": 87,
+      "explorer": 6,
+      "unknown": 12,
+      "mood_based": 1
+    },
+    "segmentTheme": {
+      "power_user": {
+        "recs_too_similar": 15,
+        "recs_ignore_taste": 24,
+        "repetitive_recommendations": 21,
+        "algorithm_pushes_popular": 16,
+        "no_explanation": 2,
+        "stale_discover_weekly": 8,
+        "no_control_over_recs": 52,
+        "ui_friction": 23,
+        "autoplay_loop": 15,
+        "poor_genre_exploration": 12,
+        "hard_to_find_new_artists": 3
+      },
+      "casual": {
+        "no_control_over_recs": 47,
+        "recs_too_similar": 6,
+        "recs_ignore_taste": 11,
+        "autoplay_loop": 8,
+        "repetitive_recommendations": 8,
+        "ui_friction": 30,
+        "poor_genre_exploration": 7,
+        "stale_discover_weekly": 1,
+        "algorithm_pushes_popular": 8
+      },
+      "explorer": {
+        "hard_to_find_new_artists": 3,
+        "poor_genre_exploration": 2,
+        "recs_ignore_taste": 1
+      },
+      "unknown": {
+        "autoplay_loop": 4,
+        "algorithm_pushes_popular": 3,
+        "no_control_over_recs": 3,
+        "recs_ignore_taste": 3,
+        "repetitive_recommendations": 1,
+        "poor_genre_exploration": 1
+      },
+      "mood_based": {
+        "no_explanation": 1
+      }
+    },
+    "topJtbds": [
+      [
+        "control music playback",
+        6
+      ],
+      [
+        "improve music recommendations",
+        5
+      ],
+      [
+        "Improve song selection control",
+        5
+      ],
+      [
+        "reduce ad interruptions",
+        4
+      ],
+      [
+        "choose songs to listen to",
+        3
+      ],
+      [
+        "listen to music without interruptions",
+        3
+      ],
+      [
+        "Improve music recommendations",
+        3
+      ],
+      [
+        "improve shuffle experience",
+        2
+      ]
+    ],
+    "generatedAt": "2026-07-02T04:00:03.551Z"
+  },
+  "briefAnswers": [
+    {
+      "question": "Why do users struggle to discover new music?",
+      "answer": "Users struggle to discover new music on Spotify for several reasons, primarily related to the algorithm and user interface. \n\n1. **Algorithm Limitations**: Many users express frustration with Spotify's recommendation algorithm. For instance, one review states that the algorithm \"pushes always the same songs\" and fails to provide new content, leading to a disappointing experience [1]. Another user mentions that their \"New Release playlist is filled with subpar AI music\" and does not include new albums from their favorite bands [3]. This sentiment is echoed by a user who feels that the suggestions are irrelevant, stating they receive recommendations for music they \"have never and won’t ever listen to\" [2].\n\n2. **User Interface Issues**: The interface is described as outdated and not user-friendly. One reviewer suggests that users should be able to scroll through genres before seeing artists, as they are currently bombarded with suggestions from genres they dislike [4]. This indicates a lack of customization in the discovery process, which could help users find music that aligns with their tastes.\n\n3. **Search Functionality**: Users also report difficulties with the search functions, stating that it often leads to playlists rather than specific albums or songs they are looking for [5]. This can hinder the ability to discover new music effectively.\n\n4. **Repetition and Lack of Variety**: Several reviews mention issues with the shuffle feature, which tends to repeat songs and does not introduce new music from users' existing playlists [10][12]. This repetition can make the music discovery experience feel stale.\n\nOverall, the combination of a flawed recommendation algorithm, an outdated interface, ineffective search functionality, and issues with song repetition contribute to users' struggles in discovering new music on Spotify.\n\nQuotes:\n- \"Il est difficile de découvrir du nouveau contenu\" [1].\n- \"My New Release playlist is filled with subpar AI music\" [3].\n- \"Search functions are hopeless\" [5].",
+      "citations": [
+        {
+          "n": 1,
+          "id": "fffd3829cb89",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-19",
+          "themes": [
+            "repetitive_recommendations"
+          ],
+          "quote": "Il est difficile de découvrir du nouveau contenu, l’algorithme de l’application pousse toujours les même chansons dans les listes d’écoute. C’est dommage.",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 2,
+          "id": "5ab9b5567750",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-25",
+          "themes": [
+            "ui_friction",
+            "recs_ignore_taste"
+          ],
+          "quote": "While I’m a long-term fan and heavy user of the platform, persistent dissatisfaction has accompanied the experience on 3 main points. Firstly the interface continues in a dated idea of how modern UI can be. Second, the home page and the sug",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 3,
+          "id": "1c74ae11cf68",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-26",
+          "themes": [
+            "stale_discover_weekly",
+            "recs_ignore_taste"
+          ],
+          "quote": "I used to love Spotify because it helped me get great recommandations and keep track of new releases. Now sadly it seems that they changed the algorithm and their recommendations miss the mark so much they couldn’t beat Ray Charles at daets",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 4,
+          "id": "fd4c1eb92996",
+          "source": "play_store",
+          "rating": 3,
+          "date": "2026-06-30",
+          "themes": [
+            "recs_ignore_taste",
+            "poor_genre_exploration"
+          ],
+          "quote": "I just downloaded it and already I'm annoyed. I open it up and scroll through a bunch of bands. Many of which I couldn't care less about because of their genre. How about instead, have your users scroll through a list of genres. Then, once ",
+          "url": "https://play.google.com/store/apps/details?id=com.spotify.music&reviewId=17bbd7f5-4d10-47d4-97d9-bba7daf5cf74"
+        },
+        {
+          "n": 5,
+          "id": "c53373056571",
+          "source": "app_store",
+          "rating": 2,
+          "date": "2026-06-23",
+          "themes": [
+            "poor_genre_exploration"
+          ],
+          "quote": "Search functions are hopeless - if you want to find a band’s greatest hits, it will give you a heap of playlist that other people have compiled, even if the band has released a greatest hits album themselves",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 6,
+          "id": "10081502da91",
+          "source": "app_store",
+          "rating": 2,
+          "date": "2026-06-29",
+          "themes": [
+            "no_control_over_recs"
+          ],
+          "quote": "Won't let people that are poor pick their own music",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 7,
+          "id": "0ca315245a22",
+          "source": "app_store",
+          "rating": 5,
+          "date": "2026-06-29",
+          "themes": [
+            "autoplay_loop"
+          ],
+          "quote": "Greatest variety of lesser known artists then I’ve seen on any app. One single complaint, the shuffle option is garbage. Repeats songs without playing them all. I wanna have the option to hear ALL my music in a different order without heari",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 8,
+          "id": "03dffaa30c1a",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-22",
+          "themes": [
+            "no_control_over_recs",
+            "recs_ignore_taste"
+          ],
+          "quote": "Ive used Spotify for years now and struggle to sleep without music, so Spotify was really good at first although recently ive had to move to YouTube Music because despite turning of the feature that it adds random songs onto my playlist it ",
+          "url": "https://itunes.apple.com/gb/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 9,
+          "id": "0d6f8040bedf",
+          "source": "app_store",
+          "rating": 4,
+          "date": "2026-06-30",
+          "themes": [
+            "recs_ignore_taste",
+            "poor_genre_exploration"
+          ],
+          "quote": "Could be better at reintroducing old songs while playing on radio mode, also showing me emerging artists based off artists I like already.",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 10,
+          "id": "fd88b40324ec",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-30",
+          "themes": [
+            "recs_too_similar",
+            "recs_ignore_taste"
+          ],
+          "quote": "Within time year using Spotify they have down graded shuffling music within preferences it repeatedly bring back song that I dislike or don’t want to be shown and has hard time bring new songs from interest taste from existing playlists mad",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 11,
+          "id": "1541559da999",
+          "source": "play_store",
+          "rating": 3,
+          "date": "2026-06-30",
+          "themes": [
+            "poor_genre_exploration"
+          ],
+          "quote": "Could not find genre of any song (not in the search). Seems like it should be as this is one of the biggest music applicatioms.",
+          "url": "https://play.google.com/store/apps/details?id=com.spotify.music&reviewId=27ac271c-ee98-48b4-a802-6120a550ab5a"
+        },
+        {
+          "n": 12,
+          "id": "5274f7ccd728",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-30",
+          "themes": [
+            "autoplay_loop",
+            "poor_genre_exploration"
+          ],
+          "quote": "I’ve been using Spotify since 2018 and this app used to be great. Key word is used to. I feel as though in recent years it’s really gone down the drain with the quality. The randomized shuffle is no longer fully randomized and will loop son",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        }
+      ],
+      "usedFilters": {
+        "discoveryRelated": true
+      }
+    },
+    {
+      "question": "What are the most common frustrations with recommendations?",
+      "answer": "The most common frustrations with Spotify's recommendations, as indicated by the reviews, include:\n\n1. **Repetitive Suggestions**: Many users express dissatisfaction with the repetitive nature of the recommendations. For instance, review [1] states, \"Your recommendations on discover weekly are a repeat of what I have constantly,\" and review [5] mentions \"absolutely boring, repetitive and 0 risk alternatives,\" highlighting that users feel they are receiving the same suggestions repeatedly.\n\n2. **Algorithm Issues**: Several reviews suggest that the algorithm needs improvement. Review [2] asks for a return to the \"old algorithm for suggestions,\" while review [3] criticizes the AI for failing to remove previously dismissed content, stating it \"keeps it there and suggests stuff we had already dismissed.\" This indicates a frustration with the algorithm's inability to adapt to user preferences.\n\n3. **Poor Quality of Recommendations**: Users have noted that the quality of the recommendations has declined. Review [9] laments that the \"recommendations miss the mark,\" and review [6] states, \"After subscription suggestions and algorithm stopped working,\" indicating a drop in satisfaction with song suggestions post-subscription.\n\n4. **Irrelevant Content**: Some users feel that the recommendations include irrelevant content. Review [4] mentions that the suggestions \"have always offered me so much of what I have never and won’t ever listen to,\" which points to a disconnect between user preferences and the content being suggested.\n\n5. **User Experience Concerns**: There are complaints about the overall user experience, including the interface and intrusive ads. Review [12] highlights that \"too many ads ruin the listening experience,\" which can detract from the enjoyment of discovering new music.\n\nIn summary, users are frustrated with repetitive and irrelevant recommendations, algorithm inefficiencies, and a decline in the quality of suggestions. \n\nVerbatim quotes:\n- \"Your recommendations on discover weekly are a repeat of what I have constantly.\" [1]\n- \"The AI algo generating suggestions need to be improved.\" [3]\n- \"Now sadly it seems that they changed the algorithm and their recommendations miss the mark.\" [9]",
+      "citations": [
+        {
+          "n": 1,
+          "id": "fe6acfd4e914",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-30",
+          "themes": [
+            "repetitive_recommendations",
+            "stale_discover_weekly"
+          ],
+          "quote": "Your recommendations on discover weekly are a repeat of what I have constantly. Not sure what I’m paying for",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 2,
+          "id": "39cfc49bbc57",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-19",
+          "themes": [
+            "stale_discover_weekly"
+          ],
+          "quote": "Any possibility of going back to the old algorithm for suggestions? The current one is lacking.",
+          "url": "https://itunes.apple.com/de/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 3,
+          "id": "0a80631e212a",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-29",
+          "themes": [
+            "recs_ignore_taste",
+            "no_control_over_recs"
+          ],
+          "quote": "The AI algo generating suggestions need to be improved b/c it fails to remove podcasts, songs that we clicked to try and do not like, and it keeps it there and suggests stuff we had already dismissed. Reddit and other platforms have similar",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 4,
+          "id": "5ab9b5567750",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-25",
+          "themes": [
+            "ui_friction",
+            "recs_ignore_taste"
+          ],
+          "quote": "While I’m a long-term fan and heavy user of the platform, persistent dissatisfaction has accompanied the experience on 3 main points. Firstly the interface continues in a dated idea of how modern UI can be. Second, the home page and the sug",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 5,
+          "id": "bdd16fdb3bef",
+          "source": "app_store",
+          "rating": 2,
+          "date": "2026-06-27",
+          "themes": [
+            "repetitive_recommendations",
+            "recs_too_similar"
+          ],
+          "quote": "absolutely boring “smart” suggestions. I’ve been using the app for two months now, trying to tweak it and giving it the opportunity to “learn” and try to come up with something interesting but it only suggests absolutely boring, repetitive ",
+          "url": "https://itunes.apple.com/de/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 6,
+          "id": "e471b68c7fc0",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-19",
+          "themes": [
+            "recs_too_similar"
+          ],
+          "quote": "After subscription suggestions and algorithm stopped working. I’m not satisfied with the song suggestions.",
+          "url": "https://itunes.apple.com/in/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 7,
+          "id": "1ee891090680",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-16",
+          "themes": [
+            "no_control_over_recs",
+            "ui_friction"
+          ],
+          "quote": "Spotify without premium feels like a constant push to buy premium. Random song selections, 6 skips an hour, unable to choose songs from your playlists at times and just chooses songs from the recommendations. It feels like a constant push t",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 8,
+          "id": "a94a4c6608c4",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-25",
+          "themes": [
+            "repetitive_recommendations",
+            "algorithm_pushes_popular"
+          ],
+          "quote": "Some people can’t afford premium and there’s nothing that can kill your vibe better than the repetitive adds so how about you do 1 day every fortnight that is the same as premium rather than offering 3 months free when you go premium.Try to",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 9,
+          "id": "1c74ae11cf68",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-26",
+          "themes": [
+            "stale_discover_weekly",
+            "recs_ignore_taste"
+          ],
+          "quote": "I used to love Spotify because it helped me get great recommandations and keep track of new releases. Now sadly it seems that they changed the algorithm and their recommendations miss the mark so much they couldn’t beat Ray Charles at daets",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 10,
+          "id": "f68f8c7e2275",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-29",
+          "themes": [
+            "repetitive_recommendations"
+          ],
+          "quote": "LET ME NOT HAVE RECOMMENDED SOBHS ON",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 11,
+          "id": "fffd3829cb89",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-19",
+          "themes": [
+            "repetitive_recommendations"
+          ],
+          "quote": "Il est difficile de découvrir du nouveau contenu, l’algorithme de l’application pousse toujours les même chansons dans les listes d’écoute. C’est dommage.",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 12,
+          "id": "9c7f38355179",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-17",
+          "themes": [
+            "algorithm_pushes_popular",
+            "poor_genre_exploration"
+          ],
+          "quote": "Too many ads ruin the listening experience. Sometimes ads play after every song, and occasionally 2–3 ads run back-to-back for nearly 2 minutes. This is especially frustrating while driving, traveling, or working out. Please reduce ad frequ",
+          "url": "https://itunes.apple.com/in/review?id=324684580&type=Purple%20Software"
+        }
+      ],
+      "usedFilters": {
+        "discoveryRelated": true
+      }
+    },
+    {
+      "question": "What listening behaviours are users trying to achieve?",
+      "answer": "Users are trying to achieve a more enjoyable and personalized listening experience on Spotify, but many are frustrated by ads, algorithmic suggestions, and playback restrictions.\n\n1. **Ad Frequency**: Many users express dissatisfaction with the frequency of ads interrupting their listening. For instance, one review mentions \"ads play after every song\" and \"2–3 ads run back-to-back for nearly 2 minutes\" [1]. Another user states, \"the ads are too frequent (Every 2-3 songs)\" [8]. This indicates a strong desire for a listening experience that is less interrupted by advertisements.\n\n2. **Personalized Recommendations**: Users are looking for better music suggestions that align with their tastes. One review highlights that the algorithm fails to remove previously dismissed songs and podcasts, leading to frustration with irrelevant suggestions [2]. Another user notes that the home page offers \"so much of what I have never and won’t ever listen to\" [4]. This suggests a need for more accurate and user-friendly recommendations.\n\n3. **Playback Control**: There is a clear desire for more control over playback options. Users express frustration with limitations on skipping songs, as one review states, \"I really need to pay to skip a song\" [12]. Another user mentions being unable to play the songs they want due to playback restrictions [10]. This indicates that users want more flexibility in how they listen to music.\n\n4. **User Experience**: Several reviews mention dissatisfaction with the overall user interface and experience. One user describes the home page as \"very cluttered\" and difficult to navigate [7]. Another user criticizes the app for creating problems that can only be solved by purchasing a premium subscription [11]. This reflects a desire for a more intuitive and user-friendly interface.\n\nIn summary, users are seeking a listening experience that minimizes interruptions from ads, offers personalized music recommendations, provides greater control over playback, and features a more user-friendly interface.\n\nQuotes:\n- \"Too many ads ruin the listening experience.\" [1]\n- \"The AI algo generating suggestions need to be improved.\" [2]\n- \"I’ve been using Spotify Free, and I’m frustrated that I was unable to play the songs I wanted.\" [10]",
+      "citations": [
+        {
+          "n": 1,
+          "id": "9c7f38355179",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-17",
+          "themes": [
+            "algorithm_pushes_popular",
+            "poor_genre_exploration"
+          ],
+          "quote": "Too many ads ruin the listening experience. Sometimes ads play after every song, and occasionally 2–3 ads run back-to-back for nearly 2 minutes. This is especially frustrating while driving, traveling, or working out. Please reduce ad frequ",
+          "url": "https://itunes.apple.com/in/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 2,
+          "id": "0a80631e212a",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-29",
+          "themes": [
+            "recs_ignore_taste",
+            "no_control_over_recs"
+          ],
+          "quote": "The AI algo generating suggestions need to be improved b/c it fails to remove podcasts, songs that we clicked to try and do not like, and it keeps it there and suggests stuff we had already dismissed. Reddit and other platforms have similar",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 3,
+          "id": "907229d3b8bc",
+          "source": "app_store",
+          "rating": 5,
+          "date": "2026-06-29",
+          "themes": [
+            "hard_to_find_new_artists"
+          ],
+          "quote": "Spotify helps me with any type of situation, it’s useful in its ways. I shall say that it’s quite hard to get the right songs to play sometimes but it’s a great experience to listen to new things, as for me I like any type of music",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 4,
+          "id": "5ab9b5567750",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-25",
+          "themes": [
+            "ui_friction",
+            "recs_ignore_taste"
+          ],
+          "quote": "While I’m a long-term fan and heavy user of the platform, persistent dissatisfaction has accompanied the experience on 3 main points. Firstly the interface continues in a dated idea of how modern UI can be. Second, the home page and the sug",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 5,
+          "id": "8e5fab78d184",
+          "source": "app_store",
+          "rating": 2,
+          "date": "2026-06-29",
+          "themes": [
+            "ui_friction"
+          ],
+          "quote": "I’ve loved using Spotify for years, but please fix the Listening Stats bug. Since late last night, mine have completely disappeared and only show “Play some music to get started,” even though I listen every day. I’ve checked online, and I’m",
+          "url": "https://itunes.apple.com/gb/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 6,
+          "id": "a94a4c6608c4",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-25",
+          "themes": [
+            "repetitive_recommendations",
+            "algorithm_pushes_popular"
+          ],
+          "quote": "Some people can’t afford premium and there’s nothing that can kill your vibe better than the repetitive adds so how about you do 1 day every fortnight that is the same as premium rather than offering 3 months free when you go premium.Try to",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 7,
+          "id": "fdf9f7937929",
+          "source": "app_store",
+          "rating": 4,
+          "date": "2026-06-22",
+          "themes": [
+            "ui_friction"
+          ],
+          "quote": "A great selection of audiobooks and music. Very intelligently curated playlists & suggestions. I would, however, like to have better control over how I view my options. I find the opening Home page is very cluttered these days and, in parti",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 8,
+          "id": "99945a5e3d87",
+          "source": "app_store",
+          "rating": 5,
+          "date": "2026-06-21",
+          "themes": [
+            "poor_genre_exploration"
+          ],
+          "quote": "Great for streaming music, podcasts and various audiobooks, although I feel the ads are too frequent (Every 2-3 songs) but I can’t complain— the features are quite good (such as blends, playlists made for you by spotify, spotify wrapped etc",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 9,
+          "id": "82a871c93390",
+          "source": "app_store",
+          "rating": 2,
+          "date": "2026-06-28",
+          "themes": [
+            "no_control_over_recs",
+            "non_discovery"
+          ],
+          "quote": "I understand having a premium version and a free version, but I don’t understand making the free version completely unuseable for being abroad??? In my case, I ALWAYS use a VPN as to ensure my E-safety, but with this application, I now can’",
+          "url": "https://itunes.apple.com/gb/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 10,
+          "id": "2af5f1e42062",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-22",
+          "themes": [
+            "no_control_over_recs",
+            "ui_friction"
+          ],
+          "quote": "I’ve been using Spotify Free, and I’m frustrated that I was unable to play the songs I wanted because of playback restrictions. I understand that Premium offers additional features, but being told to wait until tomorrow or pay just to liste",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 11,
+          "id": "0912b7c16352",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-24",
+          "themes": [
+            "no_control_over_recs",
+            "algorithm_pushes_popular"
+          ],
+          "quote": "This is the kind of app that offers a “premium” subscription that just solves problems it intentionally creates. Why do I listen to two minutes of advertisements and then get put onto an artist I wasn’t even trying to listen to in the first",
+          "url": "https://itunes.apple.com/gb/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 12,
+          "id": "d7c1652744d5",
+          "source": "app_store",
+          "rating": 2,
+          "date": "2026-06-29",
+          "themes": [
+            "no_control_over_recs",
+            "ui_friction"
+          ],
+          "quote": "I really love Spotify but when I tried to skip a song it said you’ve used 6 skips per hour. What do you mean, do I really need to pay to skip a song cut through it and go back to listen to what played before?!?! And I can’t even choose the ",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        }
+      ],
+      "usedFilters": {
+        "discoveryRelated": true
+      }
+    },
+    {
+      "question": "What causes users to repeatedly listen to the same content?",
+      "answer": "Users are repeatedly listening to the same content on Spotify due to several factors related to the app's algorithm and user experience. \n\n1. **Repetitive Song Play**: Many users report that the same songs are played repeatedly, even when they have a large playlist. For instance, one user mentions, \"despite having over 1 thousand songs on my playlist the same songs come on lots during shuffle\" [4]. Another user states, \"the same songs are played back to back instead of new songs\" [3]. This suggests that the algorithm does not effectively diversify song selection, leading to a repetitive listening experience.\n\n2. **Algorithm Limitations**: Users express frustration with the algorithm's inability to adapt to their preferences. One reviewer notes that the AI DJ keeps playing the same content, indicating a lack of variety in suggestions [5]. Additionally, another user mentions that the algorithm continues to suggest podcasts and songs they have previously dismissed, which contributes to a feeling of stagnation in content discovery [11].\n\n3. **Autoplay and Random Suggestions**: The autoplay feature appears to exacerbate the issue, as users report that once they listen to certain content, it continues to play similar or the same content repeatedly. For example, one user complains, \"If you ever listen to a podcast etc., and decide you don’t like it - it will play it up next for the rest of your life\" [1]. This leads to a frustrating experience where users feel trapped in a loop of content they do not want to hear again.\n\nOverall, the combination of repetitive song play, algorithm limitations, and persistent autoplay features contributes to users repeatedly listening to the same content.\n\nQuotes:\n- \"the same songs are played back to back instead of new songs\" [3].\n- \"despite having over 1 thousand songs on my playlist the same songs come on lots during shuffle\" [4].\n- \"the AI algo generating suggestions need to be improved\" [11].",
+      "citations": [
+        {
+          "n": 1,
+          "id": "f69bf6143464",
+          "source": "app_store",
+          "rating": 2,
+          "date": "2026-06-24",
+          "themes": [
+            "autoplay_loop"
+          ],
+          "quote": "If you ever listen to a podcast etc, and decide you don’t like it- it will play it up next for the rest of your life. There is no way to make it stop automatically playing or suggest it less. Either that, or it will restart a podcast you ha",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 2,
+          "id": "7f2d89f6126b",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-24",
+          "themes": [
+            "repetitive_recommendations"
+          ],
+          "quote": "Songs are very repetitive",
+          "url": "https://itunes.apple.com/in/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 3,
+          "id": "0eb532cd68ba",
+          "source": "app_store",
+          "rating": 5,
+          "date": "2026-06-23",
+          "themes": [
+            "repetitive_recommendations"
+          ],
+          "quote": "When I am listening to the songs which are not saved in my playlist, the same songs are played back to back instead of new songs. Pls check",
+          "url": "https://itunes.apple.com/in/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 4,
+          "id": "7f130eaa5bd7",
+          "source": "play_store",
+          "rating": 2,
+          "date": "2026-06-30",
+          "themes": [
+            "recs_too_similar"
+          ],
+          "quote": "despite having over 1 thousand songs on my playlist the same songs come on lots during shuffle. how is this possible?",
+          "url": "https://play.google.com/store/apps/details?id=com.spotify.music&reviewId=e871ee42-9423-49dc-a165-df5730bee45e"
+        },
+        {
+          "n": 5,
+          "id": "aa6c47d2c926",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-29",
+          "themes": [
+            "repetitive_recommendations"
+          ],
+          "quote": "Why the AI DJ keep playing the same stuff",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 6,
+          "id": "6f63181dcb33",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-24",
+          "themes": [
+            "repetitive_recommendations"
+          ],
+          "quote": "Ads are too frequent and run for very long and subscription is pricey. Repeats songs on my playlist each time I listen",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 7,
+          "id": "9c7f38355179",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-17",
+          "themes": [
+            "algorithm_pushes_popular",
+            "poor_genre_exploration"
+          ],
+          "quote": "Too many ads ruin the listening experience. Sometimes ads play after every song, and occasionally 2–3 ads run back-to-back for nearly 2 minutes. This is especially frustrating while driving, traveling, or working out. Please reduce ad frequ",
+          "url": "https://itunes.apple.com/in/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 8,
+          "id": "03dffaa30c1a",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-22",
+          "themes": [
+            "no_control_over_recs",
+            "recs_ignore_taste"
+          ],
+          "quote": "Ive used Spotify for years now and struggle to sleep without music, so Spotify was really good at first although recently ive had to move to YouTube Music because despite turning of the feature that it adds random songs onto my playlist it ",
+          "url": "https://itunes.apple.com/gb/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 9,
+          "id": "fffd3829cb89",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-19",
+          "themes": [
+            "repetitive_recommendations"
+          ],
+          "quote": "Il est difficile de découvrir du nouveau contenu, l’algorithme de l’application pousse toujours les même chansons dans les listes d’écoute. C’est dommage.",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 10,
+          "id": "c530915029c9",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-29",
+          "themes": [
+            "repetitive_recommendations"
+          ],
+          "quote": "No matter what settings you change to shuffle your songs - the algorithm with continue to play the same songs, even in the same order.",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 11,
+          "id": "0a80631e212a",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-29",
+          "themes": [
+            "recs_ignore_taste",
+            "no_control_over_recs"
+          ],
+          "quote": "The AI algo generating suggestions need to be improved b/c it fails to remove podcasts, songs that we clicked to try and do not like, and it keeps it there and suggests stuff we had already dismissed. Reddit and other platforms have similar",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 12,
+          "id": "b7fb51d32c54",
+          "source": "app_store",
+          "rating": 4,
+          "date": "2026-06-26",
+          "themes": [
+            "autoplay_loop"
+          ],
+          "quote": "Amazing app, except for Q4 2025 when it would autoplay this obscure artist that felt completely random but somehow happened to be the same one every time. Never again, please! Also, I wish there was an auto-generated Recently Played playlis",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        }
+      ],
+      "usedFilters": {
+        "discoveryRelated": true
+      }
+    },
+    {
+      "question": "Which user segments experience different discovery challenges?",
+      "answer": "Based on the reviews, different user segments experience distinct challenges with music discovery on Spotify:\n\n1. **Long-term Users**: Many long-term users express dissatisfaction with the algorithm's ability to provide fresh content. For instance, users like those in reviews [4] and [9] mention that the \"Discover Weekly\" and \"Release Radar\" features are repetitive, suggesting that these users are not finding new music that aligns with their tastes. Review [4] states, \"Your recommendations on discover weekly are a repeat of what I have constantly,\" indicating a struggle for variety.\n\n2. **New Users or Casual Users**: Some users, like those in reviews [2] and [3], highlight issues with the app's usability and the overwhelming number of features, which can hinder discovery. Review [2] notes that the app is \"totally bloated with features\" and \"hard to discover content,\" suggesting that new or casual users may find it difficult to navigate the platform effectively.\n\n3. **Users Seeking Specific Content**: Review [11] points out that some users are frustrated when specific artists or songs are unavailable, which can limit their discovery experience. This indicates that users who have particular preferences may face challenges in finding the content they desire.\n\n4. **Users Concerned with Algorithm Performance**: Several reviews, including [3] and [8], mention that the algorithm fails to learn from user behavior, continuing to suggest content that has been previously dismissed. This suggests that users who rely heavily on algorithmic recommendations are facing significant challenges in discovering new music that aligns with their preferences.\n\nIn summary, long-term users are frustrated with repetitive suggestions, new or casual users struggle with app usability, users seeking specific content are disappointed by unavailable tracks, and those relying on algorithmic recommendations find the suggestions unhelpful.\n\nVerbatim quotes:\n- \"Your recommendations on discover weekly are a repeat of what I have constantly.\" [4]\n- \"App is totally bloated with features, slow to load any content, slow to search, hard to find stuff, hard to discover content.\" [2]\n- \"The AI algo generating suggestions need to be improved.\" [3]",
+      "citations": [
+        {
+          "n": 1,
+          "id": "5ab9b5567750",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-25",
+          "themes": [
+            "ui_friction",
+            "recs_ignore_taste"
+          ],
+          "quote": "While I’m a long-term fan and heavy user of the platform, persistent dissatisfaction has accompanied the experience on 3 main points. Firstly the interface continues in a dated idea of how modern UI can be. Second, the home page and the sug",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 2,
+          "id": "a4b3d2ab71eb",
+          "source": "app_store",
+          "rating": 2,
+          "date": "2026-06-27",
+          "themes": [
+            "poor_genre_exploration",
+            "recs_ignore_taste"
+          ],
+          "quote": "App is totally bloated with features, slow to load any content, slow to search, hard to find stuff, hard to discover content. At times unusable",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 3,
+          "id": "0a80631e212a",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-29",
+          "themes": [
+            "recs_ignore_taste",
+            "no_control_over_recs"
+          ],
+          "quote": "The AI algo generating suggestions need to be improved b/c it fails to remove podcasts, songs that we clicked to try and do not like, and it keeps it there and suggests stuff we had already dismissed. Reddit and other platforms have similar",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 4,
+          "id": "fe6acfd4e914",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-30",
+          "themes": [
+            "repetitive_recommendations",
+            "stale_discover_weekly"
+          ],
+          "quote": "Your recommendations on discover weekly are a repeat of what I have constantly. Not sure what I’m paying for",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 5,
+          "id": "bcf62c491959",
+          "source": "app_store",
+          "rating": 5,
+          "date": "2026-06-21",
+          "themes": [
+            "poor_genre_exploration"
+          ],
+          "quote": "Was great has been declining with the tech issues and poor discoverability of new artists. But seems like it’s been getting better recently. Too many ads if you don’t pay to play though. But still accessible to everyone so not that bad..",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 6,
+          "id": "39cfc49bbc57",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-19",
+          "themes": [
+            "stale_discover_weekly"
+          ],
+          "quote": "Any possibility of going back to the old algorithm for suggestions? The current one is lacking.",
+          "url": "https://itunes.apple.com/de/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 7,
+          "id": "0049c5c20c56",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-16",
+          "themes": [
+            "recs_ignore_taste",
+            "algorithm_pushes_popular"
+          ],
+          "quote": "Selection of songs very bad especially play lists.the algorithm of selection very bad",
+          "url": "https://itunes.apple.com/in/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 8,
+          "id": "e471b68c7fc0",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-19",
+          "themes": [
+            "recs_too_similar"
+          ],
+          "quote": "After subscription suggestions and algorithm stopped working. I’m not satisfied with the song suggestions.",
+          "url": "https://itunes.apple.com/in/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 9,
+          "id": "8733a1d21e6f",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-28",
+          "themes": [
+            "repetitive_recommendations",
+            "stale_discover_weekly"
+          ],
+          "quote": "Wish it would give me more range in music not just repeat the same song over and over again. Discover weekly and release radar seems to be so repetitive and starting to get boring. Even the smart shuffle just cycles the same songs",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 10,
+          "id": "779b23afb5b4",
+          "source": "app_store",
+          "rating": 4,
+          "date": "2026-06-30",
+          "themes": [
+            "repetitive_recommendations",
+            "recs_too_similar"
+          ],
+          "quote": "I really like the app overall, but the shuffle feature is very inconsistent. I have a huge Liked Songs library, yet it feels like I hear the same tracks over and over. I’ll start playing a random song, and the queue is filled with songs I l",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 11,
+          "id": "c3871e10d3f9",
+          "source": "app_store",
+          "rating": 4,
+          "date": "2026-06-15",
+          "themes": [
+            "hard_to_find_new_artists"
+          ],
+          "quote": "Some particular artist/band/album/song which i want to listen are not on spotify may be owner had removed or deleted those content or specific data from the platform which mostly disappoints me .",
+          "url": "https://itunes.apple.com/in/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 12,
+          "id": "5274f7ccd728",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-30",
+          "themes": [
+            "autoplay_loop",
+            "poor_genre_exploration"
+          ],
+          "quote": "I’ve been using Spotify since 2018 and this app used to be great. Key word is used to. I feel as though in recent years it’s really gone down the drain with the quality. The randomized shuffle is no longer fully randomized and will loop son",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        }
+      ],
+      "usedFilters": {
+        "discoveryRelated": true
+      }
+    },
+    {
+      "question": "What unmet needs emerge consistently across reviews?",
+      "answer": "Several unmet needs emerge consistently across the reviews:\n\n1. **Algorithm Improvement**: Many users express dissatisfaction with the music recommendation algorithm. Reviews [1], [2], [3], [6], and [11] highlight that the current suggestions often repeat previously dismissed songs or fail to provide new and relevant content. For instance, review [3] states, \"Your recommendations on discover weekly are a repeat of what I have constantly,\" indicating a lack of variety in recommendations.\n\n2. **Shuffle Functionality**: Users report issues with the shuffle feature, which they feel does not provide a truly random selection of songs. Reviews [4], [5], and [8] mention that the shuffle plays the same songs repeatedly, with review [5] stating, \"the random is not random every day. It plays the same damn songs in a row in order.\"\n\n3. **User Interface and Experience**: There are complaints about the app's interface being outdated and not user-friendly. Review [6] mentions that the interface \"continues in a dated idea of how modern UI can be,\" while review [7] describes the app as \"totally bloated with features\" and \"hard to discover content.\"\n\n4. **Content Availability**: Some users express frustration over the availability of desired content, as noted in review [12], which states, \"sometimes it doesn’t have the music I want or story.\" This indicates a need for a broader library or better access to specific content.\n\n5. **Ad Experience**: Review [9] highlights dissatisfaction with the ad experience, suggesting that intrusive ads detract from the listening experience, which could drive users away.\n\nIn summary, users are looking for improvements in the recommendation algorithm, shuffle functionality, user interface, content availability, and ad management. \n\nQuotes:\n- \"The AI algo generating suggestions need to be improved\" [2].\n- \"It feels like I hear the same tracks over and over\" [4].\n- \"It is difficult to discover new content\" [11].",
+      "citations": [
+        {
+          "n": 1,
+          "id": "39cfc49bbc57",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-19",
+          "themes": [
+            "stale_discover_weekly"
+          ],
+          "quote": "Any possibility of going back to the old algorithm for suggestions? The current one is lacking.",
+          "url": "https://itunes.apple.com/de/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 2,
+          "id": "0a80631e212a",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-29",
+          "themes": [
+            "recs_ignore_taste",
+            "no_control_over_recs"
+          ],
+          "quote": "The AI algo generating suggestions need to be improved b/c it fails to remove podcasts, songs that we clicked to try and do not like, and it keeps it there and suggests stuff we had already dismissed. Reddit and other platforms have similar",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 3,
+          "id": "fe6acfd4e914",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-30",
+          "themes": [
+            "repetitive_recommendations",
+            "stale_discover_weekly"
+          ],
+          "quote": "Your recommendations on discover weekly are a repeat of what I have constantly. Not sure what I’m paying for",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 4,
+          "id": "779b23afb5b4",
+          "source": "app_store",
+          "rating": 4,
+          "date": "2026-06-30",
+          "themes": [
+            "repetitive_recommendations",
+            "recs_too_similar"
+          ],
+          "quote": "I really like the app overall, but the shuffle feature is very inconsistent. I have a huge Liked Songs library, yet it feels like I hear the same tracks over and over. I’ll start playing a random song, and the queue is filled with songs I l",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 5,
+          "id": "f93bd9459248",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-25",
+          "themes": [
+            "repetitive_recommendations",
+            "stale_discover_weekly"
+          ],
+          "quote": "I really like using the app and I don’t mind the monthly payments. I don’t think the increase is worth it though. Also, the random is not random every day. It plays the same damn songs in a row in order and doesn’t matter how you switch it.",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 6,
+          "id": "5ab9b5567750",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-25",
+          "themes": [
+            "ui_friction",
+            "recs_ignore_taste"
+          ],
+          "quote": "While I’m a long-term fan and heavy user of the platform, persistent dissatisfaction has accompanied the experience on 3 main points. Firstly the interface continues in a dated idea of how modern UI can be. Second, the home page and the sug",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 7,
+          "id": "a4b3d2ab71eb",
+          "source": "app_store",
+          "rating": 2,
+          "date": "2026-06-27",
+          "themes": [
+            "poor_genre_exploration",
+            "recs_ignore_taste"
+          ],
+          "quote": "App is totally bloated with features, slow to load any content, slow to search, hard to find stuff, hard to discover content. At times unusable",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 8,
+          "id": "5e6d0d722eec",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-21",
+          "themes": [
+            "autoplay_loop",
+            "recs_too_similar"
+          ],
+          "quote": "So I love the app generally but why can’t I scroll down to the bottom of the liked songs by artists to get to certain songs Why does it not play my full library when I put it on apparently I have 8000 songs at least yet my shuffle plays the",
+          "url": "https://itunes.apple.com/gb/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 9,
+          "id": "a94a4c6608c4",
+          "source": "app_store",
+          "rating": 1,
+          "date": "2026-06-25",
+          "themes": [
+            "repetitive_recommendations",
+            "algorithm_pushes_popular"
+          ],
+          "quote": "Some people can’t afford premium and there’s nothing that can kill your vibe better than the repetitive adds so how about you do 1 day every fortnight that is the same as premium rather than offering 3 months free when you go premium.Try to",
+          "url": "https://itunes.apple.com/au/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 10,
+          "id": "0a1af85bb9c1",
+          "source": "app_store",
+          "rating": 2,
+          "date": "2026-06-29",
+          "themes": [
+            "algorithm_pushes_popular"
+          ],
+          "quote": "Needs more humans and less AI",
+          "url": "https://itunes.apple.com/us/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 11,
+          "id": "fffd3829cb89",
+          "source": "app_store",
+          "rating": 3,
+          "date": "2026-06-19",
+          "themes": [
+            "repetitive_recommendations"
+          ],
+          "quote": "Il est difficile de découvrir du nouveau contenu, l’algorithme de l’application pousse toujours les même chansons dans les listes d’écoute. C’est dommage.",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        },
+        {
+          "n": 12,
+          "id": "186ec12843f7",
+          "source": "app_store",
+          "rating": 4,
+          "date": "2026-06-28",
+          "themes": [
+            "no_control_over_recs"
+          ],
+          "quote": "It is a very good app to listen to music, I love it, and I use it everyday, you can even listen to stories on it BUT, sometimes it doesn’t have the music I want or story, and we have to pay, and when I find a story I want to listen to, it w",
+          "url": "https://itunes.apple.com/ca/review?id=324684580&type=Purple%20Software"
+        }
+      ],
+      "usedFilters": {
+        "discoveryRelated": true
+      }
+    }
+  ]
+}

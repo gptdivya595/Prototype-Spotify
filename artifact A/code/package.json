@@ -1,0 +1,29 @@
+{
+  "name": "spotify-review-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Artifact A - Spotify Review Analysis Engine (RAG)",
+  "scripts": {
+    "scrape": "node scripts/scrape.mjs",
+    "scrape:small": "node scripts/scrape.mjs --small",
+    "enrich": "node scripts/enrich.mjs",
+    "index": "node scripts/index.mjs",
+    "query": "node scripts/query.mjs",
+    "ask": "node scripts/ask.mjs",
+    "insights": "node scripts/insights.mjs",
+    "build:data": "node scripts/enrich.mjs && node scripts/index.mjs && node scripts/insights.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@upstash/vector": "^1.2.3",
+    "app-store-scraper": "^0.18.0",
+    "google-play-scraper": "^10.0.0",
+    "next": "^14.2.5",
+    "openai": "^4.104.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
