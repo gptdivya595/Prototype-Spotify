@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "description": "Artifact A - Spotify Review Analysis Engine (RAG)",
+  "engines": {
+    "node": ">=18.18.0"
+  },
   "scripts": {
     "scrape": "node scripts/scrape.mjs",
     "scrape:small": "node scripts/scrape.mjs --small",

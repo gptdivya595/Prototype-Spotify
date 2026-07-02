@@ -21,9 +21,13 @@ Both platforms need that folder as the **root/base directory**.
 
 ## Option A — Vercel (recommended for Next.js)
 
+A ready-made **`artifact A/code/vercel.json`** is included (framework, build/install
+commands, and per-route function `maxDuration`). You only need to point Vercel at the folder.
+
 1. Push the repo to GitHub.
 2. In Vercel → **Add New Project** → import the repo.
 3. **Root Directory**: set to `artifact A/code` (Vercel → Settings → General → Root Directory).
+   `vercel.json` lives here and is picked up automatically.
 4. Framework preset: **Next.js** (auto-detected). Build = `next build`, Output = `.next`.
 5. **Environment Variables** (Settings → Environment Variables), Production + Preview:
    | Key | Value |
@@ -66,26 +70,11 @@ Render hosts it as a **Web Service** (Node).
 - Cold starts on the free tier can take ~30s; fine for a demo.
 - Same data caveat: `data/vectors.json` + `data/insights.json` must be committed.
 
-### Optional: render.yaml (Infrastructure-as-Code)
-Place at repo root if you want one-click Blueprint deploys:
-```yaml
-services:
-  - type: web
-    name: spotify-review-engine
-    runtime: node
-    rootDir: artifact A/code
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
-    envVars:
-      - key: OPENAI_API_KEY
-        sync: false
-      - key: DEFAULT_MODEL
-        value: gpt-4o-mini
-      - key: SYNTHESIS_MODEL
-        value: gpt-4o-mini
-      - key: EMBEDDING_MODEL
-        value: text-embedding-3-small
-```
+### One-click Blueprint (render.yaml)
+A **`render.yaml`** is committed at the **repo root** (with `rootDir: "artifact A/code"`,
+build/start commands, health check, and env var placeholders). To use it:
+Render → **New** → **Blueprint** → pick this repo → set `OPENAI_API_KEY` when prompted.
+This replaces steps 2–8 above.
 
 ---
 

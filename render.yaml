@@ -1,0 +1,29 @@
+# Render Blueprint — deploys Artifact A (Spotify Review Discovery Engine).
+# Docs: https://render.com/docs/blueprint-spec
+# Usage: Render Dashboard -> New -> Blueprint -> pick this repo. Set OPENAI_API_KEY when prompted.
+services:
+  - type: web
+    name: spotify-review-engine
+    runtime: node
+    plan: free
+    rootDir: "artifact A/code"
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    autoDeploy: true
+    healthCheckPath: /api/insights
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false            # set manually in the Render dashboard (secret)
+      - key: DEFAULT_MODEL
+        value: gpt-4o-mini
+      - key: SYNTHESIS_MODEL
+        value: gpt-4o-mini
+      - key: EMBEDDING_MODEL
+        value: text-embedding-3-small
+      - key: NODE_VERSION
+        value: "20"
+      # Optional — only if you switch from the local JSON store to Upstash Vector:
+      # - key: UPSTASH_VECTOR_REST_URL
+      #   sync: false
+      # - key: UPSTASH_VECTOR_REST_TOKEN
+      #   sync: false
