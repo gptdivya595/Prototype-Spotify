@@ -20,7 +20,7 @@ later guided results comparable to a real baseline rather than a weaker straw-ma
 
 1. Five to six problem interviews with active discovery seekers.
 2. Product and study assumptions log.
-3. Next.js/TypeScript project foundation under `artifact B/code`.
+3. Next.js/TypeScript project foundation under `artifact-b/code`.
 4. Versioned catalog schema and the first clean 300–500-track dataset.
 5. Taste-anchor selection and unsteered baseline condition.
 6. Session, condition-order, event, and metric contracts.
@@ -107,7 +107,7 @@ condition. It must be credible enough that the guided condition can lose.
 ## Deliverables
 
 - Interview notes, synthesis, counterevidence, and explicit continue/pivot/stop decision.
-- `artifact B/code` project skeleton with lint, typecheck, test, and build commands.
+- `artifact-b/code` project skeleton with lint, typecheck, test, and build commands.
 - Validated `catalog.json` and `catalog.manifest.json`.
 - Catalog coverage report and known limitations.
 - Taste-anchor flow using prepared and manual options.

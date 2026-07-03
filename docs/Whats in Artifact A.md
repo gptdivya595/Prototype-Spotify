@@ -64,7 +64,7 @@ enabled—without exposing secrets.
 
 ### Static evidence brief
 
-`artifact B/code/static/artifact-A-summary.html` is a self-contained, read-only summary of the
+`artifact-b/code/public/artifact-A-summary.html` is a self-contained, read-only summary of the
 corpus, RAG findings, Smart Shuffle follow-up, problem hypothesis, and Artifact B decision. It can
 be served without Next.js, OpenAI, a vector database, or environment variables. An `index.html`
 entry point makes the same brief available at the static server root.

@@ -35,7 +35,7 @@ appeared in conversation, a screenshot, terminal output, or source control befor
 From the repository root:
 
 ```bash
-cd "artifact B/code"
+cd artifact-b/code
 npm ci
 npm run catalog:manifest
 npm run validate
@@ -47,13 +47,13 @@ expected to fail for the current 50-track seed.
 
 ## Deploy to Vercel
 
-Vercel configuration is stored in `artifact B/code/vercel.json`. Vercel expects that file in the
-configured project root, so the project Root Directory must be `artifact B/code`.
+Vercel configuration is stored in `artifact-b/code/vercel.json`. Vercel expects that file in the
+configured project root, so the project Root Directory must be `artifact-b/code`.
 
 ### Dashboard setup
 
 1. Import this repository into Vercel.
-2. Set **Root Directory** to `artifact B/code`.
+2. Set **Root Directory** to `artifact-b/code`.
 3. Keep **Framework Preset** as Next.js.
 4. The checked-in configuration uses:
 
@@ -80,13 +80,13 @@ configured project root, so the project Root Directory must be `artifact B/code`
 Run the CLI from the code project root so `vercel.json` is discovered correctly:
 
 ```bash
-cd "artifact B/code"
+cd artifact-b/code
 npx vercel
 npx vercel --prod
 ```
 
 Do not run `vercel` from the repository root unless the CLI project is explicitly configured with
-`artifact B/code` as its root.
+`artifact-b/code` as its root.
 
 ### Evaluation settings on Vercel
 
@@ -108,21 +108,20 @@ Redeploy after changing environment variables and verify `eventStoreDurable`,
 The Artifact B [render.yaml](../render.yaml) defines a Node web service and explicitly sets:
 
 ```yaml
-rootDir: "artifact B/code"
+rootDir: artifact-b/code
 buildCommand: npm ci && npm run catalog:manifest && npm run typecheck && npm test && npm run build
 startCommand: npm run start -- -p $PORT
 healthCheckPath: /api/health
 ```
 
 This repository already has a root Blueprint for Artifact A. During Render setup, select the
-custom Blueprint path `artifact B/render.yaml`. The quoted `rootDir` is important because this
-repository path contains a space.
+custom Blueprint path `artifact-b/render.yaml`.
 
 ### Blueprint setup
 
 1. Push the repository to a Git provider connected to Render.
 2. In Render, choose **New → Blueprint**.
-3. Set the Blueprint file path to `artifact B/render.yaml`.
+3. Set the Blueprint file path to `artifact-b/render.yaml`.
 4. Review the `discovery-compass` web service.
 5. Apply the Blueprint.
 6. Wait for `/api/health` to return HTTP 200.
@@ -144,7 +143,7 @@ If not using the Blueprint, create a **Web Service** with:
 |---|---|
 | Runtime | Node |
 | Region | Singapore |
-| Root Directory | `artifact B/code` |
+| Root Directory | `artifact-b/code` |
 | Build Command | `npm ci && npm run catalog:manifest && npm run typecheck && npm test && npm run build` |
 | Start Command | `npm run start -- -p $PORT` |
 | Health Check Path | `/api/health` |
@@ -156,7 +155,7 @@ Add the same preview or evaluation variables described above through Render's en
 If the Render CLI is installed and authenticated, run from the repository root:
 
 ```bash
-render blueprints validate "artifact B/render.yaml"
+render blueprints validate artifact-b/render.yaml
 ```
 
 The Blueprint can also be reviewed through Render's Blueprint creation screen before it creates or
@@ -166,12 +165,12 @@ changes a service.
 
 Evaluation mode uses the official serverless PostgreSQL adapter already included in the codebase.
 The application creates the `discovery_compass_events` table and its session/time index on first
-use. The equivalent SQL is available at `artifact B/code/scripts/neon-schema.sql` for manual review.
+use. The equivalent SQL is available at `artifact-b/code/scripts/neon-schema.sql` for manual review.
 
 For manual provisioning:
 
 ```bash
-psql "$DATABASE_URL" -f "artifact B/code/scripts/neon-schema.sql"
+psql "$DATABASE_URL" -f artifact-b/code/scripts/neon-schema.sql
 ```
 
 Set a retention period and delete rehearsal/test sessions before collecting participant data.
@@ -225,7 +224,7 @@ open.
 
 ### Build starts from the repository root
 
-Set Vercel Root Directory or Render `rootDir` to `artifact B/code`. A build from the repository root
+Set Vercel Root Directory or Render `rootDir` to `artifact-b/code`. A build from the repository root
 will not find the Artifact B `package.json`.
 
 ### Render starts but cannot receive traffic

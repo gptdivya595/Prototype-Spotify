@@ -6,7 +6,7 @@
   "layout": {
     "template": "Validation ladder plus three chart placeholders",
     "left": "Research sequence and paired test design",
-    "right": "Google Form link placeholder and chart frames",
+    "right": "Live Google Form link and chart frames",
     "footer": "All survey charts remain blank until responses are collected"
   },
   "content": {
@@ -41,11 +41,11 @@
     },
     "survey_plan": {
       "instrument": "survey-questionnaire.json",
-      "google_form_status": "planned_not_created",
-      "google_form_url": null,
-      "hyperlink_placeholder": "INSERT_GOOGLE_FORM_URL_AFTER_CREATION",
+      "google_form_status": "published_collecting_responses",
+      "google_form_url": "https://forms.gle/hydSSnu9THPnjnsd9",
+      "hyperlink_label": "Open the Discovery Compass validation survey",
       "response_target_before_directional_charting": 30,
-      "note": "The questionnaire is ready for later Google Form creation. This deck must not imply responses exist."
+      "note": "The form is live, but this deck must not imply findings exist until responses are exported, qualified, and cleaned."
     },
     "chart_placeholders": [
       {
@@ -84,10 +84,11 @@
   "speaker_notes": [
     "Do not create a pie chart from a multi-select question; use a horizontal bar for failure modes.",
     "Survey results are directional context, while the paired prototype tests behavior.",
-    "Insert the live Google Form hyperlink only after the form is created and verified."
+    "The live Google Form is verified; keep all chart placeholders blank until qualified responses are analysed."
   ],
   "sources": [
     { "label": "Prepared survey instrument", "path": "survey-questionnaire.json" },
+    { "label": "Live Google Form", "url": "https://forms.gle/hydSSnu9THPnjnsd9" },
     { "label": "Validation sequence", "path": "../../../docs/Artifact B Recommendation.md" },
     { "label": "Phase 5 evaluation plan", "path": "../../phases/phase_5.md" }
   ]

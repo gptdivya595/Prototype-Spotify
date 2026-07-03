@@ -1,12 +1,12 @@
 # Render Blueprint for Discovery Compass (Artifact B).
-# During Blueprint setup, select this custom path: artifact B/render.yaml
+# During Blueprint setup, select this custom path: artifact-b/render.yaml
 services:
   - type: web
     name: discovery-compass
     runtime: node
     plan: free
     region: singapore
-    rootDir: "artifact B/code"
+    rootDir: artifact-b/code
     buildCommand: npm ci && npm run catalog:manifest && npm run typecheck && npm test && npm run build
     startCommand: npm run start -- -p $PORT
     healthCheckPath: /api/health

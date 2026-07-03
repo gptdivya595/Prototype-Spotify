@@ -1,6 +1,6 @@
 # Artifact B — 10-slide content package
 
-This folder is the source package for a decision-oriented 10-slide deck. It deliberately contains **content and visual assets only**: no PDF, PPTX, Google Form, or fabricated survey result has been created yet.
+This folder is the source package for a decision-oriented 10-slide deck. It deliberately contains **content and visual assets only**: no PDF, PPTX, or fabricated survey result has been created. The validation survey is published at [forms.gle/hydSSnu9THPnjnsd9](https://forms.gle/hydSSnu9THPnjnsd9).
 
 ## Narrative
 
@@ -69,7 +69,7 @@ node validate-content.mjs
 
 ## Next production steps
 
-1. Approve survey wording and create the Google Form; add its URL to slide 9 and the questionnaire file.
-2. Field and clean the survey; populate only the three waiting chart datasets.
+1. Field and clean the published Google Form; populate only the three waiting chart datasets.
+2. Report the qualified response count and segment cuts before interpreting aggregate results.
 3. Run the paired baseline-versus-Compass prototype study.
 4. Revise claims using observed results, then compose the 10 slides and export the PDF.

@@ -1,9 +1,9 @@
 {
   "instrument_name": "Spotify Discovery Intent & Control Validation Survey",
   "version": "1.0-draft",
-  "status": "ready_for_google_forms_build_not_yet_fielded",
-  "google_form_url": null,
-  "owner_note": "Create the Google Form only after the wording and response options are approved. Do not populate charts with synthetic responses.",
+  "status": "published_collecting_responses",
+  "google_form_url": "https://forms.gle/hydSSnu9THPnjnsd9",
+  "owner_note": "The Google Form is published and verified. Do not populate charts until real responses are exported, qualified, and cleaned.",
   "research_decision": "Should Artifact B continue from an interaction prototype into a Spotify-connected pilot for active discovery seekers?",
   "objectives": [
     "Measure how often active Spotify listeners intentionally seek unfamiliar music and where the journey fails.",

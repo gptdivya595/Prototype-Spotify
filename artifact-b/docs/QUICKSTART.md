@@ -1,6 +1,6 @@
 # Discovery Compass Quickstart
 
-This guide runs the Artifact B Next.js application from `artifact B/code` in local development or
+This guide runs the Artifact B Next.js application from `artifact-b/code` in local development or
 local production mode.
 
 ## Prerequisites
@@ -15,7 +15,7 @@ parsing, grounded template explanations, and an in-memory event store.
 ## 1. Install
 
 ```bash
-cd "artifact B/code"
+cd artifact-b/code
 npm ci
 ```
 

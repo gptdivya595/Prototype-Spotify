@@ -17,7 +17,7 @@ is the decision process, and **Discovery Compass** is the proposed Artifact B pr
    and experiment.
 
 Implementation planning continues in the
-[Discovery Compass architecture](../artifact%20B/docs/architecture.md) and its five phased plans.
+[Discovery Compass architecture](../artifact-b/docs/architecture.md) and its five phased plans.
 
 The zero-runtime review surface is
-[`../artifact B/code/static/artifact-A-summary.html`](../artifact%20B/code/static/artifact-A-summary.html).
+[`../artifact-b/code/public/artifact-A-summary.html`](../artifact-b/code/public/artifact-A-summary.html).

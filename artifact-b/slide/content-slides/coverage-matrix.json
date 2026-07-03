@@ -15,7 +15,7 @@
     {"requirement": "Survey", "slides": [9], "supporting_file": "survey-questionnaire.json", "treatment": "22-question branch-ready instrument with screeners, recent-event recall, concept tests, recruitment, and thresholds"},
     {"requirement": "Three solutions with Impact, Confidence, Effort", "slides": [7], "treatment": "Discovery Compass, Transparent Discovery Feed, and Taste Profile Repair scored with an explicit formula"},
     {"requirement": "Prioritization", "slides": [7], "treatment": "Directional ICE ranking, rationale, and sensitivity rule"},
-    {"requirement": "Google Form", "slides": [9], "supporting_file": "survey-questionnaire.json", "treatment": "Instrument ready to build; URL and results deliberately pending"},
+    {"requirement": "Google Form", "slides": [9], "supporting_file": "survey-questionnaire.json", "url": "https://forms.gle/hydSSnu9THPnjnsd9", "treatment": "Published validation survey linked; results deliberately pending qualification and analysis"},
     {"requirement": "Charts and pie-chart space", "slides": [3, 5, 7, 9], "supporting_file": "chart-data.json", "treatment": "Observed charts plus three labelled, empty survey chart contracts"},
     {"requirement": "User journey", "slides": [6], "supporting_file": "diagrams/user-journey.mmd", "treatment": "Trigger-to-outcome journey with intervention at intent expression"},
     {"requirement": "Interaction-flow Mermaid diagram", "slides": [8], "supporting_file": "diagrams/interaction-flow.mmd", "treatment": "Listener, UI, AI parser, deterministic ranker, and candidate catalog sequence"},

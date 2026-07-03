@@ -430,7 +430,7 @@ route is not ready, or an evaluation deployment lacks durable event storage.
 ## 19. Proposed code layout
 
 ```text
-artifact B/
+artifact-b/
   code/
     app/
       api/
@@ -464,7 +464,7 @@ artifact B/
   phases/
 ```
 
-The existing `code/static/` Discovery Evidence Lab summary remains a research handoff asset. It
+The existing `code/public/` Discovery Evidence Lab summary remains a research handoff asset. It
 is not part of the Discovery Compass runtime.
 
 ## 20. Architecture decisions

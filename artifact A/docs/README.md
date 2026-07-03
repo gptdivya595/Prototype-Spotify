@@ -26,7 +26,7 @@ The prototype is technically complete locally. Human label/citation evaluation, 
 interviews, and a verified public Vercel deployment are still open gates.
 
 A zero-runtime summary is also available at
-`../../artifact B/code/static/artifact-A-summary.html`. It packages the evidence and product
+`../../artifact-b/code/public/artifact-A-summary.html`. It packages the evidence and product
 handoff as one self-contained HTML file for review or static deployment.
 
 ## Experience

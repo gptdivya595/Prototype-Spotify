@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 
 type Condition = "baseline" | "guided";
-type AnchorOption = {
+export type AnchorOption = {
   id: string;
   title: string;
   artist: string;
@@ -353,25 +353,24 @@ export function DiscoveryStudy({
       <div className="shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Working experiment</p>
-            <h2 id="study-title">Compare an honest baseline with guided discovery.</h2>
+            <p className="eyebrow">Build your mix</p>
+            <h2 id="study-title">Tune the next set.</h2>
           </div>
-          <p>Both conditions use the same catalog, taste anchor, and ten-card result. The guided
-            condition adds approved session intent, novelty, and immediate steering.</p>
+          <p>Choose a few tracks that feel like you, then describe the direction you want right now.</p>
         </div>
 
         <div className="condition-switch" aria-label="Experiment condition">
           <button type="button" aria-pressed={condition === "guided"} onClick={() => selectCondition("guided")}>
-            Guided <span>Intent + steering</span>
+            Compass <span>Intent + steering</span>
           </button>
           <button type="button" aria-pressed={condition === "baseline"} onClick={() => selectCondition("baseline")}>
-            Baseline <span>Taste anchor only</span>
+            Classic <span>Taste anchor only</span>
           </button>
         </div>
 
         <div className="study-grid">
           <div className="study-step">
-            <p className="step-label"><span>01</span> Taste anchor</p>
+            <p className="step-label"><span>01</span> Your taste</p>
             <label htmlFor="anchor-filter">Find a track, artist, or genre</label>
             <input id="anchor-filter" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Try indie, Hindi, jazz…" />
             <p className="selection-count"><strong>{selected.length}/5</strong> selected</p>
@@ -386,7 +385,7 @@ export function DiscoveryStudy({
           </div>
 
           <div className="study-step">
-            <p className="step-label"><span>02</span> {condition === "guided" ? "Current intent" : "Baseline rules"}</p>
+            <p className="step-label"><span>02</span> {condition === "guided" ? "Set the vibe" : "Classic rules"}</p>
             {condition === "guided" ? (
               <>
                 <label htmlFor="guided-intent">What fits now?</label>
@@ -421,16 +420,16 @@ export function DiscoveryStudy({
         <div className="generate-row">
           <p role="status" aria-live="polite">{status}</p>
           <button className="primary-action" type="button" onClick={generateSet} disabled={loading || selected.length < 3 || (condition === "guided" && !intentApproved)}>
-            {loading ? "Working…" : `Generate ${condition} set`}
+            {loading ? "Building your mix…" : condition === "guided" ? "Build my Compass mix" : "Shuffle from my anchors"}
           </button>
         </div>
 
         {changeSummary && <p className="change-summary" role="status"><strong>What changed:</strong> {changeSummary}</p>}
 
         {recommendations.length > 0 && (
-          <div className="recommendation-results">
+          <div className="recommendation-results" id="results">
             <div className="results-heading">
-              <div><p className="eyebrow">{condition} result</p><h3>Ten candidates, one inspectable direction.</h3></div>
+              <div><p className="eyebrow">Made for this moment</p><h3>Your next direction.</h3></div>
               {condition === "guided" && (
                 <button className="adventure-action" type="button" disabled={loading} onClick={() => applyGuidedFeedback({ type: "more-adventurous" })}>More adventurous</button>
               )}
@@ -440,6 +439,7 @@ export function DiscoveryStudy({
                 const saved = condition === "guided" ? guidedState?.savedTrackIds.includes(track.id) : savedBaseline.includes(track.id);
                 return (
                   <li key={`${condition}-${track.id}-${guidedState?.iteration ?? 0}`}>
+                    <div className="album-art" aria-hidden="true"><span>{String(index + 1).padStart(2, "0")}</span><i /><i /><i /></div>
                     <div className="recommendation-topline">
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       {track.noveltyLabel && <small>{track.noveltyLabel.replaceAll("-", " ")}</small>}
@@ -453,7 +453,7 @@ export function DiscoveryStudy({
                       <button type="button" aria-pressed={saved} onClick={() => condition === "guided" ? applyGuidedFeedback({ type: "save", trackId: track.id }) : saveBaseline(track)}>{saved ? "Saved" : "Save"}</button>
                       {condition === "guided" && <button type="button" onClick={() => applyGuidedFeedback({ type: "reject", trackId: track.id })}>Not for me</button>}
                       {condition === "guided" && <button type="button" onClick={() => applyGuidedFeedback({ type: "more-like-this", trackId: track.id })}>More like this</button>}
-                      <a href={track.sourceUrl} target="_blank" rel="noreferrer">Source</a>
+                      <a href={track.sourceUrl} target="_blank" rel="noreferrer">Open ↗</a>
                     </div>
                   </li>
                 );
@@ -461,8 +461,8 @@ export function DiscoveryStudy({
             </ol>
             <div className="condition-survey" aria-labelledby="survey-title">
               <div>
-                <p className="eyebrow">Condition check</p>
-                <h4 id="survey-title">Rate the set before switching.</h4>
+                <p className="eyebrow">Quick check</p>
+                <h4 id="survey-title">How did this mix feel?</h4>
                 <p>These structured ratings are stored; current-intent prose is not.</p>
               </div>
               <div className="survey-fields">

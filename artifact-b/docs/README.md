@@ -8,7 +8,7 @@ Artifact B is not a Spotify clone, playback client, production recommender, or g
 
 ## Current result
 
-The five technical phases are implemented as one Next.js application under `artifact B/code`:
+The five technical phases are implemented as one Next.js application under `artifact-b/code`:
 
 - a controlled baseline and guided condition using the same catalog and cards;
 - editable session-intent parsing with deterministic fallback;
@@ -23,7 +23,7 @@ interviews, hosted database configuration, usability test, and paired evaluation
 ## Start locally
 
 ```bash
-cd "artifact B/code"
+cd artifact-b/code
 npm ci
 cp .env.example .env.local
 npm run catalog:manifest
@@ -59,15 +59,15 @@ technical mode because the application has complete deterministic and in-memory 
 
 | File | Target |
 |---|---|
-| [`../code/vercel.json`](../code/vercel.json) | Vercel project whose Root Directory is `artifact B/code` |
-| [`../render.yaml`](../render.yaml) | Artifact B Render Blueprint with `rootDir: "artifact B/code"` |
+| [`../code/vercel.json`](../code/vercel.json) | Vercel project whose Root Directory is `artifact-b/code` |
+| [`../render.yaml`](../render.yaml) | Artifact B Render Blueprint with `rootDir: "artifact-b/code"` |
 | [`../code/.env.example`](../code/.env.example) | Local and hosted environment-variable contract |
 | [`../code/scripts/neon-schema.sql`](../code/scripts/neon-schema.sql) | Optional manual event-table provisioning |
 
 ## Validation commands
 
 ```bash
-cd "artifact B/code"
+cd artifact-b/code
 npm run validate
 npm audit --omit=dev
 ```

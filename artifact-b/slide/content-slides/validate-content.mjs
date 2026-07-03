@@ -72,7 +72,7 @@ for (const [index, filename] of manifest.slides.entries()) {
 
 const questionCount = survey.sections.reduce((sum, section) => sum + section.questions.length, 0);
 check("survey_question_count", questionCount === 22, `${questionCount} questions`);
-check("survey_not_fabricated", survey.google_form_url === null && survey.status.includes("not_yet_fielded"), survey.status);
+check("survey_published", survey.google_form_url === "https://forms.gle/hydSSnu9THPnjnsd9" && survey.status === "published_collecting_responses", survey.status);
 check("survey_has_branching", survey.sections.some((section) => section.questions.some((question) => question.branching)), "branch logic present");
 check("survey_has_decision_thresholds", Object.keys(survey.decision_thresholds).length === 3, Object.keys(survey.decision_thresholds).join(", "));
 

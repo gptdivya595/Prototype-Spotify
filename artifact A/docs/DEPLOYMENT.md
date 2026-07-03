@@ -42,14 +42,14 @@ Use this when reviewers only need findings and the Artifact B handoff. It requir
 runtime, OpenAI key, vector database, or server function.
 
 ```bash
-cd "artifact B/code/static"
+cd artifact-b/code/public
 python3 -m http.server 3099
 ```
 
 Open `http://localhost:3099/`. The root `index.html` forwards to the self-contained
 `artifact-A-summary.html` report.
 
-For a static Vercel deployment, use `artifact B/code/static` as the project root and select the
+For a static Vercel deployment, use `artifact-b/code/public` as the project root and select the
 Other framework preset with no build command. The static option intentionally excludes live
 Ask, Collect, and ingestion capabilities.
 

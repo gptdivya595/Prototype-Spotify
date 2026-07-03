@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-07-02T10:07:19.718Z",
+  "generated_on": "2026-07-02T17:31:21.473Z",
   "status": "pass",
   "summary": {
     "checks": 134,
@@ -486,7 +486,7 @@
     {
       "name": "slide_9_sources",
       "status": "pass",
-      "detail": "3 sources"
+      "detail": "4 sources"
     },
     {
       "name": "slide_9_visuals",
@@ -589,9 +589,9 @@
       "detail": "22 questions"
     },
     {
-      "name": "survey_not_fabricated",
+      "name": "survey_published",
       "status": "pass",
-      "detail": "ready_for_google_forms_build_not_yet_fielded"
+      "detail": "published_collecting_responses"
     },
     {
       "name": "survey_has_branching",

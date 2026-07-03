@@ -24,6 +24,10 @@ output/playwright/
 *.log
 **/*.log
 
+# OS metadata
+.DS_Store
+**/.DS_Store
+
 # large / re-generatable scraped data (serving artifacts vectors.json & insights.json are kept)
 # **/data/reviews.raw.json
 # **/data/reviews.enriched.json
