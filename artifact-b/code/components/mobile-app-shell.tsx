@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { DiscoveryStudy, type AnchorOption } from "@/components/discovery-study";
+import { GuideRail } from "@/components/guide-rail";
 
 function SpotifyMark({ className = "" }: { className?: string }) {
   return (
@@ -24,16 +25,19 @@ export function MobileAppShell({
   counts: { tracks: number; artists: number; languages: number };
 }) {
   const [opened, setOpened] = useState(false);
+  const screenRef = useRef<HTMLDivElement>(null);
 
   return (
     <main className="web-stage">
       <div className="ambient-orb ambient-orb-one" aria-hidden="true" />
       <div className="ambient-orb ambient-orb-two" aria-hidden="true" />
 
+      <GuideRail screenRef={screenRef} opened={opened} />
+
       <section className="phone-device" aria-label="Discovery Compass mobile application preview">
         <span className="phone-button phone-button-left" aria-hidden="true" />
         <span className="phone-button phone-button-right" aria-hidden="true" />
-        <div className="phone-screen">
+        <div className="phone-screen" ref={screenRef}>
           <div className="ios-status" aria-hidden="true">
             <span>9:41</span>
             <span className="dynamic-island" />
@@ -41,7 +45,7 @@ export function MobileAppShell({
           </div>
 
           {!opened ? (
-            <div className="app-splash">
+            <div className="app-splash" data-guide="welcome">
               <div className="splash-glow" aria-hidden="true" />
               <SpotifyMark className="splash-logo" />
               <p className="splash-kicker">A Spotify concept</p>
@@ -62,7 +66,7 @@ export function MobileAppShell({
                 <button className="profile-button" type="button" aria-label="Prototype profile">D</button>
               </header>
 
-              <div id="top" className="app-home">
+              <div id="top" className="app-home" data-guide="home">
                 <p className="time-greeting">Good evening</p>
                 <h1>Find your next<br /><span>sound.</span></h1>
                 <p className="home-copy">Your history knows your taste. Compass adds what you want right now.</p>

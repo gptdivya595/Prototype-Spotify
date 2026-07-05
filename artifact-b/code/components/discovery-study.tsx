@@ -61,6 +61,15 @@ function artistId(artist: string) {
   return artist.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+function freshnessWord(value: number) {
+  if (value >= 0.9) return "Pure discovery";
+  if (value >= 0.7) return "Adventurous";
+  if (value >= 0.55) return "Exploratory";
+  if (value >= 0.4) return "Balanced";
+  if (value >= 0.25) return "Familiar-leaning";
+  return "Comfort";
+}
+
 export function DiscoveryStudy({
   anchorOptions,
   catalogVersion
@@ -76,6 +85,7 @@ export function DiscoveryStudy({
   const [intentApproved, setIntentApproved] = useState(false);
   const [parseMeta, setParseMeta] = useState("");
   const [unresolvedTerms, setUnresolvedTerms] = useState<string[]>([]);
+  const [freshnessSource, setFreshnessSource] = useState<string | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [guidedState, setGuidedState] = useState<GuidedState | null>(null);
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
@@ -135,6 +145,7 @@ export function DiscoveryStudy({
       if (!response.ok) throw new Error(payload.message ?? "Intent could not be parsed.");
       setIntent(payload.intent as Intent);
       setUnresolvedTerms(payload.unresolvedTerms as string[]);
+      setFreshnessSource((payload.freshnessSource as string | undefined) ?? null);
       setParseMeta(`${payload.usedFallback ? "Deterministic fallback" : "AI structured output"} · ${payload.modelVersion} · ${payload.latencyMs} ms`);
       setIntentApproved(false);
       setStatus("Review and approve the interpreted fields before ranking.");
@@ -369,7 +380,7 @@ export function DiscoveryStudy({
         </div>
 
         <div className="study-grid">
-          <div className="study-step">
+          <div className="study-step" data-guide="anchors">
             <p className="step-label"><span>01</span> Your taste</p>
             <label htmlFor="anchor-filter">Find a track, artist, or genre</label>
             <input id="anchor-filter" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Try indie, Hindi, jazz…" />
@@ -384,7 +395,7 @@ export function DiscoveryStudy({
             </div>
           </div>
 
-          <div className="study-step">
+          <div className="study-step" data-guide="intent">
             <p className="step-label"><span>02</span> {condition === "guided" ? "Set the vibe" : "Classic rules"}</p>
             {condition === "guided" ? (
               <>
@@ -400,8 +411,9 @@ export function DiscoveryStudy({
                     <label>Languages<input value={intent.languages.join(", ")} onChange={(event) => updateIntent("languages", splitValues(event.target.value))} /></label>
                     <label>Exclude genres<input value={intent.excludeGenres.join(", ")} onChange={(event) => updateIntent("excludeGenres", splitValues(event.target.value))} /></label>
                     <label>Exclude languages<input value={intent.excludeLanguages.join(", ")} onChange={(event) => updateIntent("excludeLanguages", splitValues(event.target.value))} /></label>
-                    <label className="wide-field">Freshness <strong>{Math.round(intent.freshness * 100)}</strong>
-                      <input type="range" min="0" max="100" value={Math.round(intent.freshness * 100)} onChange={(event) => updateIntent("freshness", Number(event.target.value) / 100)} />
+                    <label className="wide-field">Freshness <strong>{Math.round(intent.freshness * 100)} · {freshnessWord(intent.freshness)}</strong>
+                      <input type="range" min="0" max="100" value={Math.round(intent.freshness * 100)} onChange={(event) => { updateIntent("freshness", Number(event.target.value) / 100); setFreshnessSource(null); }} />
+                      {freshnessSource && <small className="fresh-source">Set from your words: “{freshnessSource}”. Drag to adjust.</small>}
                     </label>
                     {unresolvedTerms.length > 0 && <p className="unresolved">Needs clarification: {unresolvedTerms.join(", ")}</p>}
                     <button className="approve-button" type="button" onClick={() => { setIntentApproved(true); setStatus("Intent approved for this session."); }}> {intentApproved ? "✓ Intent approved" : "Approve intent"}</button>
@@ -417,7 +429,7 @@ export function DiscoveryStudy({
           </div>
         </div>
 
-        <div className="generate-row">
+        <div className="generate-row" data-guide="generate">
           <p role="status" aria-live="polite">{status}</p>
           <button className="primary-action" type="button" onClick={generateSet} disabled={loading || selected.length < 3 || (condition === "guided" && !intentApproved)}>
             {loading ? "Building your mix…" : condition === "guided" ? "Build my Compass mix" : "Shuffle from my anchors"}
@@ -427,7 +439,7 @@ export function DiscoveryStudy({
         {changeSummary && <p className="change-summary" role="status"><strong>What changed:</strong> {changeSummary}</p>}
 
         {recommendations.length > 0 && (
-          <div className="recommendation-results" id="results">
+          <div className="recommendation-results" id="results" data-guide="results">
             <div className="results-heading">
               <div><p className="eyebrow">Made for this moment</p><h3>Your next direction.</h3></div>
               {condition === "guided" && (

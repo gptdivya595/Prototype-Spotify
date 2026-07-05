@@ -21,7 +21,38 @@ export type IntentParseResult = {
   unresolvedTerms: string[];
   usedFallback: boolean;
   modelVersion: string;
+  freshnessSource?: string;
 };
+
+// Freshness-control phrases are supported controls, not unresolved terms. They map the
+// listener's own words onto the 0..1 freshness value and are stripped from unresolvedTerms
+// so the UI never asks to "clarify" a phrase it already understood.
+const freshnessPhrases: { keys: string[]; freshness: number }[] = [
+  { keys: ["pure discovery", "very unfamiliar", "totally unfamiliar", "all unfamiliar"], freshness: 0.95 },
+  { keys: ["mostly unfamiliar", "surprise me", "new artists", "adventurous", "unfamiliar"], freshness: 0.82 },
+  { keys: ["balanced", "mix of familiar", "half and half"], freshness: 0.5 },
+  { keys: ["familiar-adjacent", "familiar adjacent", "close to familiar", "mostly familiar", "safe", "comfort"], freshness: 0.25 }
+];
+
+function reconcileFreshness(text: string, unresolved: Set<string>): { freshness?: number; phrase?: string } {
+  const normalized = text.toLowerCase();
+  let freshness: number | undefined;
+  let phrase: string | undefined;
+  for (const group of freshnessPhrases) {
+    for (const key of group.keys) {
+      if (!normalized.includes(key)) continue;
+      if (freshness === undefined) {
+        freshness = group.freshness;
+        phrase = key;
+      }
+      for (const term of unresolved) {
+        const t = term.toLowerCase();
+        if (t.includes(key) || key.includes(t)) unresolved.delete(term);
+      }
+    }
+  }
+  return { freshness, phrase };
+}
 
 export interface IntentProvider {
   parse(text: string, vocabulary: ReturnType<typeof getCatalogVocabulary>): Promise<unknown>;
@@ -68,10 +99,11 @@ function fallbackCandidate(text: string): z.infer<typeof rawCandidateSchema> {
   };
 }
 
-function normalizeCandidate(input: unknown): { intent: ApprovedIntent; unresolvedTerms: string[] } {
+function normalizeCandidate(input: unknown, text: string): { intent: ApprovedIntent; unresolvedTerms: string[]; freshnessSource?: string } {
   const candidate = rawCandidateSchema.parse(input);
   const vocabulary = getCatalogVocabulary();
   const unresolved = new Set(candidate.unresolvedTerms.map((value) => value.trim()).filter(Boolean));
+  const reconciled = reconcileFreshness(text, unresolved);
 
   const keepAllowed = (values: string[], allowed: string[]) => values.filter((value) => {
     if (allowed.includes(value)) return true;
@@ -91,13 +123,13 @@ function normalizeCandidate(input: unknown): { intent: ApprovedIntent; unresolve
     genres: keepAllowed(candidate.genres, vocabulary.genres),
     languages: keepAllowed(candidate.languages, vocabulary.languages),
     energy: candidate.energy ?? undefined,
-    freshness: candidate.freshness,
+    freshness: reconciled.freshness ?? candidate.freshness,
     excludeArtistIds: candidate.excludeArtistIds,
     excludeGenres: keepAllowed(candidate.excludeGenres, vocabulary.genres),
     excludeLanguages: keepAllowed(candidate.excludeLanguages, vocabulary.languages)
   });
 
-  return { intent, unresolvedTerms: [...unresolved] };
+  return { intent, unresolvedTerms: [...unresolved], freshnessSource: reconciled.phrase };
 }
 
 const openAIProvider: IntentProvider = {
@@ -164,13 +196,13 @@ export async function parseIntent(
 
   if (provider) {
     try {
-      const parsed = normalizeCandidate(await provider.parse(text, getCatalogVocabulary()));
+      const parsed = normalizeCandidate(await provider.parse(text, getCatalogVocabulary()), text);
       return { ...parsed, usedFallback: false, modelVersion: provider.modelVersion };
     } catch {
       // Direct controls and a deterministic interpretation keep the study usable during provider failure.
     }
   }
 
-  const fallback = normalizeCandidate(fallbackCandidate(text));
+  const fallback = normalizeCandidate(fallbackCandidate(text), text);
   return { ...fallback, usedFallback: true, modelVersion: "deterministic-fallback-v1" };
 }
