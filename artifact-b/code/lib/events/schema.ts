@@ -40,11 +40,11 @@ const allowedProperties: Record<StudyEvent["eventName"], Set<string>> = {
   anchor_approved: new Set(["anchorTrackIds", "anchorArtistCount"]),
   intent_parsed: new Set(["latencyMs", "usedFallback", "unresolvedCount"]),
   intent_edited: new Set(["editedFields", "editCount"]),
-  recommendations_shown: new Set(["trackIds", "artistIds", "novelArtistIds", "candidateCount"]),
-  track_saved: new Set(["trackId", "artistId", "novelArtist"]),
+  recommendations_shown: new Set(["trackIds", "artistIds", "freshArtistIds", "candidateCount"]),
+  track_saved: new Set(["trackId", "artistId", "freshArtist"]),
   track_rejected: new Set(["trackId", "artistId"]),
-  refinement_requested: new Set(["action", "noveltyBefore", "noveltyAfter"]),
-  condition_completed: new Set(["relevanceRating", "noveltyRating", "controlRating", "effortRating", "durationMs"]),
+  refinement_requested: new Set(["action", "freshnessBefore", "freshnessAfter"]),
+  condition_completed: new Set(["relevanceRating", "freshnessRating", "controlRating", "effortRating", "durationMs"]),
   study_completed: new Set(["completedConditions", "durationMs"])
 };
 

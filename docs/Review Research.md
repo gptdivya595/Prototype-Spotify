@@ -26,7 +26,7 @@ Organizing liked songs into playlists does not repair the perceived profile.
 
 > “Choose whether you want songs you already like or pure discovery.”
 
-This is the clearest solution signal for a visible novelty control.
+This is the clearest solution signal for a visible freshness control.
 
 [Source](https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsjlhc3/)
 
@@ -101,7 +101,7 @@ This suggests that contextual intent—not only a better global taste model—ca
 > same genre or artists.”
 
 The user says switching playlists temporarily “resets” the feature. This supports predictable
-steering and state feedback rather than only a request for more novelty.
+steering and state feedback rather than only a request for more freshness.
 
 [Source](https://www.reddit.com/r/Music/comments/1krenis/am_i_the_only_one_whos_spotify_discovery_has/mtdaww5/)
 
@@ -131,5 +131,5 @@ more useful hypothesis:
 > listener wants in the current session, and the listener lacks a low-effort way to steer or
 > repair it.
 
-That framing leads to an Artifact B experiment around explicit intent and novelty control, not a
+That framing leads to an Artifact B experiment around explicit intent and freshness control, not a
 claim that an LLM should replace Spotify's recommender.

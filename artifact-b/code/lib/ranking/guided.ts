@@ -7,10 +7,10 @@ export const GUIDED_RANKING_VERSION = "guided-v1";
 export type GuidedScore = {
   track: Track;
   score: number;
-  noveltyLabel: "anchor-adjacent" | "new-relative-to-profile";
+  freshnessLabel: "anchor-adjacent" | "new-relative-to-profile";
   components: {
     intentRelevance: number;
-    noveltyFit: number;
+    freshnessFit: number;
     anchorCompatibility: number;
     setDiversity: number;
     penalties: number;
@@ -52,14 +52,14 @@ function scoreAnchorCompatibility(track: Track, anchors: Track[]) {
   );
 }
 
-function scoreTrackNovelty(track: Track, anchors: Track[], shownTrackIds: Set<string>) {
+function scoreTrackFreshness(track: Track, anchors: Track[], shownTrackIds: Set<string>) {
   const anchorArtists = new Set(anchors.map((item) => artistId(item.artist)));
   const anchorGenres = [...new Set(anchors.flatMap((item) => item.genres))];
-  const artistNovelty = anchorArtists.has(artistId(track.artist)) ? 0 : 1;
-  const genreNovelty = 1 - Math.min(1, overlapScore(anchorGenres, track.genres));
-  const popularityNovelty = track.popularityTier === "niche" ? 1 : track.popularityTier === "mid" ? 0.65 : 0.25;
-  const exposureNovelty = shownTrackIds.has(track.id) ? 0 : 1;
-  return clamp(artistNovelty * 0.45 + genreNovelty * 0.25 + popularityNovelty * 0.15 + exposureNovelty * 0.15);
+  const artistFreshness = anchorArtists.has(artistId(track.artist)) ? 0 : 1;
+  const genreFreshness = 1 - Math.min(1, overlapScore(anchorGenres, track.genres));
+  const popularityFreshness = track.popularityTier === "niche" ? 1 : track.popularityTier === "mid" ? 0.65 : 0.25;
+  const exposureFreshness = shownTrackIds.has(track.id) ? 0 : 1;
+  return clamp(artistFreshness * 0.45 + genreFreshness * 0.25 + popularityFreshness * 0.15 + exposureFreshness * 0.15);
 }
 
 function scoreDiversity(track: Track, selected: GuidedScore[]) {
@@ -112,17 +112,17 @@ export function rankGuided(options: {
   if (candidates.length < 8) throw new ConstraintConflictError(candidates.length);
 
   const base = candidates.map((track) => {
-    const trackNovelty = scoreTrackNovelty(track, anchors, shown);
+    const trackFreshness = scoreTrackFreshness(track, anchors, shown);
     const penalties = (shown.has(track.id) ? 0.28 : 0) + (rejected.has(track.id) ? 1 : 0);
     const boost = boostedArtists.has(artistId(track.artist)) ? 0.08 : 0;
     return {
       track,
       intentRelevance: scoreIntent(track, intent),
-      noveltyFit: 1 - Math.abs(intent.novelty - trackNovelty),
+      freshnessFit: 1 - Math.abs(intent.freshness - trackFreshness),
       anchorCompatibility: scoreAnchorCompatibility(track, anchors),
       penalties,
       boost,
-      noveltyLabel: anchors.some((anchor) => artistId(anchor.artist) === artistId(track.artist))
+      freshnessLabel: anchors.some((anchor) => artistId(anchor.artist) === artistId(track.artist))
         ? "anchor-adjacent" as const
         : "new-relative-to-profile" as const,
       tie: stableFraction(seed, track.id)
@@ -140,7 +140,7 @@ export function rankGuided(options: {
         const setDiversity = scoreDiversity(item.track, selected);
         const score = clamp(
           item.intentRelevance * 0.45 +
-          item.noveltyFit * 0.25 +
+          item.freshnessFit * 0.25 +
           item.anchorCompatibility * 0.2 +
           setDiversity * 0.1 -
           item.penalties +
@@ -157,10 +157,10 @@ export function rankGuided(options: {
     selected.push({
       track: next.track,
       score: next.score,
-      noveltyLabel: next.noveltyLabel,
+      freshnessLabel: next.freshnessLabel,
       components: {
         intentRelevance: next.intentRelevance,
-        noveltyFit: next.noveltyFit,
+        freshnessFit: next.freshnessFit,
         anchorCompatibility: next.anchorCompatibility,
         setDiversity: next.setDiversity,
         penalties: next.penalties

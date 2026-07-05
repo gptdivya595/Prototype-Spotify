@@ -7,7 +7,7 @@ import { rankGuided } from "../lib/ranking/guided";
 import { explainGuidedSet, type ExplanationProvider } from "../lib/ai/explainer";
 
 const catalog = catalogSchema.parse(rawCatalog);
-const intent = approvedIntentSchema.parse({ moods: ["calm"], genres: ["indie"], novelty: 0.75 });
+const intent = approvedIntentSchema.parse({ moods: ["calm"], genres: ["indie"], freshness: 0.75 });
 const ranked = rankGuided({
   catalog,
   anchorIds: ["cold-mess-prateek-kuhad", "holocene-bon-iver", "garden-song-phoebe-bridgers"],

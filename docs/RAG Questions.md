@@ -65,10 +65,10 @@ Theme ordering comes from all 266 classified discovery records.
 
 ### 3. What listening behaviors are users trying to achieve?
 
-**RAG answer:** users want to balance purposeful novelty with recognizable relevance. They use
+**RAG answer:** users want to balance purposeful freshness with recognizable relevance. They use
 private sessions, “exclude from taste profile,” manual playlists, external tools, friends,
 Shazam, artist pages, and live shows to protect or supplement their Spotify profile. Some users
-also value familiarity, so aggressive novelty should not be forced.
+also value familiarity, so aggressive freshness should not be forced.
 
 **Evidence returned:** seven to eight citations. The answer included both complaint evidence and
 counterevidence from users who improve results through careful input management.
@@ -113,14 +113,14 @@ demographics. Primary interviews must recruit real people and reassess the segme
 
 ### 6. What unmet needs emerge consistently across reviews?
 
-**RAG answer:** relevant novelty, less repetition, profile repair, exclusions, session-level
+**RAG answer:** relevant freshness, less repetition, profile repair, exclusions, session-level
 steering, broader genre exploration, and easier access to new artists. Explanations appear as a
 supporting need, but only six records received the explicit `no_explanation` tag.
 
 **Evidence returned:** eight to eleven citations across attached runs, including Reddit and Play
 Store. The evidence repeatedly connected changing taste with static profile assumptions.
 
-**PM interpretation:** relevance, novelty, and control should be tested before explanation-heavy
+**PM interpretation:** relevance, freshness, and control should be tested before explanation-heavy
 features.
 
 ## Targeted product questions
@@ -131,11 +131,11 @@ features.
 exclude songs/artists/genres, protection from temporary contexts such as children's music,
 broader recommendation diversity, and immediate ways to steer the next result.
 
-**Evidence returned:** four to eight citations. The strongest requests concern novelty level,
+**Evidence returned:** four to eight citations. The strongest requests concern freshness level,
 exclusions, and profile repair.
 
-**PM interpretation:** a single novelty slider is not sufficient. Artifact B should combine
-session intent, novelty, and lightweight exclusions while keeping setup short.
+**PM interpretation:** a single freshness slider is not sufficient. Artifact B should combine
+session intent, freshness, and lightweight exclusions while keeping setup short.
 
 ### 8. What do power users with large libraries say about repeated music?
 
@@ -187,13 +187,13 @@ how common the behavior is.
 
 ### 12. What features do users request to improve discovery?
 
-**RAG answer:** adjustable novelty, profile exclusions or reset, diverse and less repetitive
+**RAG answer:** adjustable freshness, profile exclusions or reset, diverse and less repetitive
 sets, better niche/new-artist discovery, guided genre paths, fresher discovery playlists, and
 more effective correction feedback.
 
 **Evidence returned:** five to six citations.
 
-**PM interpretation:** prioritize the smallest interaction that tests intent, novelty, and
+**PM interpretation:** prioritize the smallest interaction that tests intent, freshness, and
 steering together. Do not try to rebuild every Spotify discovery surface.
 
 ### 13. What do users say about named discovery surfaces?
@@ -276,5 +276,5 @@ relevance benchmark. The next quality gate is manual precision@5 and citation-co
 2. How did Spotify know, or misunderstand, what you wanted in that moment?
 3. What do you do when recommendations become stale?
 4. Which temporary listening contexts have affected later recommendations?
-5. Would you set a novelty level or describe your intent before a discovery session?
+5. Would you set a freshness level or describe your intent before a discovery session?
 6. What would make an unfamiliar recommendation trustworthy enough to save?

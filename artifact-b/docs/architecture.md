@@ -20,7 +20,7 @@ Build one responsive Next.js application with five explicit boundaries:
 1. A clean, versioned local catalog of 300–500 tracks.
 2. A server-only AI adapter that converts flexible language into an approved schema and produces
    metadata-grounded explanations.
-3. Deterministic filters and a transparent relevance, novelty, and diversity ranker.
+3. Deterministic filters and a transparent relevance, freshness, and diversity ranker.
 4. Ephemeral session state plus a durable, privacy-minimized experiment event adapter.
 5. Baseline and guided conditions that use the same catalog and card presentation.
 
@@ -33,7 +33,7 @@ helping the prototype answer its primary question.
 - Test the session-intent and steering mechanism independently of Spotify's production systems.
 - Make every recommendation reproducible from catalog version, approved intent, ranking version,
   condition, and session feedback.
-- Keep exclusions, novelty, diversity, assignment, and metrics deterministic and inspectable.
+- Keep exclusions, freshness, diversity, assignment, and metrics deterministic and inspectable.
 - Ensure the LLM cannot invent a track, artist, catalog attribute, experiment result, or exclusion.
 - Support local development and a public Vercel evaluation URL from one codebase.
 - Collect enough anonymous structured evidence to compare paired sessions without storing raw
@@ -63,7 +63,7 @@ identifier.
 
 | Component | Responsibility | Must not do |
 |---|---|---|
-| App shell | Taste anchor, intent editor, novelty control, cards, feedback, evaluation survey | Hold API keys or calculate experiment outcomes |
+| App shell | Taste anchor, intent editor, freshness control, cards, feedback, evaluation survey | Hold API keys or calculate experiment outcomes |
 | Session service | Create session ID, assign/counterbalance conditions, hold structured state | Store identity or raw free text in analytics |
 | Intent service | Call LLM, validate structured output, expose editable interpretation | Apply hidden filters or silently override user edits |
 | Catalog repository | Load and validate versioned track data | Fetch an uncontrolled live catalog during a study |
@@ -127,7 +127,7 @@ sequenceDiagram
     O-->>I: Structured candidate interpretation
     I-->>UI: Validated editable constraints
     U->>UI: Approve or edit constraints
-    UI->>R: Anchor + constraints + novelty + feedback state
+    UI->>R: Anchor + constraints + freshness + feedback state
     R->>C: Load eligible track records
     C-->>R: Versioned candidates
     R-->>UI: Ranked 8–12 tracks + score components
@@ -140,7 +140,7 @@ sequenceDiagram
 ### Baseline condition
 
 The baseline uses the same catalog, taste anchor, card count, card layout, and event definitions.
-It does not use free-text session intent, a novelty control, or iterative steering. It ranks from
+It does not use free-text session intent, a freshness control, or iterative steering. It ranks from
 the taste anchor with fixed default diversity and repeat rules. This isolates the value of the
 guided mechanism instead of comparing two unrelated interfaces.
 
@@ -169,7 +169,7 @@ type ApprovedIntent = {
   genres: string[];
   languages: string[];
   energy?: number;
-  novelty: number;
+  freshness: number;
   excludeArtistIds: string[];
   excludeGenres: string[];
   excludeLanguages: string[];
@@ -193,12 +193,12 @@ type RankedTrack = {
   score: number;
   components: {
     intentRelevance: number;
-    noveltyFit: number;
+    freshnessFit: number;
     anchorCompatibility: number;
     setDiversity: number;
     penalties: number;
   };
-  noveltyLabel: 'anchor-adjacent' | 'new-relative-to-profile';
+  freshnessLabel: 'anchor-adjacent' | 'new-relative-to-profile';
   explanation?: string;
 };
 ```
@@ -237,7 +237,7 @@ semantic or relevance score.
 ```text
 final score =
   0.45 × intent relevance
-+ 0.25 × requested novelty fit
++ 0.25 × requested freshness fit
 + 0.20 × taste-anchor compatibility
 + 0.10 × set diversity contribution
 − repeat, rejection, artist-cap, and exclusion penalties
@@ -281,7 +281,7 @@ must be keyed by an allowed selected track ID.
 | Save | Add track to saved set; no automatic overfitting | “Saved for this study session.” |
 | Not for me | Reject track and suppress artist/close attributes for the next iteration | “Avoided this track and reduced close matches.” |
 | More like this | Boost approved attributes and artist neighborhood within caps | “Kept these traits while preserving variety.” |
-| More adventurous | Increase novelty by a fixed step up to 1.0 | “Increased novelty; other approved constraints stayed fixed.” |
+| More adventurous | Increase freshness by a fixed step up to 1.0 | “Increased freshness; other approved constraints stayed fixed.” |
 
 Each action creates an immutable event, then derives new `SessionState`. State reducers are pure
 functions so they can be replayed and unit tested.
@@ -342,14 +342,14 @@ email addresses, IP addresses, raw prompts, full user agents, and API inputs are
 ### Primary metric
 
 ```text
-accepted novel artist rate =
+accepted fresh artist rate =
 saved tracks whose artist is absent from the selected taste anchor
 ÷ all recommendation cards shown
 ```
 
 Also calculate overall acceptance, first-set acceptance, post-refinement acceptance, unique
 artist/genre ratio, repeat exposure, intent edit rate, time/actions to first save, and participant
-ratings for relevance, novelty, control, and explanation helpfulness.
+ratings for relevance, freshness, control, and explanation helpfulness.
 
 ## 14. Privacy and security
 
@@ -410,7 +410,7 @@ form the regression set; semantic flexibility is allowed only inside approved fi
 ### End-to-end
 
 - complete baseline and guided conditions in both orders;
-- edit parsed intent, change novelty, exclude an artist, reject, save, and finish survey;
+- edit parsed intent, change freshness, exclude an artist, reject, save, and finish survey;
 - keyboard-only flow, focus visibility, narrow viewport, 200% zoom, and reduced motion;
 - OpenAI and event-store failure fallbacks;
 - no secret or raw-intent leakage in browser network payloads outside the parse request.

@@ -14,7 +14,7 @@ const intent = approvedIntentSchema.parse({
   genres: ["indie"],
   languages: ["en"],
   energy: 0.35,
-  novelty: 0.75
+  freshness: 0.75
 });
 
 test("guided ranking is deterministic and returns transparent components", () => {
@@ -43,13 +43,13 @@ test("hard artist, genre, and language exclusions are never overridden", () => {
   assert.equal(result.recommendations.some((item) => item.track.languages.includes("hi")), false);
 });
 
-test("artist caps and relative novelty labels hold", () => {
+test("artist caps and relative freshness labels hold", () => {
   const result = rankGuided({ catalog, anchorIds, intent, seed: "cap-seed" });
   const counts = new Map<string, number>();
   for (const item of result.recommendations) {
     const id = artistId(item.track.artist);
     counts.set(id, (counts.get(id) ?? 0) + 1);
-    assert.ok(["anchor-adjacent", "new-relative-to-profile"].includes(item.noveltyLabel));
+    assert.ok(["anchor-adjacent", "new-relative-to-profile"].includes(item.freshnessLabel));
   }
   assert.ok([...counts.values()].every((count) => count <= 2));
 });

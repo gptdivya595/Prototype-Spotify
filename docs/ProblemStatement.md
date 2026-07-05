@@ -30,7 +30,7 @@ or spending significant effort on external sites.
 - exploration by genre/language and the reason behind a recommendation are limited.
 
 **Because:** the system primarily infers a persistent taste profile from historical behavior,
-while the listener has little way to express **session intent**, desired novelty, unwanted
+while the listener has little way to express **session intent**, desired freshness, unwanted
 influences, or how far they want to move outside their comfort zone. The resulting feedback loop
 keeps rewarding familiar engagement and becomes slower than the listener's changing intent.
 
@@ -91,7 +91,7 @@ their taste profile. This counter-evidence matters:
 
 ## Why solving it matters
 
-For users, success means less effort, more relevant novelty, and greater trust when leaving a
+For users, success means less effort, more relevant freshness, and greater trust when leaving a
 familiar playlist. For Spotify, the opportunity is to increase discovery breadth and reduce the
 stale-product/churn signal without discarding the strengths of the existing recommendation
 system.
@@ -101,7 +101,7 @@ system.
 1. Do active discovery seekers recognise this statement in their own behavior?
 2. Is the primary failure missing session intent, poor base recommendations, shuffle repetition,
    or something else?
-3. Which control is most valuable: novelty, exclusions, genre/language, mood/context, or source?
+3. Which control is most valuable: freshness, exclusions, genre/language, mood/context, or source?
 4. Would users spend one short step declaring intent before receiving recommendations?
 5. Does an explanation change trust or only decorate a bad recommendation?
 6. What would cause a user to save/play a new artist rather than return to a familiar playlist?

@@ -17,7 +17,7 @@ type Intent = {
   genres: string[];
   languages: string[];
   energy?: number;
-  novelty: number;
+  freshness: number;
   excludeArtistIds: string[];
   excludeGenres: string[];
   excludeLanguages: string[];
@@ -33,7 +33,7 @@ type Recommendation = {
   description: string;
   sourceUrl: string;
   score: number;
-  noveltyLabel?: "anchor-adjacent" | "new-relative-to-profile";
+  freshnessLabel?: "anchor-adjacent" | "new-relative-to-profile";
   explanation?: string;
 };
 type Session = {
@@ -85,7 +85,7 @@ export function DiscoveryStudy({
   const [loading, setLoading] = useState(false);
   const [conditionStartedAt, setConditionStartedAt] = useState(() => Date.now());
   const [completedConditions, setCompletedConditions] = useState<Condition[]>([]);
-  const [survey, setSurvey] = useState({ relevance: 3, novelty: 3, control: 3, effort: 3 });
+  const [survey, setSurvey] = useState({ relevance: 3, freshness: 3, control: 3, effort: 3 });
 
   const filteredAnchors = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -244,7 +244,7 @@ export function DiscoveryStudy({
       void emitEvent(activeSession, condition, 0, "recommendations_shown", {
         trackIds: nextRecommendations.map((item) => item.id),
         artistIds: nextRecommendations.map((item) => artistId(item.artist)),
-        novelArtistIds: nextRecommendations.filter((item) => item.noveltyLabel === "new-relative-to-profile").map((item) => artistId(item.artist)),
+        freshArtistIds: nextRecommendations.filter((item) => item.freshnessLabel === "new-relative-to-profile").map((item) => artistId(item.artist)),
         candidateCount: payload.candidateCount ?? anchorOptions.length - selected.length
       });
     } catch (error) {
@@ -280,17 +280,17 @@ export function DiscoveryStudy({
       const track = "trackId" in action ? recommendations.find((item) => item.id === action.trackId) : undefined;
       let properties: Record<string, string | number | boolean | string[]>;
       if (action.type === "save") {
-        properties = { trackId: action.trackId, artistId: artistId(track?.artist ?? "unknown"), novelArtist: track?.noveltyLabel === "new-relative-to-profile" };
+        properties = { trackId: action.trackId, artistId: artistId(track?.artist ?? "unknown"), freshArtist: track?.freshnessLabel === "new-relative-to-profile" };
       } else if (action.type === "reject") {
         properties = { trackId: action.trackId, artistId: artistId(track?.artist ?? "unknown") };
       } else {
-        properties = { action: action.type, noveltyBefore: guidedState.intent.novelty, noveltyAfter: nextState.intent.novelty };
+        properties = { action: action.type, freshnessBefore: guidedState.intent.freshness, freshnessAfter: nextState.intent.freshness };
       }
       void emitEvent(session, "guided", nextState.iteration, eventName, properties);
       void emitEvent(session, "guided", nextState.iteration, "recommendations_shown", {
         trackIds: nextRecommendations.map((item) => item.id),
         artistIds: nextRecommendations.map((item) => artistId(item.artist)),
-        novelArtistIds: nextRecommendations.filter((item) => item.noveltyLabel === "new-relative-to-profile").map((item) => artistId(item.artist)),
+        freshArtistIds: nextRecommendations.filter((item) => item.freshnessLabel === "new-relative-to-profile").map((item) => artistId(item.artist)),
         candidateCount: payload.candidateCount
       });
     } catch (error) {
@@ -306,7 +306,7 @@ export function DiscoveryStudy({
     if (session) void emitEvent(session, "baseline", 0, "track_saved", {
       trackId: track.id,
       artistId: artistId(track.artist),
-      novelArtist: !selected.some((id) => anchorOptions.find((item) => item.id === id)?.artist === track.artist)
+      freshArtist: !selected.some((id) => anchorOptions.find((item) => item.id === id)?.artist === track.artist)
     });
   }
 
@@ -317,7 +317,7 @@ export function DiscoveryStudy({
     const completionIteration = condition === "guided" ? guidedState?.iteration ?? 0 : 0;
     const stored = await emitEvent(session, condition, completionIteration, "condition_completed", {
       relevanceRating: survey.relevance,
-      noveltyRating: survey.novelty,
+      freshnessRating: survey.freshness,
       controlRating: survey.control,
       effortRating: survey.effort,
       durationMs
@@ -400,8 +400,8 @@ export function DiscoveryStudy({
                     <label>Languages<input value={intent.languages.join(", ")} onChange={(event) => updateIntent("languages", splitValues(event.target.value))} /></label>
                     <label>Exclude genres<input value={intent.excludeGenres.join(", ")} onChange={(event) => updateIntent("excludeGenres", splitValues(event.target.value))} /></label>
                     <label>Exclude languages<input value={intent.excludeLanguages.join(", ")} onChange={(event) => updateIntent("excludeLanguages", splitValues(event.target.value))} /></label>
-                    <label className="wide-field">Novelty <strong>{Math.round(intent.novelty * 100)}</strong>
-                      <input type="range" min="0" max="100" value={Math.round(intent.novelty * 100)} onChange={(event) => updateIntent("novelty", Number(event.target.value) / 100)} />
+                    <label className="wide-field">Freshness <strong>{Math.round(intent.freshness * 100)}</strong>
+                      <input type="range" min="0" max="100" value={Math.round(intent.freshness * 100)} onChange={(event) => updateIntent("freshness", Number(event.target.value) / 100)} />
                     </label>
                     {unresolvedTerms.length > 0 && <p className="unresolved">Needs clarification: {unresolvedTerms.join(", ")}</p>}
                     <button className="approve-button" type="button" onClick={() => { setIntentApproved(true); setStatus("Intent approved for this session."); }}> {intentApproved ? "✓ Intent approved" : "Approve intent"}</button>
@@ -410,7 +410,7 @@ export function DiscoveryStudy({
               </>
             ) : (
               <div className="baseline-rules">
-                <p>No free-text intent, novelty control, exclusions, or iterative steering.</p>
+                <p>No free-text intent, freshness control, exclusions, or iterative steering.</p>
                 <p>The ranker uses anchor genre, mood, language, and energy with fixed diversity and a two-track artist cap.</p>
               </div>
             )}
@@ -442,7 +442,7 @@ export function DiscoveryStudy({
                     <div className="album-art" aria-hidden="true"><span>{String(index + 1).padStart(2, "0")}</span><i /><i /><i /></div>
                     <div className="recommendation-topline">
                       <span>{String(index + 1).padStart(2, "0")}</span>
-                      {track.noveltyLabel && <small>{track.noveltyLabel.replaceAll("-", " ")}</small>}
+                      {track.freshnessLabel && <small>{track.freshnessLabel.replaceAll("-", " ")}</small>}
                       <strong>{Math.round(track.score * 100)}</strong>
                     </div>
                     <h4>{track.title}</h4>
@@ -468,7 +468,7 @@ export function DiscoveryStudy({
               <div className="survey-fields">
                 {([
                   ["relevance", "Relevance"],
-                  ["novelty", "Novelty"],
+                  ["freshness", "Freshness"],
                   ["control", "Control"],
                   ["effort", "Low effort"]
                 ] as const).map(([key, label]) => (

@@ -35,7 +35,7 @@ to observe how often it happens and which step is most important.
 | Users seek music through friends, local shows, Reddit, Last.fm, Pandora, YouTube, or other tools | Discovery intent exists, but is completed outside Spotify |
 | Users manually manage likes, dislikes, playlists, and artist pages | Good recommendations may require invisible training work |
 | Some users consistently enjoy Discover Weekly, Release Radar, Daylist, or radio | The failure is heterogeneous; default algorithms work for some profiles |
-| Some users prefer familiar music | Novelty should be controllable, not forced |
+| Some users prefer familiar music | Freshness should be controllable, not forced |
 
 ## Segment differences
 
@@ -67,11 +67,11 @@ the user has no simple, visible way to declare it for the current session.
 ## Behavioral implications for Artifact B
 
 1. Ask for one short **session intent**, not a long onboarding form.
-2. Make novelty adjustable from familiar-adjacent to adventurous.
+2. Make freshness adjustable from familiar-adjacent to adventurous.
 3. Show whether a recommendation is a new artist/genre relative to the prototype profile.
 4. Let users exclude or down-rank a result and immediately regenerate.
 5. Explain the connection to intent in one sentence.
-6. Measure saves/shortlists, skips, refinements, and novelty acceptance—not audio plays.
+6. Measure saves/shortlists, skips, refinements, and freshness acceptance—not audio plays.
 
 See [Pain Point.md](Pain%20Point.md) for the ranked evidence and
 [Artifact B Recommendation.md](Artifact%20B%20Recommendation.md) for the proposed experiment.

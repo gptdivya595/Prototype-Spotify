@@ -17,12 +17,10 @@ function SpotifyMark({ className = "" }: { className?: string }) {
 export function MobileAppShell({
   anchorOptions,
   catalogVersion,
-  buildVersion,
   counts
 }: {
   anchorOptions: AnchorOption[];
   catalogVersion: string;
-  buildVersion: string;
   counts: { tracks: number; artists: number; languages: number };
 }) {
   const [opened, setOpened] = useState(false);
@@ -52,9 +50,6 @@ export function MobileAppShell({
               <button className="open-app-button" type="button" onClick={() => setOpened(true)}>
                 <span>Open app</span><span aria-hidden="true">→</span>
               </button>
-              <a className="splash-evidence-link" href="/artifact-A-summary.html">
-                Read the research behind Compass <span aria-hidden="true">↗</span>
-              </a>
               <p className="prototype-note">Independent product prototype · No Spotify login required</p>
             </div>
           ) : (
@@ -64,7 +59,7 @@ export function MobileAppShell({
                   <SpotifyMark className="brand-logo" />
                   <span>Discovery Compass</span>
                 </a>
-                <button className="profile-button" type="button" aria-label="Reload the latest app" onClick={() => window.location.reload()}>↻</button>
+                <button className="profile-button" type="button" aria-label="Prototype profile">D</button>
               </header>
 
               <div id="top" className="app-home">
@@ -78,13 +73,8 @@ export function MobileAppShell({
                   <div><strong>{counts.tracks}</strong><span>tracks</span></div>
                   <div><strong>{counts.artists}</strong><span>artists</span></div>
                   <div><strong>{counts.languages}</strong><span>languages</span></div>
-                  <div className="catalog-live"><i />Live preview <span>build {buildVersion}</span></div>
+                  <div className="catalog-live"><i />Preview live</div>
                 </div>
-                <a className="research-card" href="/artifact-A-summary.html">
-                  <span className="research-card-icon" aria-hidden="true">◎</span>
-                  <span><small>Evidence behind the product</small><strong>1,850 reviews → 266 discovery signals</strong></span>
-                  <b aria-hidden="true">→</b>
-                </a>
               </div>
 
               <DiscoveryStudy anchorOptions={anchorOptions} catalogVersion={catalogVersion} />
@@ -92,7 +82,6 @@ export function MobileAppShell({
               <nav className="app-nav" aria-label="App navigation">
                 <a href="#top"><span aria-hidden="true">⌂</span>Home</a>
                 <a className="active" href="#study-title"><span aria-hidden="true">✦</span>Compass</a>
-                <a href="/artifact-A-summary.html"><span aria-hidden="true">◎</span>Evidence</a>
                 <a href="#results"><span aria-hidden="true">♡</span>Saved</a>
               </nav>
             </div>

@@ -4,9 +4,9 @@ export type ConditionMetrics = {
   condition: "baseline" | "guided";
   cardsShown: number;
   savedTracks: number;
-  savedNovelArtists: number;
+  savedFreshArtists: number;
   overallAcceptanceRate: number;
-  acceptedNovelArtistRate: number;
+  acceptedFreshArtistRate: number;
 };
 
 export function calculateConditionMetrics(
@@ -18,14 +18,14 @@ export function calculateConditionMetrics(
     .filter((event) => event.eventName === "recommendations_shown")
     .reduce((sum, event) => sum + ((event.properties.trackIds as string[] | undefined)?.length ?? 0), 0);
   const saves = scoped.filter((event) => event.eventName === "track_saved");
-  const savedNovelArtists = saves.filter((event) => event.properties.novelArtist === true).length;
+  const savedFreshArtists = saves.filter((event) => event.properties.freshArtist === true).length;
 
   return {
     condition,
     cardsShown,
     savedTracks: saves.length,
-    savedNovelArtists,
+    savedFreshArtists,
     overallAcceptanceRate: cardsShown === 0 ? 0 : saves.length / cardsShown,
-    acceptedNovelArtistRate: cardsShown === 0 ? 0 : savedNovelArtists / cardsShown
+    acceptedFreshArtistRate: cardsShown === 0 ? 0 : savedFreshArtists / cardsShown
   };
 }

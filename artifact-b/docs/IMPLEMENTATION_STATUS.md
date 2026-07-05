@@ -12,7 +12,7 @@ usability test, and paired participant evaluation remain open.
 |---|---|---|---|
 | 1. Catalog and measurement | Implemented | Validated seed catalog, deterministic baseline, assignments, event allowlist, metric tests | 5–6 interviews; expand 50 tracks/40 artists to study catalog |
 | 2. Intent layer | Implemented | Strict schema, vocabulary filtering, deterministic fallback, prompt-injection tests, editable UI | Human golden-set review; live call with rotated key |
-| 3. Ranking | Implemented | Hard exclusions, novelty, diversity, repeat penalties, artist caps, replay tests | Human relevance review on expanded catalog |
+| 3. Ranking | Implemented | Hard exclusions, freshness, diversity, repeat penalties, artist caps, replay tests | Human relevance review on expanded catalog |
 | 4. Experience | Implemented | Guided/baseline UI, grounded explanations, feedback reducer, reranking, responsive browser flow | Five-person usability test and accessibility audit |
 | 5. Evaluate and deploy | Implemented as infrastructure | Structured surveys/events, Neon adapter, readiness health, analysis command, Vercel config | Database credentials, deployment, and ten paired sessions |
 

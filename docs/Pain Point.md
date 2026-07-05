@@ -19,7 +19,7 @@
 | 2 | Repetitive recommendations | 70 | Familiar tracks recur across discovery surfaces |
 | 3 | Recommendations are too similar | 50 | Variety stays inside a narrow cluster |
 | 4 | Algorithm pushes popular/safe music | 49 | Mainstream/familiar choices crowd out long-tail discovery |
-| 5 | Stale Discover Weekly | 48 | A flagship discovery surface loses novelty over time |
+| 5 | Stale Discover Weekly | 48 | A flagship discovery surface loses freshness over time |
 | 6 | No control over recommendations | 46 | Users cannot steer, exclude, reset, or separate contexts |
 | 7 | Poor genre exploration | 19 | Moving deliberately across genres is difficult |
 | 8 | Autoplay/repetition loop | 14 | Playback behavior reinforces the same rotation |
@@ -38,7 +38,7 @@ Historical behavior + engagement optimization
                     ↓
        compressed persistent taste profile
                     ↓
- current mood/context/novelty intent is missing
+ current mood/context/freshness intent is missing
                     ↓
  familiar + similar + popular recommendations
                     ↓
@@ -53,7 +53,7 @@ Historical behavior + engagement optimization
 
 The strongest combined explanation is an **intent–profile mismatch**: a history-driven model is
 trying to predict what a listener will accept, while the listener is asking for a context-specific
-kind of novelty. Weak steering and exclusion controls allow that mismatch to become a
+kind of freshness. Weak steering and exclusion controls allow that mismatch to become a
 self-reinforcing loop.
 
 “No control” is therefore important, but it is not the sole or highest-frequency pain. It is the
@@ -76,10 +76,10 @@ missing corrective mechanism around the larger taste/repetition problem.
 
 | User need | Evidence strength | MVP implication |
 |---|---|---|
-| Choose familiarity versus novelty | Strong | One visible novelty control |
+| Choose familiarity versus freshness | Strong | One visible freshness control |
 | Express current mood/intent/vibe | Strong | Natural-language session intent |
 | Exclude unwanted profile influences | Strong | Avoid artists/genres/contexts and remember feedback |
-| Receive genuinely unfamiliar choices | Strong | Known-item/artist suppression and novelty indicator |
+| Receive genuinely unfamiliar choices | Strong | Known-item/artist suppression and freshness indicator |
 | Explore beyond one narrow genre cluster | Moderate | Genre/language boundaries and cross-genre option |
 | Understand why a recommendation fits | Weak–moderate | Short explanation, tested as a trust hypothesis |
 
@@ -93,5 +93,5 @@ missing corrective mechanism around the larger taste/repetition problem.
 ## Product implication
 
 Artifact B should test whether **explicit session intent plus lightweight steering** produces
-more accepted novelty than an unsteered recommendation list. The recommended MVP is described in
+more accepted freshness than an unsteered recommendation list. The recommended MVP is described in
 [Artifact B Recommendation.md](Artifact%20B%20Recommendation.md).

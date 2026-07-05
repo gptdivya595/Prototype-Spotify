@@ -339,7 +339,7 @@ an admin key, rate limits, and a hard batch cap. It is not required for the rese
 ## 12. Artifact B handoff
 
 Discovery Evidence Lab supports testing an **Intent-guided Discovery Session** rather than replacing
-Spotify's recommender. The proposed Artifact B combines current-session intent, novelty
+Spotify's recommender. The proposed Artifact B combines current-session intent, freshness
 control, exclusions, grounded “why this fits” explanations, and immediate steering over a
 small curated catalog.
 

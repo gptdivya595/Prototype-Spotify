@@ -999,7 +999,7 @@
         </div>
         <div class="mechanism-flow">
           <div class="mechanism-step"><span class="number">01</span><h3>History becomes the default</h3><p>Persistent behavior summarizes a broad, changing taste.</p></div>
-          <div class="mechanism-step"><span class="number">02</span><h3>Current intent stays implicit</h3><p>Mood, activity, novelty, and unwanted contexts are weakly expressed.</p></div>
+          <div class="mechanism-step"><span class="number">02</span><h3>Current intent stays implicit</h3><p>Mood, activity, freshness, and unwanted contexts are weakly expressed.</p></div>
           <div class="mechanism-step"><span class="number">03</span><h3>Safe choices recur</h3><p>Familiar, similar, or popular tracks dominate the result.</p></div>
           <div class="mechanism-step"><span class="number">04</span><h3>Correction feels weak</h3><p>Users cannot easily steer, exclude, reset, or see what changed.</p></div>
           <div class="mechanism-step"><span class="number">05</span><h3>The loop reinforces itself</h3><p>Skipping and familiar fallback add more of the same behavior.</p></div>
@@ -1040,7 +1040,7 @@
           </details>
           <details class="question">
             <summary>What are users trying to achieve?</summary>
-            <div class="answer"><p>They want relevant novelty: unfamiliar enough to explore,
+            <div class="answer"><p>They want relevant freshness: unfamiliar enough to explore,
               recognizable enough to fit the current mood or activity. Users protect their
               profiles with private sessions, manual playlists, and external discovery.</p><span class="answer-meta">7 cited records</span>
               <details class="evidence-records">
@@ -1082,7 +1082,7 @@
               <details class="evidence-records">
                 <summary>View 4 cited records</summary>
                 <ol class="evidence-list">
-                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>novelty control</small></span><q>A setting should choose between songs already liked and pure discovery of unheard material.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsjlhc3/" target="_blank" rel="noreferrer">Open source</a></li>
+                  <li><span class="record-meta">Reddit · 18 Oct 2024<br><small>freshness control</small></span><q>A setting should choose between songs already liked and pure discovery of unheard material.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsjlhc3/" target="_blank" rel="noreferrer">Open source</a></li>
                   <li><span class="record-meta">Reddit · 10 Aug 2025<br><small>similarity · no control</small></span><q>The user describes similarity scoring that repeatedly extracts music from the same overlapping playlist neighborhood.</q><a href="https://www.reddit.com/r/truespotify/comments/1l6meie/spotify_recommendations_getting_worse/n7yau00/" target="_blank" rel="noreferrer">Open source</a></li>
                   <li><span class="record-meta">Reddit · 20 Oct 2024<br><small>forget · exclude</small></span><q>Users want to forget or ignore songs, albums, and genres, especially after children's music changes a household profile.</q><a href="https://www.reddit.com/r/LetsTalkMusic/comments/1g6cq6m/when_did_the_spotify_algorithm_get_so_shit/lsvlcxz/" target="_blank" rel="noreferrer">Open source</a></li>
                   <li><span class="record-meta">Reddit · 10 Jul 2024<br><small>repetition · no control</small></span><q>The same songs recur across 39 playlists while unwanted homepage content cannot be hidden.</q><a href="https://www.reddit.com/r/truespotify/comments/1dzs3p8/im_sick_of_spotifys_algorithm/" target="_blank" rel="noreferrer">Open source</a></li>
@@ -1197,7 +1197,7 @@
         <h2 id="counter-title">Counterevidence</h2>
         <p>Discover Weekly, Release Radar, Daylist, and artist radio work well for some listeners.
           The product opportunity is better expression and steering, not replacing
-          personalization or forcing novelty on everyone.</p>
+          personalization or forcing freshness on everyone.</p>
       </div>
     </section>
 
@@ -1216,7 +1216,7 @@
         <div class="mapping" role="table" aria-label="Problem to solution mapping">
           <div class="mapping-row" role="row"><span role="columnheader">Evidence-backed problem</span><span role="columnheader">Product response</span><span role="columnheader">What it tests</span></div>
           <div class="mapping-row" role="row"><strong role="cell">History misses current intent</strong><span role="cell">One natural-language session intent with editable constraints</span><span role="cell">Can users define “right for me now” with little effort?</span></div>
-          <div class="mapping-row" role="row"><strong role="cell">Familiar and similar results recur</strong><span role="cell">A visible familiar-to-adventurous control plus repeat penalties</span><span role="cell">Does controlled novelty increase accepted new artists?</span></div>
+          <div class="mapping-row" role="row"><strong role="cell">Familiar and similar results recur</strong><span role="cell">A visible familiar-to-adventurous control plus repeat penalties</span><span role="cell">Does controlled freshness increase accepted new artists?</span></div>
           <div class="mapping-row" role="row"><strong role="cell">Temporary contexts distort the set</strong><span role="cell">Artist, genre, language, and direction exclusions</span><span role="cell">Do explicit boundaries improve perceived relevance?</span></div>
           <div class="mapping-row" role="row"><strong role="cell">Feedback does not feel effective</strong><span role="cell">Immediate reranking with a plain-language change summary</span><span role="cell">Does visible cause and effect improve control?</span></div>
           <div class="mapping-row" role="row"><strong role="cell">Surprising results feel arbitrary</strong><span role="cell">One explanation grounded in approved intent and catalog metadata</span><span role="cell">Does explanation help after recommendation quality is adequate?</span></div>
@@ -1236,8 +1236,8 @@
           </div>
           <div class="build-steps">
             <div class="build-step"><strong>Catalog and baseline</strong><span>Prepare 300–500 consistently tagged tracks, taste anchors, and an unsteered comparison.</span></div>
-            <div class="build-step"><strong>Intent parser</strong><span>Turn free text into editable mood, activity, genre, language, energy, novelty, and exclusion fields.</span></div>
-            <div class="build-step"><strong>Transparent ranking</strong><span>Combine relevance, novelty fit, taste compatibility, diversity, and repeat penalties.</span></div>
+            <div class="build-step"><strong>Intent parser</strong><span>Turn free text into editable mood, activity, genre, language, energy, freshness, and exclusion fields.</span></div>
+            <div class="build-step"><strong>Transparent ranking</strong><span>Combine relevance, freshness fit, taste compatibility, diversity, and repeat penalties.</span></div>
             <div class="build-step"><strong>Immediate steering</strong><span>Offer Save, Not for me, More like this, and More adventurous with visible reranking.</span></div>
             <div class="build-step"><strong>Paired evaluation</strong><span>Compare baseline and guided sessions, then decide to continue, iterate, or pivot.</span></div>
           </div>
@@ -1245,11 +1245,11 @@
 
         <div class="experiment">
           <h3>Primary hypothesis: guided sessions increase accepted unfamiliar artists without reducing relevance.</h3>
-          <p>The primary proxy is accepted novel-artist rate, defined relative to the participant's
+          <p>The primary proxy is accepted fresh-artist rate, defined relative to the participant's
             selected taste anchor. The prototype does not claim streaming impact or knowledge of
             the listener's complete history.</p>
           <div class="metric-line" aria-label="Experiment metrics">
-            <span>Novel-artist acceptance</span><span>Overall acceptance</span><span>Refinement success</span><span>Repeat exposure</span><span>Time to first save</span><span>Perceived control</span>
+            <span>Fresh-artist acceptance</span><span>Overall acceptance</span><span>Refinement success</span><span>Repeat exposure</span><span>Time to first save</span><span>Perceived control</span>
           </div>
         </div>
       </div>

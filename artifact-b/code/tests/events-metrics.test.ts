@@ -39,16 +39,16 @@ test("primary and guardrail metrics match hand-calculated events", () => {
     event({
       eventName: "recommendations_shown",
       condition: "guided",
-      properties: { trackIds: ["a", "b", "c", "d"], artistIds: ["aa", "bb", "cc", "dd"], novelArtistIds: ["bb", "dd"], candidateCount: 20 }
+      properties: { trackIds: ["a", "b", "c", "d"], artistIds: ["aa", "bb", "cc", "dd"], freshArtistIds: ["bb", "dd"], candidateCount: 20 }
     }),
-    event({ eventName: "track_saved", condition: "guided", properties: { trackId: "b", artistId: "bb", novelArtist: true } }),
-    event({ eventName: "track_saved", condition: "guided", properties: { trackId: "a", artistId: "aa", novelArtist: false } })
+    event({ eventName: "track_saved", condition: "guided", properties: { trackId: "b", artistId: "bb", freshArtist: true } }),
+    event({ eventName: "track_saved", condition: "guided", properties: { trackId: "a", artistId: "aa", freshArtist: false } })
   ];
 
   const metrics = calculateConditionMetrics(events, "guided");
   assert.equal(metrics.cardsShown, 4);
   assert.equal(metrics.savedTracks, 2);
-  assert.equal(metrics.savedNovelArtists, 1);
+  assert.equal(metrics.savedFreshArtists, 1);
   assert.equal(metrics.overallAcceptanceRate, 0.5);
-  assert.equal(metrics.acceptedNovelArtistRate, 0.25);
+  assert.equal(metrics.acceptedFreshArtistRate, 0.25);
 });

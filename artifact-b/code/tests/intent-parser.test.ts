@@ -7,7 +7,7 @@ test("deterministic fallback recognizes common intent language", async () => {
   assert.equal(result.usedFallback, true);
   assert.equal(result.intent.languages.includes("hi"), true);
   assert.equal(result.intent.activity, "focus");
-  assert.equal(result.intent.novelty, 0.82);
+  assert.equal(result.intent.freshness, 0.82);
   assert.equal(result.intent.energy, 0.3);
 });
 
@@ -21,7 +21,7 @@ test("provider output is constrained to catalog vocabulary", async () => {
         genres: ["indie", "invented-genre"],
         languages: ["en", "xx"],
         energy: 0.4,
-        novelty: 0.7,
+        freshness: 0.7,
         excludeArtistIds: [],
         excludeGenres: [],
         excludeLanguages: [],

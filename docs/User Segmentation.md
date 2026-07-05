@@ -56,7 +56,7 @@ complainers.
 |---|---|---|---|
 | 1–2 | Repeatedly stale | Long/deep | Understand the failure loop |
 | 3 | Context contamination | Any | Test exclusions/profile repair |
-| 4 | Genre explorer | Established | Test novelty boundaries |
+| 4 | Genre explorer | Established | Test freshness boundaries |
 | 5 | Switched/uses external tools | Long/deep | Understand churn/workarounds |
 | 6 | Discovery works well | Long/deep | Counterexample and successful behavior |
 

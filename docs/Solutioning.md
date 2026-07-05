@@ -21,7 +21,7 @@ solution follows from Discovery Evidence Lab.
 ```text
 Persistent listening history
         +
-current mood, activity, genre, and novelty intent are weak or invisible
+current mood, activity, genre, and freshness intent are weak or invisible
         ↓
 familiar, similar, or popular recommendations dominate
         ↓
@@ -42,7 +42,7 @@ missing control (46).
 | Evidence-backed problem | Discovery Compass response | What the prototype tests |
 |---|---|---|
 | A historical profile misses current intent | One short natural-language session intent | Whether users can express “right for me now” with low effort |
-| Familiar and similar tracks dominate | Familiar-to-adventurous novelty control | Whether controlled novelty raises accepted new-artist results |
+| Familiar and similar tracks dominate | Familiar-to-adventurous freshness control | Whether controlled freshness raises accepted new-artist results |
 | Temporary contexts contaminate recommendations | Artist, genre, language, and context exclusions | Whether removing unwanted directions improves relevance |
 | Users cannot see if feedback changed anything | Immediate reranking plus a visible change summary | Whether cause-and-effect increases perceived control |
 | Large libraries still feel repetitive | Repeat penalties, artist caps, and diversity scoring | Whether experienced variety improves, independent of catalog size |
@@ -61,7 +61,7 @@ AI earns a narrow role where user language is flexible:
 - produce a short explanation using only the selected track's catalog metadata and the approved
   intent.
 
-AI should not enforce exclusions, calculate novelty, choose experiment conditions, invent track
+AI should not enforce exclusions, calculate freshness, choose experiment conditions, invent track
 facts, or determine success metrics. Those responsibilities remain deterministic and testable.
 
 ## Why not the obvious alternatives
@@ -78,9 +78,9 @@ Discovery Evidence Lab contains counterevidence from users who value Discover We
 Daylist. The experiment should augment an existing taste anchor rather than claim personalization
 is universally broken.
 
-### Not only a novelty slider
+### Not only a freshness slider
 
-Novelty does not capture mood, activity, language, genre, or exclusions. A slider is useful only
+Freshness does not capture mood, activity, language, genre, or exclusions. A slider is useful only
 when combined with current intent and immediate steering.
 
 ### Not a Smart Shuffle clone or fix
@@ -98,9 +98,9 @@ language discovery. Interviews must validate multilingual positioning.
 1. Use a curated JSON catalog of 300–500 consistently tagged tracks.
 2. Let a participant select 3–5 taste anchors.
 3. Compare an unsteered baseline with an intent-guided condition.
-4. In the guided condition, allow intent, novelty, exclusions, and immediate feedback.
+4. In the guided condition, allow intent, freshness, exclusions, and immediate feedback.
 5. Return 8–12 tracks with factual one-sentence explanations.
-6. Measure accepted novel artist rate, overall acceptance, refinement success, repeat exposure,
+6. Measure accepted fresh artist rate, overall acceptance, refinement success, repeat exposure,
    time to first accepted result, and perceived relevance/control.
 
 ## Decision gates
@@ -108,8 +108,8 @@ language discovery. Interviews must validate multilingual positioning.
 | Gate | Evidence required |
 |---|---|
 | Problem validation | 5–6 interviews recognize the intent/profile mismatch in recent behavior |
-| Usability | At least 4 of 5 participants can set intent, understand novelty, and refine unaided |
-| Directional value | Guided sessions improve accepted novel-artist rate without lowering relevance |
+| Usability | At least 4 of 5 participants can set intent, understand freshness, and refine unaided |
+| Directional value | Guided sessions improve accepted fresh-artist rate without lowering relevance |
 | Continue | Users understand how their input changed the set and value the control |
 | Pivot | Playback defects or base-candidate quality dominate the failure |
 | Stop | Setup feels like work and guided results are not meaningfully different |

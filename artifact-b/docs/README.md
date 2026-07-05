@@ -2,7 +2,7 @@
 
 Discovery Compass is the bounded product experiment recommended by Discovery Evidence Lab. It
 tests whether active music explorers accept more unfamiliar artists when they can express current
-intent, control novelty, exclude unwanted directions, and immediately steer a recommendation set.
+intent, control freshness, exclude unwanted directions, and immediately steer a recommendation set.
 
 Artifact B is not a Spotify clone, playback client, production recommender, or general chatbot.
 
@@ -12,7 +12,7 @@ The five technical phases are implemented as one Next.js application under `arti
 
 - a controlled baseline and guided condition using the same catalog and cards;
 - editable session-intent parsing with deterministic fallback;
-- deterministic exclusions, relevance, novelty, diversity, repeat suppression, and artist caps;
+- deterministic exclusions, relevance, freshness, diversity, repeat suppression, and artist caps;
 - grounded explanations and immediate feedback-driven reranking;
 - privacy-minimized condition events, ratings, health readiness, and reproducible analysis;
 - Vercel configuration and a Render Blueprint targeting the code directory.
@@ -44,7 +44,7 @@ technical mode because the application has complete deterministic and in-memory 
 | [QUICKSTART.md](QUICKSTART.md) | Install, configure, run, validate, and troubleshoot locally |
 | [phase_1.md](../phases/phase_1.md) | Validate the problem; establish catalog, baseline, and measurement |
 | [phase_2.md](../phases/phase_2.md) | Build schema-validated intent parsing and editable interpretation |
-| [phase_3.md](../phases/phase_3.md) | Implement deterministic filtering, novelty, diversity, and ranking |
+| [phase_3.md](../phases/phase_3.md) | Implement deterministic filtering, freshness, diversity, and ranking |
 | [phase_4.md](../phases/phase_4.md) | Build the recommendation, explanation, and immediate-steering experience |
 | [phase_5.md](../phases/phase_5.md) | Run paired evaluation, harden, deploy, and make the product decision |
 

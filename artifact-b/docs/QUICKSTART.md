@@ -82,7 +82,7 @@ Open [http://localhost:3000](http://localhost:3000).
 8. Complete the condition ratings.
 9. Switch to **Baseline** and use the same taste anchor.
 
-The baseline intentionally omits current intent, novelty controls, exclusions, and steering.
+The baseline intentionally omits current intent, freshness controls, exclusions, and steering.
 
 ## 6. Run all technical validation
 

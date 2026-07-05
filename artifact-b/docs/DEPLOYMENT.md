@@ -208,7 +208,7 @@ open.
 5. Generate ten guided recommendations.
 6. Confirm every result has a source link and grounded explanation.
 7. Reject one track and verify it does not immediately return.
-8. Increase novelty and verify the visible change summary.
+8. Increase freshness and verify the visible change summary.
 9. Complete guided and baseline condition ratings.
 10. In evaluation mode, verify the paired events exist in PostgreSQL.
 11. Export events and run `npm run study:analyze -- <export>`.

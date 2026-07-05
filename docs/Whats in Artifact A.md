@@ -131,7 +131,7 @@ not Spotify-wide percentages.
 - Discover Weekly has mixed evidence; Daylist and Release Radar have positive advocates.
 - A targeted Smart Shuffle query found repeated small subsets and controls that re-enable
   themselves.
-- Explanations are a weaker opportunity signal than relevance, novelty, and control.
+- Explanations are a weaker opportunity signal than relevance, freshness, and control.
 - Language exploration remains under-evidenced compared with genre exploration.
 
 The full question bank is in [RAG Questions.md](RAG%20Questions.md).
@@ -170,6 +170,6 @@ Run the application with `npm run dev`, then open `/`, `/ask`, and `/collect`.
 ## Product decision produced
 
 Discovery Evidence Lab supports testing an **Intent-guided Discovery Session** in Artifact B: the listener
-states what they want now, adjusts novelty, excludes unwanted directions, and receives a small
+states what they want now, adjusts freshness, excludes unwanted directions, and receives a small
 set of explained recommendations from a curated prototype catalog. See
 [Artifact B Recommendation.md](Artifact%20B%20Recommendation.md).

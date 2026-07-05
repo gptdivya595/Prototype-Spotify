@@ -44,9 +44,9 @@ export function applyFeedback(state: GuidedSessionState, action: FeedbackAction,
   }
 
   if (action.type === "more-adventurous") {
-    const before = next.intent.novelty;
-    next.intent.novelty = clamp(before + 0.15);
-    summary = `Increased novelty from ${Math.round(before * 100)} to ${Math.round(next.intent.novelty * 100)}; other approved constraints stayed fixed.`;
+    const before = next.intent.freshness;
+    next.intent.freshness = clamp(before + 0.15);
+    summary = `Increased freshness from ${Math.round(before * 100)} to ${Math.round(next.intent.freshness * 100)}; other approved constraints stayed fixed.`;
   }
 
   return { state: next, summary };

@@ -27,10 +27,10 @@ function fallbackExplanation(item: GuidedScore, intent: ApprovedIntent) {
   if (language) reasons.push(`${language} language preference`);
   if (intent.activity && item.track.activities.includes(intent.activity)) reasons.push(`${intent.activity} context`);
   if (reasons.length === 0) reasons.push("energy and taste-anchor compatibility");
-  const novelty = item.noveltyLabel === "new-relative-to-profile"
+  const freshness = item.freshnessLabel === "new-relative-to-profile"
     ? "The artist is outside your selected profile."
     : "The artist remains close to your selected profile.";
-  return `Fits through ${reasons.slice(0, 2).join(" and ")}. ${novelty}`;
+  return `Fits through ${reasons.slice(0, 2).join(" and ")}. ${freshness}`;
 }
 
 const openAIProvider: ExplanationProvider = {
@@ -59,7 +59,7 @@ const openAIProvider: ExplanationProvider = {
               moods: item.track.moods,
               activities: item.track.activities,
               energy: item.track.energy,
-              noveltyLabel: item.noveltyLabel
+              freshnessLabel: item.freshnessLabel
             }))
           })
         }
