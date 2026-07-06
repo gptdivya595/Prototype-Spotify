@@ -12,6 +12,24 @@ const SOURCES = new Set(['app_store', 'play_store', 'reddit']);
 const rate = globalThis.__artifactAChatRate || new Map();
 globalThis.__artifactAChatRate = rate;
 
+// CORS so the static Vercel summary page can call this Cloud Run backend
+// cross-origin. Read-only public endpoint; ACAO can be restricted to the
+// Vercel origin via CHAT_ALLOWED_ORIGIN if desired.
+const CORS = {
+  'Access-Control-Allow-Origin': process.env.CHAT_ALLOWED_ORIGIN || '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Max-Age': '86400',
+};
+
+function json(body, init = {}) {
+  return NextResponse.json(body, { ...init, headers: { ...CORS, ...(init.headers || {}) } });
+}
+
+export async function OPTIONS() {
+  return new Response(null, { status: 204, headers: CORS });
+}
+
 function allowedRequest(ip) {
   const now = Date.now();
   const row = rate.get(ip) || { started: now, count: 0 };
@@ -56,13 +74,13 @@ export async function POST(req) {
   try {
     const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'local';
     if (!allowedRequest(ip)) {
-      return NextResponse.json({ error: 'rate limit exceeded; retry in one minute' }, { status: 429 });
+      return json({ error: 'rate limit exceeded; retry in one minute' }, { status: 429 });
     }
 
     const body = await req.json().catch(() => ({}));
     const question = typeof body.question === 'string' ? body.question.trim() : '';
-    if (!question) return NextResponse.json({ error: 'question (string) required' }, { status: 400 });
-    if (question.length > 500) return NextResponse.json({ error: 'question must be 500 characters or fewer' }, { status: 400 });
+    if (!question) return json({ error: 'question (string) required' }, { status: 400 });
+    if (question.length > 500) return json({ error: 'question must be 500 characters or fewer' }, { status: 400 });
 
     const filters = sanitizeFilters(body.filters);
     const aggregates = await loadAggregateContext();
@@ -71,9 +89,9 @@ export async function POST(req) {
       topK: 12,
       aggregateContext: aggregates.text,
     });
-    return NextResponse.json({ ...res, dataVersion: aggregates.dataVersion });
+    return json({ ...res, dataVersion: aggregates.dataVersion });
   } catch (e) {
     console.error('chat_error', e?.message || e);
-    return NextResponse.json({ error: 'unable to answer from the review corpus' }, { status: 500 });
+    return json({ error: 'unable to answer from the review corpus' }, { status: 500 });
   }
 }

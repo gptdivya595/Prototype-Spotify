@@ -899,6 +899,104 @@
 <body>
   <a class="skip-link" href="#main">Skip to evidence</a>
 
+  <!-- Live RAG ask widget: calls the Artifact A backend on Cloud Run. -->
+  <section id="rag-live" aria-label="Ask the live RAG">
+    <style>
+      #rag-live{--rlq-ink:#0f172a;--rlq-soft:#475569;--rlq-line:#e2e8f0;--rlq-accent:#1db954;
+        background:#0b1120;color:#e2e8f0;padding:22px clamp(16px,5vw,64px);font-family:inherit;
+        border-bottom:1px solid #1e293b}
+      #rag-live .rlq-wrap{max-width:920px;margin:0 auto}
+      #rag-live h2{margin:0 0 4px;font-size:clamp(1.05rem,2.4vw,1.35rem);color:#fff}
+      #rag-live p.rlq-sub{margin:0 0 14px;color:#94a3b8;font-size:.85rem}
+      #rag-live form{display:flex;gap:8px;flex-wrap:wrap}
+      #rag-live input{flex:1 1 320px;min-width:0;padding:11px 14px;border-radius:10px;
+        border:1px solid #334155;background:#111827;color:#f1f5f9;font-size:.95rem}
+      #rag-live input:focus{outline:2px solid var(--rlq-accent);outline-offset:1px}
+      #rag-live button{padding:11px 20px;border:0;border-radius:10px;background:var(--rlq-accent);
+        color:#04240f;font-weight:700;font-size:.95rem;cursor:pointer}
+      #rag-live button:disabled{opacity:.55;cursor:progress}
+      #rag-live .rlq-out{margin-top:14px}
+      #rag-live .rlq-answer{background:#111827;border:1px solid #1e293b;border-radius:12px;
+        padding:14px 16px;line-height:1.55;white-space:pre-wrap;font-size:.95rem}
+      #rag-live .rlq-cites{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+      #rag-live .rlq-cite{background:#0f172a;border:1px solid #1e293b;border-radius:10px;padding:10px 12px;font-size:.82rem}
+      #rag-live .rlq-cite b{color:var(--rlq-accent)}
+      #rag-live .rlq-meta{color:#94a3b8;font-size:.75rem;margin:0 0 4px}
+      #rag-live .rlq-cite a{color:#7dd3fc}
+      #rag-live .rlq-note{color:#94a3b8;font-size:.8rem;margin-top:8px}
+      #rag-live .rlq-err{color:#fca5a5}
+      #rag-live .rlq-examples{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+      #rag-live .rlq-examples button{background:#1e293b;color:#cbd5e1;font-weight:500;padding:6px 11px;font-size:.78rem}
+    </style>
+    <div class="rlq-wrap">
+      <h2>Ask the live Spotify-discovery RAG</h2>
+      <p class="rlq-sub">Cited answers grounded in 1,850 real feedback records — served live from the Artifact&nbsp;A backend on Google Cloud Run.</p>
+      <form id="rlq-form">
+        <input id="rlq-q" type="text" maxlength="500" autocomplete="off"
+          placeholder="e.g. What controls over recommendations do users want?" />
+        <button id="rlq-send" type="submit">Ask</button>
+      </form>
+      <div class="rlq-examples" id="rlq-examples">
+        <button type="button" data-q="What controls over recommendations do users want?">Recommendation controls</button>
+        <button type="button" data-q="Why do users say Discover Weekly feels repetitive?">Repetitive Discover Weekly</button>
+        <button type="button" data-q="What do listeners want when their taste changes?">Changing taste</button>
+      </div>
+      <div class="rlq-out" id="rlq-out" aria-live="polite"></div>
+    </div>
+    <script>
+      (function () {
+        var BACKEND = 'https://artifact-a-rag-ijk2q7uqca-el.a.run.app';
+        var form = document.getElementById('rlq-form');
+        var input = document.getElementById('rlq-q');
+        var send = document.getElementById('rlq-send');
+        var out = document.getElementById('rlq-out');
+
+        function esc(s) {
+          return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+          });
+        }
+        function renderCite(c) {
+          var meta = [c.source, c.rating != null ? c.rating + '★' : null, c.date]
+            .filter(Boolean).map(esc).join(' · ');
+          var link = c.url ? ' <a href="' + esc(c.url) + '" target="_blank" rel="noopener">source</a>' : '';
+          return '<li class="rlq-cite"><p class="rlq-meta">[' + esc(c.n) + '] ' + meta + link +
+            '</p>' + esc(c.quote) + '</li>';
+        }
+        function ask(q) {
+          if (!q) return;
+          input.value = q;
+          send.disabled = true;
+          out.innerHTML = '<p class="rlq-note">Retrieving cited evidence…</p>';
+          fetch(BACKEND + '/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question: q })
+          }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+            .then(function (res) {
+              if (!res.ok) { out.innerHTML = '<p class="rlq-err">' + esc(res.d.error || 'Request failed') + '</p>'; return; }
+              var d = res.d;
+              var html = '<div class="rlq-answer">' + esc(d.answer) + '</div>';
+              if (d.citations && d.citations.length) {
+                html += '<ul class="rlq-cites">' + d.citations.map(renderCite).join('') + '</ul>';
+              }
+              if (d.dataVersion) html += '<p class="rlq-note">Data version ' + esc(d.dataVersion) + '</p>';
+              out.innerHTML = html;
+            })
+            .catch(function () {
+              out.innerHTML = '<p class="rlq-err">Could not reach the RAG backend. It may be waking from cold start — try again.</p>';
+            })
+            .finally(function () { send.disabled = false; });
+        }
+        form.addEventListener('submit', function (e) { e.preventDefault(); ask(input.value.trim()); });
+        document.getElementById('rlq-examples').addEventListener('click', function (e) {
+          var b = e.target.closest('button[data-q]');
+          if (b) ask(b.getAttribute('data-q'));
+        });
+      })();
+    </script>
+  </section>
+
   <header class="masthead" id="overview">
     <div class="topbar">
       <a class="identity" href="#overview" aria-label="Discovery Evidence Lab overview">

@@ -1,0 +1,20 @@
+# Keep secrets and heavy/rebuildable dirs out of the build context + image.
+# .env.local is read locally by deploy.sh and injected as Cloud Run env vars,
+# never baked into the image.
+.env
+.env.local
+.env*.local
+
+node_modules
+.next
+dist
+out
+
+.git
+.gitignore
+*.log
+.DS_Store
+
+# Raw scrape corpora are not needed by the running app (it serves the
+# pre-built data/insights.json + data/vectors.json).
+data/reddit-raw
