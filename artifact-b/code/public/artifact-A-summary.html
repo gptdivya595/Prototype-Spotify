@@ -366,7 +366,9 @@
     }
 
     .bar-fill {
+      display: block;
       width: calc(var(--value) / 72 * 100%);
+      min-width: 6px;
       height: 100%;
       border-radius: inherit;
       background: var(--fill, var(--cobalt));
@@ -924,10 +926,26 @@
       #rag-live .rlq-out{margin-top:16px}
       #rag-live .rlq-answer{background:var(--paper);border:1px solid var(--ink);border-radius:12px;
         padding:16px 18px;line-height:1.6;white-space:pre-wrap;font-size:.95rem;color:var(--ink)}
-      #rag-live .rlq-cites{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
-      #rag-live .rlq-cite{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:.83rem;color:var(--ink)}
-      #rag-live .rlq-meta{color:var(--cobalt);font-size:.74rem;font-weight:600;margin:0 0 4px}
-      #rag-live .rlq-cite a{color:var(--cobalt)}
+      #rag-live .rlq-cites-wrap{margin-top:14px}
+      #rag-live .rlq-cites-wrap summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px;
+        border:1px solid var(--cobalt);background:var(--cobalt-pale);color:var(--cobalt);font-weight:700;
+        font-size:.83rem;padding:9px 18px;border-radius:999px}
+      #rag-live .rlq-cites-wrap summary::-webkit-details-marker{display:none}
+      #rag-live .rlq-cites-wrap summary::before{content:"+";font-size:1rem;line-height:1;font-weight:700}
+      #rag-live .rlq-cites-wrap[open] summary::before{content:"–"}
+      #rag-live .rlq-cites-wrap summary:hover{background:var(--cobalt);color:var(--paper)}
+      #rag-live .rlq-citelist{margin:16px 0 0;padding:0;list-style:none}
+      #rag-live .rlq-citelist li{display:grid;grid-template-columns:minmax(120px,168px) 1fr auto;gap:18px;
+        align-items:start;padding:15px 0;border-top:1px solid var(--line)}
+      #rag-live .rlq-citelist li:first-child{border-top:0}
+      #rag-live .rlq-rec strong{display:block;color:var(--ink);font-size:.86rem;line-height:1.3}
+      #rag-live .rlq-rec small{color:var(--ink-soft);font-size:.74rem}
+      #rag-live .rlq-citelist q{color:var(--ink);font-size:.9rem;line-height:1.5;quotes:'“' '”'}
+      #rag-live .rlq-citelist a{color:var(--cobalt);font-weight:700;white-space:nowrap;text-decoration:underline}
+      @media (max-width:640px){
+        #rag-live .rlq-citelist li{grid-template-columns:1fr;gap:5px}
+        #rag-live .rlq-citelist a{justify-self:start}
+      }
       #rag-live .rlq-note{color:var(--ink-soft);font-size:.8rem;margin-top:8px}
       #rag-live .rlq-err{color:var(--coral)}
       #rag-live .rlq-examples{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
@@ -974,7 +992,7 @@
       </div>
       <div class="rlq-out" id="rlq-out" aria-live="polite"></div>
 
-      <details class="rlq-how">
+      <details class="rlq-how" open>
         <summary>How this RAG works &amp; what it runs on</summary>
         <p class="rlq-bg">A <strong>Retrieval-Augmented Generation</strong> pipeline over 1,850 real Spotify
           feedback records (100 App Store · 1,200 Play Store · 550 Reddit). Your question is embedded,
@@ -1004,12 +1022,20 @@
             return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
           });
         }
+        var SRC = { reddit: 'Reddit', play_store: 'Play Store', app_store: 'App Store' };
+        var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        function fmtDate(d) {
+          var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || '');
+          return m ? (Number(m[3]) + ' ' + MON[Number(m[2]) - 1] + ' ' + m[1]) : (d || '');
+        }
         function renderCite(c) {
-          var meta = [c.source, c.rating != null ? c.rating + '★' : null, c.date]
+          var head = [SRC[c.source] || c.source, c.rating != null ? c.rating + '★' : null, fmtDate(c.date)]
             .filter(Boolean).map(esc).join(' · ');
-          var link = c.url ? ' <a href="' + esc(c.url) + '" target="_blank" rel="noopener">source</a>' : '';
-          return '<li class="rlq-cite"><p class="rlq-meta">[' + esc(c.n) + '] ' + meta + link +
-            '</p>' + esc(c.quote) + '</li>';
+          var themes = (c.themes || []).map(function (t) { return String(t).replace(/_/g, ' '); }).join(' · ');
+          var link = c.url ? '<a href="' + esc(c.url) + '" target="_blank" rel="noopener">Open source</a>' : '<span></span>';
+          return '<li><span class="rlq-rec"><strong>[' + esc(c.n) + '] ' + head + '</strong>' +
+            (themes ? '<small>' + esc(themes) + '</small>' : '') + '</span>' +
+            '<q>' + esc(c.quote) + '</q>' + link + '</li>';
         }
         function ask(q) {
           if (!q) return;
@@ -1026,7 +1052,9 @@
               var d = res.d;
               var html = '<div class="rlq-answer">' + esc(d.answer) + '</div>';
               if (d.citations && d.citations.length) {
-                html += '<ul class="rlq-cites">' + d.citations.map(renderCite).join('') + '</ul>';
+                html += '<details class="rlq-cites-wrap"><summary>View ' + d.citations.length +
+                  ' cited record' + (d.citations.length === 1 ? '' : 's') + '</summary>' +
+                  '<ol class="rlq-citelist">' + d.citations.map(renderCite).join('') + '</ol></details>';
               }
               if (d.dataVersion) html += '<p class="rlq-note">Data version ' + esc(d.dataVersion) + '</p>';
               out.innerHTML = html;
