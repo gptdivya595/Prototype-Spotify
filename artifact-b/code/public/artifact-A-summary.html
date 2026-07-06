@@ -935,6 +935,26 @@
       #rag-live .rlq-examples button{background:var(--paper);border:1px solid var(--line);color:var(--ink-soft);
         font-weight:600;padding:7px 12px;font-size:.78rem;border-radius:999px}
       #rag-live .rlq-examples button:hover{border-color:var(--cobalt);color:var(--cobalt);background:var(--cobalt-pale)}
+      #rag-live .rlq-how{margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+      #rag-live .rlq-how summary{cursor:pointer;font-weight:700;font-size:.82rem;color:var(--cobalt);
+        letter-spacing:.02em;list-style:none;display:inline-flex;align-items:center;gap:7px}
+      #rag-live .rlq-how summary::-webkit-details-marker{display:none}
+      #rag-live .rlq-how summary::before{content:"›";font-size:1.1rem;transition:transform .2s;display:inline-block}
+      #rag-live .rlq-how[open] summary::before{transform:rotate(90deg)}
+      #rag-live .rlq-bg{margin:12px 0 16px;color:var(--ink-soft);font-size:.86rem;line-height:1.6;max-width:78ch}
+      #rag-live .rlq-bg code{background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:.85em}
+      #rag-live .rlq-bg strong{color:var(--ink)}
+      #rag-live .rlq-flow{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+      #rag-live .rlq-flow li{flex:1 1 150px;position:relative;background:var(--paper);border:1px solid var(--line);
+        border-radius:10px;padding:12px 12px 12px 14px;display:flex;flex-direction:column;gap:3px}
+      #rag-live .rlq-flow li:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;
+        transform:translateY(-50%);color:var(--cobalt);font-weight:700;z-index:1}
+      #rag-live .rlq-flow .rlq-n{width:20px;height:20px;border-radius:50%;background:var(--cobalt);color:var(--paper);
+        font-size:.72rem;font-weight:700;display:grid;place-items:center;margin-bottom:2px}
+      #rag-live .rlq-flow strong{font-size:.86rem;color:var(--ink)}
+      #rag-live .rlq-flow em{font-style:normal;font-size:.74rem;color:var(--ink-soft)}
+      @media (max-width:640px){#rag-live .rlq-flow li:not(:last-child)::after{content:"↓";right:auto;left:50%;
+        top:auto;bottom:-14px;transform:translateX(-50%)}}
     </style>
     <div class="rlq-wrap">
       <p class="rlq-eyebrow">Live RAG · Artifact A backend</p>
@@ -942,6 +962,7 @@
       <p class="rlq-sub">Cited answers grounded in 1,850 real feedback records — served live from the Artifact&nbsp;A backend on Google Cloud Run.</p>
       <form id="rlq-form">
         <input id="rlq-q" type="text" maxlength="500" autocomplete="off"
+          value="Why do users struggle to discover new music?"
           placeholder="e.g. What controls over recommendations do users want?" />
         <button id="rlq-send" type="submit">Ask</button>
       </form>
@@ -952,6 +973,23 @@
         <button type="button" data-q="What do listeners want when their taste changes?">Changing taste</button>
       </div>
       <div class="rlq-out" id="rlq-out" aria-live="polite"></div>
+
+      <details class="rlq-how">
+        <summary>How this RAG works &amp; what it runs on</summary>
+        <p class="rlq-bg">A <strong>Retrieval-Augmented Generation</strong> pipeline over 1,850 real Spotify
+          feedback records (100 App Store · 1,200 Play Store · 550 Reddit). Your question is embedded,
+          matched against the corpus by vector similarity, and only the retrieved evidence is passed to
+          the model — which must answer <em>source-bound</em> and cite each claim with a
+          <code>[n]</code> back to a real quote. No retrieval, no answer. The corpus and 1,536-dim
+          vector index ship with the build; the model call runs server-side on Google Cloud Run.</p>
+        <ol class="rlq-flow" aria-label="RAG pipeline steps">
+          <li><span class="rlq-n">1</span><strong>Question</strong><em>your text, ≤500 chars</em></li>
+          <li><span class="rlq-n">2</span><strong>Embed</strong><em>text-embedding-3-small</em></li>
+          <li><span class="rlq-n">3</span><strong>Retrieve</strong><em>top-k from 1,850 records</em></li>
+          <li><span class="rlq-n">4</span><strong>Ground</strong><em>gpt-4o-mini, source-bound</em></li>
+          <li><span class="rlq-n">5</span><strong>Cited answer</strong><em>quotes + [n] refs</em></li>
+        </ol>
+      </details>
     </div>
     <script>
       (function () {
