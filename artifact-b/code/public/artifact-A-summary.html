@@ -902,34 +902,43 @@
   <!-- Live RAG ask widget: calls the Artifact A backend on Cloud Run. -->
   <section id="rag-live" aria-label="Ask the live RAG">
     <style>
-      #rag-live{--rlq-ink:#0f172a;--rlq-soft:#475569;--rlq-line:#e2e8f0;--rlq-accent:#1db954;
-        background:#0b1120;color:#e2e8f0;padding:22px clamp(16px,5vw,64px);font-family:inherit;
-        border-bottom:1px solid #1e293b}
-      #rag-live .rlq-wrap{max-width:920px;margin:0 auto}
-      #rag-live h2{margin:0 0 4px;font-size:clamp(1.05rem,2.4vw,1.35rem);color:#fff}
-      #rag-live p.rlq-sub{margin:0 0 14px;color:#94a3b8;font-size:.85rem}
+      #rag-live{background:var(--paper-strong);color:var(--ink);
+        padding:26px clamp(16px,5vw,64px) 30px;font-family:inherit;
+        border-bottom:1px solid var(--ink);position:relative}
+      #rag-live::before{content:"";position:absolute;inset:0 0 auto;height:3px;
+        background:linear-gradient(90deg,var(--coral) 0 33%,var(--cobalt) 33% 66%,var(--mint) 66% 100%)}
+      #rag-live .rlq-wrap{max-width:960px;margin:0 auto}
+      #rag-live .rlq-eyebrow{margin:0 0 6px;font-size:.72rem;letter-spacing:.12em;
+        text-transform:uppercase;color:var(--cobalt);font-weight:700}
+      #rag-live h2{margin:0 0 4px;font-size:clamp(1.15rem,2.6vw,1.45rem);color:var(--ink);line-height:1.15}
+      #rag-live p.rlq-sub{margin:0 0 16px;color:var(--ink-soft);font-size:.88rem;max-width:60ch}
       #rag-live form{display:flex;gap:8px;flex-wrap:wrap}
-      #rag-live input{flex:1 1 320px;min-width:0;padding:11px 14px;border-radius:10px;
-        border:1px solid #334155;background:#111827;color:#f1f5f9;font-size:.95rem}
-      #rag-live input:focus{outline:2px solid var(--rlq-accent);outline-offset:1px}
-      #rag-live button{padding:11px 20px;border:0;border-radius:10px;background:var(--rlq-accent);
-        color:#04240f;font-weight:700;font-size:.95rem;cursor:pointer}
+      #rag-live input{flex:1 1 340px;min-width:0;padding:12px 15px;border-radius:10px;
+        border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:.95rem;font-family:inherit}
+      #rag-live input::placeholder{color:var(--ink-soft)}
+      #rag-live input:focus{outline:2px solid var(--cobalt);outline-offset:1px;border-color:var(--cobalt)}
+      #rag-live button{padding:12px 22px;border:1px solid var(--cobalt);border-radius:10px;
+        background:var(--cobalt);color:var(--paper);font-weight:700;font-size:.95rem;cursor:pointer;font-family:inherit}
+      #rag-live button:hover{background:var(--cobalt-deep);border-color:var(--cobalt-deep)}
       #rag-live button:disabled{opacity:.55;cursor:progress}
-      #rag-live .rlq-out{margin-top:14px}
-      #rag-live .rlq-answer{background:#111827;border:1px solid #1e293b;border-radius:12px;
-        padding:14px 16px;line-height:1.55;white-space:pre-wrap;font-size:.95rem}
+      #rag-live .rlq-out{margin-top:16px}
+      #rag-live .rlq-answer{background:var(--paper);border:1px solid var(--ink);border-radius:12px;
+        padding:16px 18px;line-height:1.6;white-space:pre-wrap;font-size:.95rem;color:var(--ink)}
       #rag-live .rlq-cites{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
-      #rag-live .rlq-cite{background:#0f172a;border:1px solid #1e293b;border-radius:10px;padding:10px 12px;font-size:.82rem}
-      #rag-live .rlq-cite b{color:var(--rlq-accent)}
-      #rag-live .rlq-meta{color:#94a3b8;font-size:.75rem;margin:0 0 4px}
-      #rag-live .rlq-cite a{color:#7dd3fc}
-      #rag-live .rlq-note{color:#94a3b8;font-size:.8rem;margin-top:8px}
-      #rag-live .rlq-err{color:#fca5a5}
-      #rag-live .rlq-examples{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-      #rag-live .rlq-examples button{background:#1e293b;color:#cbd5e1;font-weight:500;padding:6px 11px;font-size:.78rem}
+      #rag-live .rlq-cite{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:.83rem;color:var(--ink)}
+      #rag-live .rlq-meta{color:var(--cobalt);font-size:.74rem;font-weight:600;margin:0 0 4px}
+      #rag-live .rlq-cite a{color:var(--cobalt)}
+      #rag-live .rlq-note{color:var(--ink-soft);font-size:.8rem;margin-top:8px}
+      #rag-live .rlq-err{color:var(--coral)}
+      #rag-live .rlq-examples{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+      #rag-live .rlq-examples .rlq-try{color:var(--ink-soft);font-size:.76rem;margin-right:2px}
+      #rag-live .rlq-examples button{background:var(--paper);border:1px solid var(--line);color:var(--ink-soft);
+        font-weight:600;padding:7px 12px;font-size:.78rem;border-radius:999px}
+      #rag-live .rlq-examples button:hover{border-color:var(--cobalt);color:var(--cobalt);background:var(--cobalt-pale)}
     </style>
     <div class="rlq-wrap">
-      <h2>Ask the live Spotify-discovery RAG</h2>
+      <p class="rlq-eyebrow">Live RAG · Artifact A backend</p>
+      <h2>Ask the Spotify-discovery evidence</h2>
       <p class="rlq-sub">Cited answers grounded in 1,850 real feedback records — served live from the Artifact&nbsp;A backend on Google Cloud Run.</p>
       <form id="rlq-form">
         <input id="rlq-q" type="text" maxlength="500" autocomplete="off"
@@ -937,6 +946,7 @@
         <button id="rlq-send" type="submit">Ask</button>
       </form>
       <div class="rlq-examples" id="rlq-examples">
+        <span class="rlq-try">Try:</span>
         <button type="button" data-q="What controls over recommendations do users want?">Recommendation controls</button>
         <button type="button" data-q="Why do users say Discover Weekly feels repetitive?">Repetitive Discover Weekly</button>
         <button type="button" data-q="What do listeners want when their taste changes?">Changing taste</button>
