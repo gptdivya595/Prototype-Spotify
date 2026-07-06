@@ -32,6 +32,17 @@ export function MobileAppShell({
       <div className="ambient-orb ambient-orb-one" aria-hidden="true" />
       <div className="ambient-orb ambient-orb-two" aria-hidden="true" />
 
+      <a
+        className="datasource-link"
+        href="https://prototype-spotify-kohl.vercel.app/artifact-A-summary.html"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span aria-hidden="true">◎</span>
+        Data sources &amp; inputs
+        <span aria-hidden="true">↗</span>
+      </a>
+
       <GuideRail screenRef={screenRef} opened={opened} />
 
       <section className="phone-device" aria-label="Discovery Compass mobile application preview">

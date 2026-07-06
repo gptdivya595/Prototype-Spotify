@@ -63,6 +63,32 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
 .ambient-orb-one { width: 340px; height: 340px; left: -120px; top: 6%; background: rgba(30,215,96,.12); }
 .ambient-orb-two { width: 520px; height: 520px; right: -300px; bottom: -220px; background: rgba(30,215,96,.08); }
 
+.datasource-link {
+  position: absolute;
+  top: 22px;
+  right: clamp(20px, 4vw, 40px);
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(30, 215, 96, 0.3);
+  background: rgba(9, 12, 10, 0.72);
+  backdrop-filter: blur(8px);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  text-decoration: none;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
+}
+.datasource-link:hover {
+  border-color: rgba(30, 215, 96, 0.6);
+  background: rgba(30, 215, 96, 0.12);
+  transform: translateY(-1px);
+}
+
 .phone-device {
   position: relative;
   grid-column: 2;
@@ -322,7 +348,7 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 
 @media (max-width: 560px) {
   .web-stage { display: block; min-height: 100svh; padding: 0; background: var(--black); }
-  .ambient-orb, .web-stage::before { display: none; }
+  .ambient-orb, .web-stage::before, .datasource-link { display: none; }
   .phone-device { width: 100%; height: 100svh; min-height: 620px; padding: 0; border: 0; border-radius: 0; background: var(--black); box-shadow: none; }
   .phone-screen { border-radius: 0; }
   .phone-button { display: none; }
