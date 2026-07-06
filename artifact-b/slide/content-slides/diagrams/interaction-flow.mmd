@@ -7,7 +7,7 @@ sequenceDiagram
 
     L->>UI: Choose 3–5 anchors
     L->>UI: Describe what fits now
-    UI->>AI: Parse mood, activity, genre, novelty, exclusions
+    UI->>AI: Parse mood, activity, genre, freshness, exclusions
     AI-->>UI: Structured interpretation
     UI-->>L: Show editable interpretation
     L->>UI: Approve or correct
@@ -22,4 +22,4 @@ sequenceDiagram
     UI-->>L: Explain what changed
 
     Note over AI: Language interpretation only
-    Note over R: Exclusions, novelty, diversity, ranking, metrics
+    Note over R: Exclusions, freshness, diversity, ranking, metrics

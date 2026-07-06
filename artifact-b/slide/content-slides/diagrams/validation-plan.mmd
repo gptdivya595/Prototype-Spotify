@@ -4,7 +4,7 @@ flowchart LR
     B --> C2["Condition B\nDiscovery Compass"]
     C1 --> D["Same discovery prompt\nand candidate pool"]
     C2 --> D
-    D --> E["Compare accepted novel artists,\ntime to first save, confidence, effort"]
+    D --> E["Compare accepted fresh artists,\ntime to first save, confidence, effort"]
     E --> F{"Pre-registered gate"}
     F -->|Value without guardrail loss| G["Pilot"]
     F -->|Mixed| H["Revise interaction"]
